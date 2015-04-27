@@ -1,0 +1,287 @@
+%-----------------------------------------------------------------
+% UNIOESTE - Ciência da Computação
+% 4o. ano - Trabalho de Conclusão de Curso
+% Profas. Teresinha Arnauts Hachisuca e Izaura 
+%-----------------------------------------------------------------
+%DECLARAÇÃO DO TIPO DE DOCUMENTO, TAMANHO DA FOLHA E FONTE
+%-----------------------------------------------------------------
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+% 	twoside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{article}
+	
+%-----------------------------------------------------------------
+%DEFINIÇÕES DOS PACOTES UTILIZADOS
+%-----------------------------------------------------------------
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+%\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+
+\usepackage[brazil]{babel}      % Permite traduzir termos do LateX para português Brasil.
+\usepackage{hyperref}           % Permite ativar hyperlinks
+\usepackage{algorithm}          % pacote que de suporte a representação de algoritmos.
+
+\usepackage{algorithmic}
+\usepackage[pdftex]{geometry}
+\usepackage{multirow}
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+%\citebrackets[]
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+%-----------------------------------------------------------------
+%               INICIO DO DOCUMENTO - CAPA
+%-----------------------------------------------------------------
+\begin{document}
+
+
+\begin{center}
+
+	\textsc{
+		\large
+			\\universidade estadual do oeste do paraná
+			\\unioeste - campus de foz do iguaçu
+			\\centro de engenharias e ciências exatas
+			\\curso de ciência da computação
+			\\[1 cm]tcc - trabalho de conclusão de curso
+	}
+	\\
+	[4 cm]
+	\large Proposta de Trabalho de Conclusão de Curso
+    \\
+	\textbf{
+	    \textsc{Título do projeto}
+    }
+	\\[5 cm]Gabriel Custódio Martins
+    \\Orientadora: Teresinha Arnauts Hachisuca
+    \\Co-orientadora: Eliete Nascimento Pereira
+    \\[2 cm]Foz do Iguaçu, \{dia\} de \{mês\} de \{ano\}
+    
+    
+\end{center}
+
+\thispagestyle{empty}
+
+%-----------------------------------------------------------------
+%               IDENTIFICAÇÃO DO PROJETO
+%-----------------------------------------------------------------
+\section{Identificação}
+    
+    \subsection{Área e Linha de Pesquisa} 
+    
+    Consultar o link {\bf http://www.cnpq.br/documents/10157/186158/ TabeladeAreasdoConhecimento.pdf} 
+    para verificar as áreas e linhas de pesquisa existentes.
+    
+        \noindent Grande Área: \{nome da área de pesquisa\} 
+        \\Código: \{código da área de pesquisa\}
+    	\\[1 cm]Linha de Pesquisa: \{nome da linha de pesquisa\} 
+    	\\Código: \{código da área de pesquisa\}
+    	\\[1 cm]Especialidade: \{nome da especialidade\}
+    	\\Código: \{código da especialidade\}
+    	
+    	
+    \subsection{Palavras-chave}
+
+        \begin{enumerate}
+        	\item \{palavra chave 1\}
+        	\item \{palavra chave 2\}
+        	\item \{palavra chave 3\}
+        \end{enumerate}
+
+
+
+%-----------------------------------------------------------------
+%               INTRODUÇÃO E JUSTIFICATIVA
+%-----------------------------------------------------------------
+\section{Introdução e Justificativa}
+
+O texto de introdução deve conter três tipos de informações: apresentação do problema, estado da arte e justificativa do projeto.  Sendo que o autor deve elaborar
+o texto com fluência lógica e sem redundância de informações. 
+
+A apresentação ou formulação do problema deve deixar, de forma bem clara, qual será o objeto de estudo do projeto.
+
+O estado da arte serve para embasar tanto a formulação do problema como sua justificativa. É preciso situar historicamente a evolução do tema, 
+quais as abordagens já investigadas, qual o estágio atual do conhecimento sobre o assunto ou quais as tendências que se apresentam.
+
+A justificativa do projeto deve indicar por que o projeto deve ser feito. Descreva os fatores de motivação que o levaram a abordar e trabalhar no assunto.
+
+
+%-----------------------------------------------------------------
+%                       OBJETIVO
+%-----------------------------------------------------------------	
+\section{Objetivos}
+
+
+Os objetivos devem ser claros, sucintos e diretos. Deve ficar bem evidente qual a pergunta ou questionamento para o qual se busca uma resposta através desta pesquisa. 
+
+Os objetivos são divididos em dois tipos: Objetivo Geral e Objetivos Específicos.
+%-------------------------------------------------------------------------------
+
+\subsection{Objetivo Geral}
+
+Como pode ser notado, o título está no singular. Portanto, deve ser apresentado apenas 1 (um) objetivo geral. Aqui deve constar um parágrafo descrevendo esse objetivo.
+%-------------------------------------------------------------------------------
+
+\subsection{Objetivos Específicos}
+
+O título está no plural. Portanto, espera-se encontrar mais de um objetivo específico neste local. Não confunda objetivo específico com metodologia. 
+Os objetivos específicos são o desdobramento do objetivo geral. Pode-se começar esse tópico conforme paragrafo a seguir.
+
+{\bf Dentre os principais objetivos específicos destacam-se: }
+
+Cada objetivo específico será colocado em forma de item e terá uma frase curta, mas que deixe claro qual o objetivo.
+A somatória dos objetivos específicos formará o objetivo geral.
+%-------------------------------------------------------------------------------
+
+
+    	
+%-----------------------------------------------------------------
+%           PLANO DE TRABALHO E CRONOGRAMA DE EXECUÇÃO
+%-----------------------------------------------------------------	
+\section{Plano de Trabalho e Cronograma de Execução}
+	
+	Descrição das atividades planejadas para o desenvolvimento do trabalho e apresentação do cronograma de 
+execução destas atividades, respeitando as datas estabelecidas no cronograma da disciplina.
+
+
+	Segue exemplo de como criar itens para descrever as atividades do projeto:
+
+    \begin{enumerate}
+
+        \item Atividades X: descrever o que será feito durante esta atividade;   \label{a1}
+        
+        \item Atividades Y: descrever o que será feito durante esta atividade;   \label{a2}
+
+        \item Atividades Z: descrever o que será feito durante esta atividade;   \label{a3}
+
+    \end{enumerate}
+
+    Na Tabela \ref{tabela:cronograma1} é apresentado um exemplo de cronograma.
+ 
+\begin{table}[ht]
+    \scriptsize
+    \centering
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \hline &  \multicolumn{9}{|c|}
+        {\textbf{Período}} \\ \cline{2-10}
+        \textbf{Atividades}     &Mar      &Abr      &Mai      &Jun      &Jul      &Ago      &Set      &Out   &Nov \\ \hline \hline
+        \ref{a1} - Atividade X  &$\bullet$&$\bullet$&         &         &         &         &         &      &    \\ \hline
+        \ref{a2} - Atividade Y  &         &$\bullet$&$\bullet$&         &         &         &         &      &    \\ \hline
+        \ref{a3} - Atividade Z  &         &         &$\bullet$&$\bullet$&$\bullet$&$\bullet$&         &      &   \\ \hline
+    \end{tabular}
+     \caption{Modelo 1 de Cronograma das Atividades}
+    \label{tabela:cronograma1}
+\end{table}
+ 
+ Na Tabela \ref{tabela:cronograma2} é apresentado um outro exemplo de cronograma.
+ 
+ \begin{table}[ht]
+    \scriptsize
+    \centering
+    \begin{tabular}{|l|c|c|c|c|} \hline
+        \textbf{Atividades}     & Inicio  &Término      &Duração     &Resultado  \\ \hline \hline
+        \ref{a1} - Atividade X  & 01/03   &31/03        & 1 mês      & Proposta de Trabalho \\ \hline
+        \ref{a2} - Atividade Y  & 01/04   &30/05        & 2 meses    & Revisão bibligráfica  \\ \hline
+        \ref{a3} - Atividade Z  & 01/06   &31/10        & 5 meses    & Desenvolvimento \\ \hline
+    \end{tabular}
+    \caption{Modelo 2 de Cronograma das Atividades}
+    \label{tabela:cronograma2}
+\end{table}
+
+%-----------------------------------------------------------------
+%                   MATERIAL E MÉTODO
+%----------------------------------------------------------------- 
+
+\section{Material e Método}
+
+Texto que descreve os materiais/recursos que serão utilizados durante o desenvolvimento do trabalho
+e também os métodos que serão utilizados para o desenvolvimento das atividades apresentadas na seção
+anterior.
+
+Os próximos  parágrafos exemplificam como fazer referências durante o texto. 
+
+Diversos métodos têm sido propostos para a análise de dados faltantes em conjuntos de dados \cite{monard2003}.
+
+Nesse parágrafo é apresentado um exemplo de como fazer citação faz parte do texto. Segundo \citeonline{ib2008}, a estrutura ...
+
+A diferença entre as diferentes formas de citação são exemplificadas no próximo paragráfo.
+
+As maneiras mais comuns de citações são a indireta e a direta. Na citação indireta, o texto é criado com base na obra de autor consultado, 
+no qual se reproduz o conteúdo e as idéias do documento original. Exemplo, utilizando Sobrenome do Autor (data), quando o nome do autor 
+faz parte do texto: Segundo Souza (1999), a importância do tema [...]. Exemplo, utilizando (SOBRENOME DO AUTOR, ano) quando é citada a 
+síntese de uma informação: A Revolução Industrial modificou definitivamente o cenário urbano (SOUZA, 2001). Na citação direta há a
+reprodução exata do texto citado entre aspas, como, por exemplo: A justificativa deste comportamento "é resultado da integração entre 
+parasita e hospedeiro, após a conclusão da fase de migração" (SOUZA, 1987). 
+
+%-----------------------------------------------------------------
+%               CRITÉRIOS DE AVALIAÇÃO
+%-----------------------------------------------------------------
+\section{Critérios de Avaliação} 
+     
+Texto que descreve a forma como os resultados que se espera obter do trabalho serão avaliados, analisados, medidos.
+    
+%-----------------------------------------------------------------
+%                       REFERÊNCIAS
+%----------------------------------------------------------------- 
+
+\section{Referências}
+
+Referencias bibliográficas que foram utilizadas para desenvolver a proposta de TCC.
+    \vspace{-4.3em}
+    \renewcommand\refname{}
+    
+    \bibliography{referencias}
+    
+%-----------------------------------------------------------------
+%                   SÍNTESE BIBLIOGRÁFICA
+%----------------------------------------------------------------- 
+\section{Síntese Bibliográfica}
+
+Referencias bibliográficas que se pretende utilizar para o desenvolvimento do trabalho.
+
+\input{sintese.tex}
+
+\end{document}
+
+
