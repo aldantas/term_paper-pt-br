@@ -164,7 +164,7 @@ nós conectados na rede mundial através da implantação do IPv6. Este último 
 funcionalidades adicionais. \cite{hagen2002}
 
 Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas após sua criação, além disso, sua utilização completa em domótica levanta a questão quanto à necessidade em
-conecetar dispositivos simples como sensores e atuadores à \textit{internet}, levando em consideração custo e segurança. Em constraste à esses fatores, há a possibilidade em desenvolver uma rede específica para esses transdutores,
+conecetar dispositivos simples como sensores e atuadores à \textit{internet}, levando em consideração o custo e a segurança. Em constraste à esses fatores, há a possibilidade em desenvolver uma rede específica para esses transdutores,
 permitindo implementar a monitoria de um ambiente inteligente de maneira simples e eficáz.
 
 Essa rede específica, conhecida como rede de sensores [e atuadores], é uma infraestrutura composta por dispositivos de medição e atuação, de computação e de comunicação que possibilitam
@@ -179,8 +179,25 @@ A utilização de fios para realizar tal tarefa é normalmente descartada devido
 
 No caso de aplicação em domótica, é preferível que a implementação da RSSF seja de forma simples, a fim de obter uma solução com baixo custo e baixo consumo de eletrecidade, sendo assim, é necessário escolher a tecnologia
 adequada para tal feito. O protocolo Wi-Fi, por exemplo, foi taxado como muito complexo e com suporte a largura de banda maior que o necessário, já sistemas infravermelho requerem uma linha de visão, o que nem sempre é
-possível neste caso. A tecnologia Bluetooth aparentou ser promissora no início, mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para o padrão IEEE 802.15.4 junto com o protocolo ZigBee.
+possível neste caso. A tecnologia Bluetooth aparentou ser promissora no início, mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do padrão IEEE 802.15.4 no ano de 2003.
 \cite{sohraby_minoli_znati2007}
+
+A tecnologia IEEE 802.15.4 é um sistema de comunicação por rádio frequência de baixo alcance projetado para ter baixa complexidade, baixo custo, baixo consumo de energia e baixa taxa de transmissão de dados. Esse padrão implementa as
+camadas física e de enlace do modelo ISO/OSI e é amplamente utilizado na construção de RSSFs. Além disso, serve como base para outros procolos que implementam camadas superiores, como por exemplo o protocolo ZigBee,
+que fornece mecanismos para entrada e saída em uma rede, segurança de pacotes, roteamento, descoberta de caminho (rede de malha), entre outros recursos. \cite{buratti2011}
+
+Outro protocolo que se baseia no padrão IEEE 802.15.4 é o 6LoWPAN(\textit{IPv6 over Low power Wireless Personal Area Networks}), que possibilita o uso eficiente do IPv6 sobre redes sem fio de baixa taxa e baixo consumo de energia
+em dispositivos embarcados simples através de uma camada de adaptação e da otimização dos protocolos relacionados. \cite{shelby_bormann2009}
+
+Porém, os módulos que implementam esses protocolos sofisticados possuem um preço relativamente maior em relação aos demais módulos com funcionamento mais básico, e acabam inflando o custo total da RSSF de acordo com o
+número de nós da mesma.
+
+Em paralelo à essas tecnologias, têm-se os módulos transmissores de rádio frequência nRF24l01+ da empresa \textit{Nordic Semicondutors}. Esses dispositivos possuem baixo custo monetário e possuem certas vantagens em relação aos módulos que
+implementam apenas o padrão IEEE 802,.15.4
+
+
+
+
 
 
 
