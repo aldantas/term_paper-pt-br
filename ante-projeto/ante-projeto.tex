@@ -183,17 +183,21 @@ possível neste caso. A tecnologia Bluetooth aparentou ser promissora no início
 \cite{sohraby_minoli_znati2007}
 
 A tecnologia IEEE 802.15.4 é um sistema de comunicação por rádio frequência de baixo alcance projetado para ter baixa complexidade, baixo custo, baixo consumo de energia e baixa taxa de transmissão de dados. Esse padrão implementa as
-camadas física e de enlace do modelo ISO/OSI e é amplamente utilizado na construção de RSSFs. Além disso, serve como base para outros procolos que implementam camadas superiores, como por exemplo o protocolo ZigBee,
+camadas física e de enlace do modelo ISO/OSI e é amplamente utilizado na construção de RSSFs. Além disso, serve como base para outros protocolos que implementam camadas superiores, como por exemplo o protocolo ZigBee,
 que fornece mecanismos para entrada e saída em uma rede, segurança de pacotes, roteamento, descoberta de caminho (rede de malha), entre outros recursos. \cite{buratti2011}
 
 Outro protocolo que se baseia no padrão IEEE 802.15.4 é o 6LoWPAN(\textit{IPv6 over Low power Wireless Personal Area Networks}), que possibilita o uso eficiente do IPv6 sobre redes sem fio de baixa taxa e baixo consumo de energia
 em dispositivos embarcados simples através de uma camada de adaptação e da otimização dos protocolos relacionados. \cite{shelby_bormann2009}
 
-Porém, os módulos que implementam esses protocolos sofisticados possuem um preço relativamente maior em relação aos demais módulos com funcionamento mais básico, e acabam inflando o custo total da RSSF de acordo com o
-número de nós da mesma.
+Porém, esses módulos que utilizam esses protocolos sofisticados possuem um preço relativamente maior em relação aos módulos com funcionamento mais básico e acabam inflando o custo total da RSSF de acordo com o
+número de nós da mesma. Portanto, a fim de se obter uma solução barata é necessário utilizar um módulo de transmissão simples e uma unidade de controle externa de baixo custo para implementar demais camadas.
 
-Em paralelo à essas tecnologias, têm-se os módulos transmissores de rádio frequência nRF24l01+ da empresa \textit{Nordic Semicondutors}. Esses dispositivos possuem baixo custo monetário e possuem certas vantagens em relação aos módulos que
-implementam apenas o padrão IEEE 802,.15.4
+Uma possibilidade é utilizar o transceptor CC2500 da empresa  \textit{Texas Instruments}, que implementa o padrão IEEE 802.15.4 e possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo 17 mA durante recepção, 21.2 mA durante
+transmissão e 1.5 mA em modo de espera. \cite{ccdatasheet}
+
+Outro transceptor de rádio frequência com característica simplista bastante difundido é o nRF24L01+ da empresa \textit{Nordic Semicondutor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivos apresente
+algunas vantagens em relação à maioria de seus concorrentes, como por exemplo o custo benefíciopossuem baixo custo monetário e fornecem funcionalidade para as camadas física
+e de enlace do modelo ISO/OSI, entretando possuem certas vantagens em relação aos módulos que implementam apenas o padrão IEEE 802.15.4
 
 
 
