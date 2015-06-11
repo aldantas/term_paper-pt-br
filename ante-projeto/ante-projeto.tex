@@ -129,7 +129,7 @@
 %-----------------------------------------------------------------
 \section{Introdução e Justificativa}
 Ao longo dos anos, a computação e suas aplicações se tornaram cada vez mais presentes no nosso cotidiano, sendo apenas uma questão
-de tempo para que ela fosse ampliada com o intuito de melhorar controle e eficiência dos ambientes domésticos e empresariais.
+de tempo para que ela fosse ampliada com o intuito de melhorar o controle e eficiência dos ambientes domésticos e empresariais.
 
 Embora já na década de 60 casas eletricamente sofisticadas eram construídas, foi durante a primeira metáde dá década de 1980 que o
 termo  ``casa inteligente'' passou a ser utilizado. Pois o que determina uma casa inteligente não é o quão bem é construída ou
@@ -145,8 +145,8 @@ grande parte de seus conceitos também pode ser aplicada a diversos ambientes co
 
 Segundo \citeonline{riley2012}, domótica é um produto ou serviço que proporciona algum nível de ação ou mensagem para o ambiente
 domiciliar, um evento que foi gerado sem a intervenção direta do morador. Um despertador ou um alarme de incêndio são exemplos
-disso, porém, esses dispositivos autônomos não necessariamente possem um dispositivo de comunicação entre si, limitando o nível da
-automação e inteligência da solução.
+disso, porém, esses dispositivos autônomos não necessariamente possuem um mecanismo de comunicação entre eles, limitando o nível
+da automação e inteligência da solução.
 
 Sob uma perspectiva técnica, automação residencial consiste em cinco princípios: dispostivos sob controle, que são todos os
 eletrodomésticos e eletrônicos de consumo que estão conectados e controlados pelo mesmo sistema de automatização; sensores e
@@ -170,9 +170,9 @@ Internet das Coisas e que prevê a adressabilidade única para todos os nós con
 IPv6. Este último é uma evolução do protocolo de rede IPv4 e surgiu em 1994 com a intenção de resolver a limitação de espaço de
 endereço prevista e fornecer funcionalidades adicionais. \cite{hagen2002}
 
-Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas após sua criação, além disso, sua
+Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas desde sua criação, além disso, sua
 utilização completa em domótica levanta a questão quanto à necessidade em conecetar dispositivos simples como sensores e atuadores
-à \textit{internet}, levando em consideração custo de implementação e vulnerabilidade. Enquanto isso, existe a possibilidade em
+à \textit{internet}, levando em consideração custo de implementação e vulnerabilidade. Alternativamente, existe a possibilidade em
 desenvolver uma rede específica para esses transdutores, permitindo implementar a monitoria de um ambiente inteligente de maneira
 simples e eficáz.
 
@@ -182,7 +182,7 @@ ambiente. \cite{sohraby_minoli_znati2007}
 
 Os quantitativos físicos que podem ser medidos são diversos, como temperatura, umidade, som, luz, radiação, etc. Como
 consequência, são várias as possibilidades de aplicação. Algumas das mais comuns são automação residencial e comercial,
-monitoramento ambiental e industrial, controle de tráfego, militarismo e assitência médica. A complexidade da rede deve ser
+monitoramento ambiental e industrial, controle de tráfego, militarismo e assistência médica. A complexidade da rede deve ser
 proporcial à sua aplicação e vários aspectos devem ser levados em consideração, como por exemplo o meio de comunicação optado.
 \cite{kuorilehto2007}
 
@@ -194,8 +194,8 @@ surgiu o termo Rede de Sensores Sem Fio (RSSF), que, apesar do nome, frequenteme
 No caso da aplicação deste conceito em domótica, é preferível que a implementação da RSSF seja de forma simples, a fim de obter
 uma solução com baixo custo e baixo consumo de eletrecidade, sendo assim, é necessário escolher a tecnologia adequada para tal
 feito. O protocolo Wi-Fi, por exemplo, foi taxado como muito complexo e com suporte a largura de banda maior que o necessário, já
-sistemas infravermelho requerem uma linha de visão, o que nem sempre é possível neste caso. A tecnologia Bluetooth, por suavez,
-aparentou ser promissora no início, mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do
+sistemas infravermelho requerem uma linha de visão, o que nem sempre é possível neste caso. A tecnologia Bluetooth, por sua vez,
+aparentou ser promissora no início mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do
 padrão IEEE 802.15.4 no ano de 2003.  \cite{sohraby_minoli_znati2007}
 
 A tecnologia IEEE 802.15.4 é um sistema de comunicação por rádio frequência de baixo alcance projetado para ter baixa
@@ -214,8 +214,9 @@ obter uma solução barata é necessário utilizar um transceptor simples e uma 
 implementar demais funcionalidades não realizadas pelo módulo.
 
 Uma possibilidade é utilizar o transceptor CC2500 da empresa \textit{Texas Instruments}, que implementa o padrão IEEE 802.15.4 e
-possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo 17 mA durante recepção, 21.2 mA durante transmissão e 1.5 mA
-em modo de espera. Devido ao baixo consumo elétrico e ótimo custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
+possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção, \SI{21.2}{\milli
+\ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e ótimo
+custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
 
 Outro transceptor de rádio frequência com característica simplista bastante difundido é o nRF24L01+ da empresa \textit{Nordic
 Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens
@@ -224,23 +225,14 @@ em relação aos demais módulos dessa categoria. Uma das principais vantagens �
 \ampere} durante recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.
 \cite{nrfdatasheet}
 
+Além disso, o nRF24L01+ oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número de
+comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais
+o consumo elétrico necessário para a solução, torna possível uma implementação eficiente utilizando microcontroladores simples e
+baratos. \cite{nrfdatasheet}
 
+Portanto, sabe-se que é possível desenvolver uma Rede de Sensores Sem Fio para aplicação em automação de residências e escritórios
+de maneira simples e eficáz utilizando apenas tecnologias já existentes a acessíveis.
 
-
-
-
-
-O texto de introdução deve conter três tipos de informações: apresentação do problema, estado da arte e justificativa do projeto.
-Sendo que o autor deve elaborar o texto com fluência lógica e sem redundância de informações.
-
-A apresentação ou formulação do problema deve deixar, de forma bem clara, qual será o objeto de estudo do projeto.
-
-O estado da arte serve para embasar tanto a formulação do problema como sua justificativa. É preciso situar historicamente a
-evolução do tema, quais as abordagens já investigadas, qual o estágio atual do conhecimento sobre o assunto ou quais as tendências
-que se apresentam.
-
-A justificativa do projeto deve indicar por que o projeto deve ser feito. Descreva os fatores de motivação que o levaram a abordar
-e trabalhar no assunto.
 
 %-----------------------------------------------------------------
 %                       OBJETIVO
@@ -333,22 +325,6 @@ execução destas atividades, respeitando as datas estabelecidas no cronograma d
 Texto que descreve os materiais/recursos que serão utilizados durante o desenvolvimento do trabalho
 e também os métodos que serão utilizados para o desenvolvimento das atividades apresentadas na seção
 anterior.
-
-Os próximos  parágrafos exemplificam como fazer referências durante o texto.
-
-Diversos métodos têm sido propostos para a análise de dados faltantes em conjuntos de dados \cite{williams2014}.
-
-Nesse parágrafo é apresentado um exemplo de como fazer citação faz parte do texto. Segundo \citeonline{goodwin2010}, a estrutura ...
-
-A diferença entre as diferentes formas de citação são exemplificadas no próximo paragráfo.
-
-As maneiras mais comuns de citações são a indireta e a direta. Na citação indireta, o texto é criado com base na obra de autor consultado,
-no qual se reproduz o conteúdo e as idéias do documento original. Exemplo, utilizando Sobrenome do Autor (data), quando o nome do autor
-faz parte do texto: Segundo Souza (1999), a importância do tema [...]. Exemplo, utilizando (SOBRENOME DO AUTOR, ano) quando é citada a
-síntese de uma informação: A Revolução Industrial modificou definitivamente o cenário urbano (SOUZA, 2001). Na citação direta há a
-reprodução exata do texto citado entre aspas, como, por exemplo: A justificativa deste comportamento "é resultado da integração entre
-parasita e hospedeiro, após a conclusão da fase de migração" (SOUZA, 1987).
-
 %-----------------------------------------------------------------
 %               CRITÉRIOS DE AVALIAÇÃO
 %-----------------------------------------------------------------
