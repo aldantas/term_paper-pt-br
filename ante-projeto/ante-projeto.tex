@@ -165,10 +165,10 @@ tentativas em padronizar a comunicação na domótica existem desde quase seu in
 utilizava a rede elétrica existente para transmitir mensagens através de pulsos codificados, mas devido a diversos problemas, como
 degradação de sinal e dificuldade para verificação de pacotes, ele acabou não ganhando muita aceitação. \cite{riley2012}
 
-A expectativa é que todos os dispositivos eletroeletrônicos possuam conexão à internet, conceito que vem sendo chamado de
-Internet das Coisas e que prevê a adressabilidade única para todos os nós conectados na rede mundial através da implantação do
-IPv6. Este último é uma evolução do protocolo de rede IPv4 e surgiu em 1994 com a intenção de resolver a limitação de espaço de
-endereço prevista e fornecer funcionalidades adicionais. \cite{hagen2002}
+A expectativa é que todos os dispositivos eletroeletrônicos possuam conexão à internet, conceito que vem sendo chamado de Internet
+das Coisas e que prevê a adressabilidade única para todos os nós conectados na rede mundial através da implantação do IPv6. Este
+último é uma evolução do protocolo de rede IPv4 e surgiu em 1994 com a intenção de resolver a limitação de espaço de endereço
+prevista e fornecer funcionalidades adicionais. \cite{hagen2002}
 
 Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas desde sua criação, além disso, sua
 utilização completa em domótica levanta a questão quanto à necessidade em conecetar dispositivos simples como sensores e atuadores
@@ -213,54 +213,32 @@ funcionamento mais básico e acabam inflando o custo total da RSSF de acordo com
 obter uma solução barata é necessário utilizar um transceptor simples e uma unidade de controle externa de baixo custo para
 implementar demais funcionalidades não realizadas pelo módulo.
 
-Uma possibilidade é utilizar o transceptor CC2500 da empresa \textit{Texas Instruments}, que implementa o padrão IEEE 802.15.4 e
-possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção, \SI{21.2}{\milli
-\ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e ótimo
-custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
-
-Outro transceptor de rádio frequência com característica simplista bastante difundido é o nRF24L01+ da empresa \textit{Nordic
-Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens
-em relação aos demais módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs
-(quatro vezes mais que o CC2500) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli
-\ampere} durante recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.
-\cite{nrfdatasheet}
-
-Além disso, o nRF24L01+ oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número de
-comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais
-o consumo elétrico necessário para a solução, torna possível uma implementação eficiente utilizando microcontroladores simples e
-baratos. \cite{nrfdatasheet}
-
-Portanto, sabe-se que é possível desenvolver uma Rede de Sensores Sem Fio para aplicação em automação de residências e escritórios
-de maneira simples e eficáz utilizando apenas tecnologias já existentes a acessíveis.
-
+Como consequência, ao abrir mão das facilidades que os protocolos avançados proporcionam, o esforço necessário para a
+implementação de uma RSSF acaba se tornando maior.
 
 %-----------------------------------------------------------------
 %                       OBJETIVO
 %-----------------------------------------------------------------
 \section{Objetivos}
 
+	%-------------------------------------------------------------------------------
 
+	\subsection{Objetivo Geral}
 
-Os objetivos devem ser claros, sucintos e diretos. Deve ficar bem evidente qual a pergunta ou questionamento para o qual se busca uma resposta através desta pesquisa.
+	Desenvolver uma rede de sensores sem fio para aplicação em automação de residências e escritórios de maneira simples e eficáz
+	utilizando tecnologias existentes e visando baixo custo e baixo consumo elétrico.
+	%-------------------------------------------------------------------------------
 
-Os objetivos são divididos em dois tipos: Objetivo Geral e Objetivos Específicos.
-%-------------------------------------------------------------------------------
+	\subsection{Objetivos Específicos}
 
-\subsection{Objetivo Geral}
-
-Como pode ser notado, o título está no singular. Portanto, deve ser apresentado apenas 1 (um) objetivo geral. Aqui deve constar um parágrafo descrevendo esse objetivo.
-%-------------------------------------------------------------------------------
-
-\subsection{Objetivos Específicos}
-
-O título está no plural. Portanto, espera-se encontrar mais de um objetivo específico neste local. Não confunda objetivo específico com metodologia.
-Os objetivos específicos são o desdobramento do objetivo geral. Pode-se começar esse tópico conforme paragrafo a seguir.
-
-{\bf Dentre os principais objetivos específicos destacam-se: }
-
-Cada objetivo específico será colocado em forma de item e terá uma frase curta, mas que deixe claro qual o objetivo.
-A somatória dos objetivos específicos formará o objetivo geral.
-%-------------------------------------------------------------------------------
+	{\bf Dentre os principais objetivos específicos destacam-se: }
+	\begin{itemize}
+		\item Rede - definir a topologia e comportamento da rede;
+		\item Mensagens - definir o escopo das mensagens utilizadas na comunicação;
+		\item Biblioteca - desenvolver uma pequena biblioteca com as funcionalidades necessárias para a solulção;
+		\item Protótipos - montar protótipos dos pontos de comunicação da rede.
+	\end{itemize}
+	%-------------------------------------------------------------------------------
 
 
 %-----------------------------------------------------------------
@@ -268,23 +246,23 @@ A somatória dos objetivos específicos formará o objetivo geral.
 %-----------------------------------------------------------------
 \section{Plano de Trabalho e Cronograma de Execução}
 
-    Descrição das atividades planejadas para o desenvolvimento do trabalho e apresentação do cronograma de
+	Descrição das atividades planejadas para o desenvolvimento do trabalho e apresentação do cronograma de
 execução destas atividades, respeitando as datas estabelecidas no cronograma da disciplina.
 
 
-    Segue exemplo de como criar itens para descrever as atividades do projeto:
+	Segue exemplo de como criar itens para descrever as atividades do projeto:
 
-    \begin{enumerate}
+\begin{enumerate}
 
-        \item Atividades X: descrever o que será feito durante esta atividade;   \label{a1}
+	\item Atividades X: descrever o que será feito durante esta atividade;   \label{a1}
 
-        \item Atividades Y: descrever o que será feito durante esta atividade;   \label{a2}
+	\item Atividades Y: descrever o que será feito durante esta atividade;   \label{a2}
 
-        \item Atividades Z: descrever o que será feito durante esta atividade;   \label{a3}
+	\item Atividades Z: descrever o que será feito durante esta atividade;   \label{a3}
 
-    \end{enumerate}
+\end{enumerate}
 
-    Na Tabela \ref{tabela:cronograma1} é apresentado um exemplo de cronograma.
+Na Tabela \ref{tabela:cronograma1} é apresentado um exemplo de cronograma.
 
 % \begin{table}[ht]
 %     \scriptsize
@@ -322,9 +300,39 @@ execução destas atividades, respeitando as datas estabelecidas no cronograma d
 
 \section{Material e Método}
 
-Texto que descreve os materiais/recursos que serão utilizados durante o desenvolvimento do trabalho
-e também os métodos que serão utilizados para o desenvolvimento das atividades apresentadas na seção
-anterior.
+Os materiais utilizados devem ser compatíveis com o objetivo da solução, ou seja, devem possuir baixo custo e baixo consumo de
+energia elétrica. Em relação aos dispositivos de comunicação, existem várias opções com essas características simplistas
+disponíveis no mercado.
+
+Uma possibilidade é utilizar o transceptor CC2500 da empresa \textit{Texas Instruments}, que implementa o padrão IEEE 802.15.4 e
+possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção, \SI{21.2}{\milli
+\ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e ótimo
+custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
+
+Outro transceptor de rádio frequência com característica simplista bastante difundido é o nRF24L01+ da empresa \textit{Nordic
+Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens
+em relação aos demais módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs
+(quatro vezes mais que o CC2500) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli
+\ampere} durante recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.
+\cite{nrfdatasheet}
+
+Além disso, o nRF24L01+ oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número de
+comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais o
+consumo elétrico necessário para a solução, possibilita uma implementação eficiente utilizando microcontroladores simples e
+baratos. Tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
+
+Quanto aos microcontroladores, foi optado a utilização dos modelos AVR da empresa \textit{Atmel Corporation}, pois possuem todas
+as funcionalidades necessárias para o desenvolvimento da solução e oferecem \textit{softwares} abertos e gratuitos para realizar a
+implementação do código embarcado. Um deles é o compilador avr-gcc, que é uma variação do GNU Compiler Collection e utiliza
+a biblioteca AVR-Libc desenvolvida pelo fabricante e que fornece um subconjunto da biblioteca C padrão. Além disso, há também o
+programa avrdude, que é o responsável em transferir o código binário gerado para o microcontrolador.
+
+O \textit{software} da solução será desenvolvido em ambiente GNU/Linux, utilizando o ViM como editor de código-fonte, o git como sistema
+de controle de versão e o make para auxiliar na compilação e gravação do projeto.
+
+Além disso, serão utilizados vários dispositivos elétricos, como gravador de microcontrolador, \textit{protoboards}, resistores,
+capacitores, \textit{jumpers}, sensores diversos, LEDs, conversor serial, entre outros.
+
 %-----------------------------------------------------------------
 %               CRITÉRIOS DE AVALIAÇÃO
 %-----------------------------------------------------------------
