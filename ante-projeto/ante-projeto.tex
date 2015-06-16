@@ -213,8 +213,8 @@ funcionamento mais básico e acabam inflando o custo total da RSSF de acordo com
 obter uma solução barata é necessário utilizar um transceptor simples e uma unidade de controle externa de baixo custo para
 implementar demais funcionalidades não realizadas pelo módulo.
 
-Como consequência, ao abrir mão das facilidades que os protocolos avançados proporcionam, o esforço necessário para a
-implementação de uma RSSF acaba se tornando maior.
+Como consequência, ao abrir mão das facilidades que os protocolos de comunicação avançados proporcionam, o esforço requerido para
+o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir e implementar diversos aspectos da mesma.
 
 %-----------------------------------------------------------------
 %                       OBJETIVO
@@ -304,34 +304,33 @@ Os materiais utilizados devem ser compatíveis com o objetivo da solução, ou s
 energia elétrica. Em relação aos dispositivos de comunicação, existem várias opções com essas características simplistas
 disponíveis no mercado.
 
-Uma possibilidade é utilizar o transceptor CC2500 da empresa \textit{Texas Instruments}, que implementa o padrão IEEE 802.15.4 e
-possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção, \SI{21.2}{\milli
-\ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e ótimo
-custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
+Uma possibilidade é utilizar o transceptor \texttt{CC2500} da empresa \textit{Texas Instruments}, que implementa o padrão IEEE
+802.15.4 e possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção,
+\SI{21.2}{\milli \ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e
+ótimo custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
 
-Outro transceptor de rádio frequência com característica simplista bastante difundido é o nRF24L01+ da empresa \textit{Nordic
-Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens
-em relação aos demais módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs
-(quatro vezes mais que o CC2500) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli
-\ampere} durante recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.
-\cite{nrfdatasheet}
+Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic Semiconductor}. Embora
+possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens em relação aos demais
+módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs (quatro vezes mais que o
+\texttt{CC2500}) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli \ampere} durante
+recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.  \cite{nrfdatasheet}
 
-Além disso, o nRF24L01+ oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número de
-comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais o
-consumo elétrico necessário para a solução, possibilita uma implementação eficiente utilizando microcontroladores simples e
-baratos. Tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
+Além disso, o \texttt{nRF24L01+} oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número
+de comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda
+mais o consumo elétrico necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos,
+tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
 
-Quanto aos microcontroladores, foi optado a utilização dos modelos AVR da empresa \textit{Atmel Corporation}, pois possuem todas
-as funcionalidades necessárias para o desenvolvimento da solução e oferecem \textit{softwares} abertos e gratuitos para realizar a
-implementação do código embarcado. Um deles é o compilador avr-gcc, que é uma variação do GNU Compiler Collection e utiliza
-a biblioteca AVR-Libc desenvolvida pelo fabricante e que fornece um subconjunto da biblioteca C padrão. Além disso, há também o
-programa avrdude, que é o responsável em transferir o código binário gerado para o microcontrolador.
+Quanto aos microcontroladores, foi optado a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
+possuem todas as funcionalidades necessárias para o desenvolvimento do projeto e oferecem \textit{softwares} abertos e gratuitos
+para realizar a implementação do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma variação do \textit{GNU
+Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} desenvolvida pelo fabricante e que fornece um subconjunto da
+biblioteca C padrão. Além disso, há também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado
+para o microcontrolador.
 
-O \textit{software} da solução será desenvolvido em ambiente GNU/Linux, utilizando o ViM como editor de código-fonte, o git como sistema
-de controle de versão e o make para auxiliar na compilação e gravação do projeto.
-
-Além disso, serão utilizados vários dispositivos elétricos, como gravador de microcontrolador, \textit{protoboards}, resistores,
-capacitores, \textit{jumpers}, sensores diversos, LEDs, conversor serial, entre outros.
+O \textit{software} da solução será desenvolvido em ambiente \texttt{GNU/Linux}, utilizando o \texttt{Vim} como editor de
+código-fonte, o \texttt{git} como sistema de controle de versão e o \texttt{make} para auxiliar na compilação e gravação do
+projeto. Além disso, serão utilizados vários dispositivos elétricos, como gravador de microcontrolador, \textit{protoboards},
+resistores, capacitores, \textit{jumpers}, sensores diversos, LEDs, conversor serial, entre outros.
 
 %-----------------------------------------------------------------
 %               CRITÉRIOS DE AVALIAÇÃO
