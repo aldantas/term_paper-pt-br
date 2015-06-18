@@ -96,7 +96,7 @@
     }
     \\[5 cm]Augusto Lopez Dantas
     \\Orientador: Jorge Habib Hanna El Khouri
-    \\[2 cm]Foz do Iguaçu, 04 de maio de 2015
+    \\[2 cm]Foz do Iguaçu, {dia} de {mês} de 2015
 
 \end{center}
 
@@ -120,7 +120,7 @@
         \begin{enumerate}
             \item Domótica
 			\item Rede de Sensores Sem Fio
-			\item Comunicação por rádiofrequência
+			\item Comunicação por radiofrequência
         \end{enumerate}
 
 
@@ -128,10 +128,11 @@
 %               INTRODUÇÃO E JUSTIFICATIVA
 %-----------------------------------------------------------------
 \section{Introdução e Justificativa}
-Ao longo dos anos, a computação e suas aplicações se tornaram cada vez mais presentes no nosso cotidiano, sendo apenas uma questão
-de tempo para que ela fosse ampliada com o intuito de melhorar o controle e eficiência dos ambientes domésticos e empresariais.
+Ao longo dos anos, a computação e suas aplicações se tornaram cada vez mais presentes no nosso cotidiano. Uma série de fatores
+contribuiu com a rápida difusão da tecnologia em vários setores, como os ambientes domésticos e empresariais, com o objetivo de
+melhorar aspectos de controle, eficiência e gestão.
 
-Embora já na década de 60 casas eletricamente sofisticadas eram construídas, foi durante a primeira metáde dá década de 1980 que o
+Embora já na década de 60 casas eletricamente sofisticadas eram construídas, foi durante a primeira metade dá década de 1980 que o
 termo  ``casa inteligente'' passou a ser utilizado. Pois o que determina uma casa inteligente não é o quão bem é construída ou
 quão efetiva ela é em relação ao espaço, mas sim as tecnologias interativas que ela contém. \cite{harper2003}
 
@@ -159,7 +160,7 @@ Em relação à rede de controle, essa pode existir em três formatos: sem fio, 
 tecnologias têm melhorado significamente em termos de velocidade, confiabilidade e interoperabilidade através da padronização nos
 últimos dez anos. \cite{kyas2013}
 
-Contudo, ainda hoje não há um protocolo de comunicação que seja inteiramente adotado, parcialmente devido ao fato de requerer que
+Contudo, ainda hoje não há um protocolo de comunicação que seja inteiramente adotado, em parte devido ao fato de requerer que
 os fabricantes concordem em criar eletrônicos com as mesmas interfaces e protocolos designados em seus produtos. Porém, as
 tentativas em padronizar a comunicação na domótica existem desde quase seu início. Uma das primeiras tentativas foi o X10, que
 utilizava a rede elétrica existente para transmitir mensagens através de pulsos codificados, mas devido a diversos problemas, como
@@ -171,10 +172,10 @@ das Coisas e que prevê a adressabilidade única para todos os nós conectados n
 prevista e fornecer funcionalidades adicionais. \cite{hagen2002}
 
 Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas desde sua criação, além disso, sua
-utilização completa em domótica levanta a questão quanto à necessidade em conecetar dispositivos simples como sensores e atuadores
+utilização completa em domótica levanta a questão quanto à necessidade em conectar dispositivos simples como sensores e atuadores
 à \textit{internet}, levando em consideração custo de implementação e vulnerabilidade. Alternativamente, existe a possibilidade em
-desenvolver uma rede específica para esses transdutores, permitindo implementar a monitoria de um ambiente inteligente de maneira
-simples e eficáz.
+desenvolver uma rede específica para esses transdutores, permitindo implementar o monitoramento de um ambiente inteligente de
+maneira simples e eficaz.
 
 Essa rede específica, conhecida como rede de sensores [e atuadores], é uma infraestrutura composta por dispositivos de medição e
 atuação, de computação e de comunicação que possibilitam instrumentar, observar e reagir à eventos e fenômenos em um determinado
@@ -192,7 +193,7 @@ surgiu o termo Rede de Sensores Sem Fio (RSSF), que, apesar do nome, frequenteme
 \cite{karl_willig2005}
 
 No caso da aplicação deste conceito em domótica, é preferível que a implementação da RSSF seja de forma simples, a fim de obter
-uma solução com baixo custo e baixo consumo de eletrecidade, sendo assim, é necessário escolher a tecnologia adequada para tal
+uma solução com baixo custo e baixo consumo de eletricidade, sendo assim, é necessário escolher a tecnologia adequada para tal
 feito. O protocolo Wi-Fi, por exemplo, foi taxado como muito complexo e com suporte a largura de banda maior que o necessário, já
 sistemas infravermelho requerem uma linha de visão, o que nem sempre é possível neste caso. A tecnologia Bluetooth, por sua vez,
 aparentou ser promissora no início mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do
@@ -225,7 +226,7 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 
 	\subsection{Objetivo Geral}
 
-	Desenvolver uma rede de sensores sem fio para aplicação em automação de residências e escritórios de maneira simples e eficáz
+	Desenvolver uma rede de sensores sem fio para aplicação em automação de residências e escritórios de maneira simples e eficaz
 	utilizando tecnologias existentes e visando baixo custo e baixo consumo elétrico.
 	%-------------------------------------------------------------------------------
 
@@ -314,7 +315,7 @@ de comunicação com a unidade microtronladora tal como o processamento utilizad
 mais o consumo elétrico necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos,
 tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
 
-Quanto aos microcontroladores, foi optado a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
+Quanto aos microcontroladores, foi optada a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
 possuem todas as funcionalidades necessárias para o desenvolvimento do projeto e oferecem \textit{softwares} abertos e gratuitos
 para realizar a implementação do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma variação do \textit{GNU
 Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} desenvolvida pelo fabricante e que fornece um subconjunto da
@@ -340,8 +341,8 @@ Os critérios a serem avaliados são:
 \begin{itemize}
 	\item Confiabilidade - levando em consideração quantidade de nós na rede, distância média entre eles e tamanho e integridade de pacotes;
 	\item Custo - o valor monetário necessário para a construção da RSSF;
-	\item Consumo - a quantidade de eletrecidade utilizada inferida através das especificações dos produtos;
-	\item Código-fonte - a organização, legibilidade e desempenho do código-fonte.
+	\item Consumo - a quantidade de eletricidade utilizada inferida através das especificações dos produtos;
+	\item Código-fonte - a organização, legibilidade e funcionalidade do código-fonte.
 \end{itemize}
 
 %-----------------------------------------------------------------
