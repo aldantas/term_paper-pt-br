@@ -235,9 +235,19 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 
 	\subsection{Objetivos Específicos}
 
-	Dentre os principais objetivos específicos destacam-se:
+	A figura \ref{wsn} mostra quais elementos compoem a rede, sendo que o objeto de estudo deste trabalho consiste na área
+	destacada em vermelho, ou seja, apenas a comunicação entre os nós da RSSF. Sendo assim, os principais objetivos específicos
+	são:
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{images/wsn.png}
+		\caption{Esboço de uma Rede de Sensores sem Fio}
+		\label{wsn}
+	\end{figure}
+
 	\begin{itemize}
-		\item Rede - definir a topologia e comportamento da rede;
+		\item Rede - definir a topologia, comportamento e roteamento da camada de rede;
 		\item Mensagens - definir o escopo das mensagens utilizadas na comunicação;
 		\item Biblioteca - desenvolver uma pequena biblioteca com as funcionalidades necessárias para a solulção;
 		\item Protótipos - montar protótipos dos pontos de comunicação da rede.
@@ -342,9 +352,10 @@ escalação da solução.
 
 Os critérios a serem avaliados são:
 \begin{itemize}
+	\item Custo e Consumo - o valor monetário necessário para a construção da RSSF tal como a quantidade de eletricidade
+	utilizada pela solução. As informações inferidas através das especificações dos produtos e de lojas revendedoras serão
+	comparadas com outras tecnologias similares.
 	\item Confiabilidade - levando em consideração quantidade de nós na rede, distância média entre eles e tamanho e integridade de pacotes;
-	\item Custo - o valor monetário necessário para a construção da RSSF;
-	\item Consumo - a quantidade de eletricidade utilizada inferida através das especificações dos produtos;
 	\item Código-fonte - a organização, legibilidade e funcionalidade do código-fonte.
 \end{itemize}
 
