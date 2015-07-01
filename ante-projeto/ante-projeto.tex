@@ -235,7 +235,7 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 
 	\subsection{Objetivos Específicos}
 
-	A figura \ref{wsn} mostra quais elementos compoem a rede, sendo que o objeto de estudo deste trabalho consiste na área
+	A figura \ref{figura:wsn} mostra quais elementos compoem a rede, sendo que o objeto de estudo deste trabalho consiste na área
 	destacada em vermelho, ou seja, apenas a comunicação entre os nós da RSSF. Sendo assim, os principais objetivos específicos
 	são:
 
@@ -243,7 +243,7 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 		\centering
 		\includegraphics[width=\textwidth]{images/wsn.png}
 		\caption{Esboço de uma Rede de Sensores sem Fio}
-		\label{wsn}
+		\label{figura:wsn}
 	\end{figure}
 
 	\begin{itemize}
@@ -260,47 +260,40 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 %-----------------------------------------------------------------
 \section{Plano de Trabalho e Cronograma de Execução}
 
-% \begin{enumerate}
+\begin{enumerate}
 
-% 	\item Atividades X: descrever o que será feito durante esta atividade;   \label{a1}
+	\item Revisão Bibliográfica: elaboração da revisão bibliográfica;
 
-% 	\item Atividades Y: descrever o que será feito durante esta atividade;   \label{a2}
+	\item Desenvolvimento: desenvolvimento da solução proposta que também envolverá estudos e testes;
 
-% 	\item Atividades Z: descrever o que será feito durante esta atividade;   \label{a3}
+	\item Monografia: elaboração da monografia do Trabalho de Conclusão de Curso para ser entregue à banca examinadora;
 
-% \end{enumerate}
+	\item Artigo: elaboração de artigo para submissão em congresso de carácter científico;
 
-% Na Tabela \ref{tabela:cronograma1} é apresentado um exemplo de cronograma.
+	\item Apresentação: apresentação final perante a banca examinadora.
 
-% \begin{table}[ht]
-%     \scriptsize
-%     \centering
-%     \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
-%         \hline &  \multicolumn{9}{|c|}
-%         {\textbf{Período}} \\ \cline{2-10}
-%         \textbf{Atividades}     &Mar      &Abr      &Mai      &Jun      &Jul      &Ago      &Set      &Out   &Nov \\ \hline \hline
-%         \ref{a1} - Atividade X  &$\bullet$&$\bullet$&         &         &         &         &         &      &    \\ \hline
-%         \ref{a2} - Atividade Y  &         &$\bullet$&$\bullet$&         &         &         &         &      &    \\ \hline
-%         \ref{a3} - Atividade Z  &         &         &$\bullet$&$\bullet$&$\bullet$&$\bullet$&         &      &   \\ \hline
-%     \end{tabular}
-%      \caption{Modelo 1 de Cronograma das Atividades}
-%     \label{tabela:cronograma1}
-% \end{table}
+\end{enumerate}
 
- % Na Tabela \ref{tabela:cronograma2} é apresentado um outro exemplo de cronograma.
+As atividades ocorrerão de acordo com o cronograma apresentado na Tabela \ref{tabela:cronograma}.
 
-%  \begin{table}[ht]
-%     \scriptsize
-%     \centering
-%     \begin{tabular}{|l|c|c|c|c|} \hline
-%         \textbf{Atividades}     & Inicio  &Término      &Duração     &Resultado  \\ \hline \hline
-%         \ref{a1} - Atividade X  & 01/03   &31/03        & 1 mês      & Proposta de Trabalho \\ \hline
-%         \ref{a2} - Atividade Y  & 01/04   &30/05        & 2 meses    & Revisão bibligráfica  \\ \hline
-%         \ref{a3} - Atividade Z  & 01/06   &31/10        & 5 meses    & Desenvolvimento \\ \hline
-%     \end{tabular}
-%     \caption{Modelo 2 de Cronograma das Atividades}
-%     \label{tabela:cronograma2}
-% \end{table}
+
+\begin{table}[H]
+    \scriptsize
+    \centering
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|}
+        \hline &  \multicolumn{9}{|c|}
+        {\textbf{Período}} \\ \cline{2-10}
+        \textbf{Atividades}     &Mês1      &Mês2      &Mês3      &Mês4      &Mês5      &Mês6      &Mês7      &Mês8   &Mês9 \\ \hline \hline
+        1 - Revisão Bibliográfica  &$\bullet$&$\bullet$&&&&&&&  \\ \hline
+        2 - Desenvolvimento  &&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
+        3 - Monografia  &&&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
+        4 - Artigo   &&&&&&&$\bullet$&$\bullet$& \\ \hline
+        5 - Apresentação   &&&&&&&&&$\bullet$  \\ \hline
+
+    \end{tabular}
+     \caption{Cronograma das Atividades}
+    \label{tabela:cronograma}
+\end{table}
 
 %-----------------------------------------------------------------
 %                   MATERIAL E MÉTODO
@@ -323,7 +316,7 @@ módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de tr
 \texttt{CC2500}) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli \ampere} durante
 recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.  \cite{nrfdatasheet}
 
-Além disso, o \texttt{nRF24L01+} oferece serviços como reconhecimento e retransmissão de pacotes automáticos, reduzindo o número
+Além disso, o \texttt{nRF24L01+} oferece serviços como reconhecimento e retransmissão de pacotes automáticos, diminuindo o número
 de comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda
 mais o consumo elétrico necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos,
 tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
@@ -331,9 +324,8 @@ tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
 Quanto aos microcontroladores, foi optada a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
 possuem todas as funcionalidades necessárias para o desenvolvimento do projeto e oferecem \textit{softwares} abertos e gratuitos
 para realizar a implementação do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma variação do \textit{GNU
-Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} desenvolvida pelo fabricante e que fornece um subconjunto da
-biblioteca C padrão. Além disso, há também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado
-para o microcontrolador.
+Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} que fornece um subconjunto da biblioteca C padrão. Além disso, há
+também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado para o microcontrolador.
 
 O \textit{software} da solução será desenvolvido em ambiente \texttt{GNU/Linux}, utilizando o \texttt{Vim} como editor de
 código-fonte, o \texttt{git} como sistema de controle de versão e o \texttt{make} para auxiliar na compilação e gravação do
