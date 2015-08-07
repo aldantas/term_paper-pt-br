@@ -91,7 +91,7 @@
     \large Proposta de Trabalho de Conclusão de Curso
     \\
     \textbf{
-        \textsc{Desenvolvimento de uma Rede de Sensores Sem Fio de baixo custo}}
+        \textsc{Desenvolvimento de uma Rede de Sensores Sem Fio de Baixo Custo}}
     }
     \\[5 cm]Augusto Lopez Dantas
     \\Orientador: Jorge Habib Hanna El Khouri
@@ -131,13 +131,13 @@ Ao longo dos anos, a computação e suas aplicações se tornaram cada vez mais 
 contribuiu com a rápida difusão da tecnologia em vários setores, como os ambientes domésticos e empresariais, com o objetivo de
 melhorar aspectos de controle, eficiência e gestão.
 
-Embora já na década de 60 casas eletricamente sofisticadas eram construídas, foi durante a primeira metade dá década de 1980 que o
-termo  ``casa inteligente'' passou a ser utilizado. Pois o que determina uma casa inteligente não é o quão bem é construída ou
+Embora já na década de 60 casas eletricamente sofisticadas eram construídas, foi durante a primeira metade da década de 1980 que o
+termo  ``casa inteligente'' passou a ser utilizado, pois o que determina uma casa inteligente não é o quão bem é construída ou
 quão efetiva ela é em relação ao espaço, mas sim as tecnologias interativas que ela contém. \cite{harper2003}
 
 Para \citeonline{aldrich2003}, uma casa inteligente pode ser definida como uma residência equipada de tecnologias computacionais
 que antecipam e respondem às necessidades dos ocupantes, promovendo conforto, conveniência, segurança e entretenimento através do
-gerenciamento da tecnologia interna e conexões com o mundo a fora.
+gerenciamento da tecnologia interna e conexões com o mundo afora.
 
 Além disso, como a redução de consumo elétrico é um dos principais atrativos em uma casa inteligente, ela normalmente possui
 integrações com fontes de energias renováveis, como a solar e a eólica.
@@ -169,11 +169,11 @@ utilizava a rede elétrica existente para transmitir mensagens através de pulso
 degradação de sinal e dificuldade para verificação de pacotes, ele acabou não ganhando muita aceitação. \cite{riley2012}
 
 A expectativa é que todos os dispositivos eletroeletrônicos possuam conexão à internet, conceito que vem sendo chamado de Internet
-das Coisas e que prevê a adressabilidade única para todos os nós conectados na rede mundial através da implantação do IPv6. Este
+das Coisas e que prevê o endereçamento único para todos os nós conectados na rede mundial através da implantação do IPv6. Este
 último é uma evolução do protocolo de rede IPv4 e surgiu em 1994 com a intenção de resolver a limitação de espaço de endereço
 prevista e fornecer funcionalidades adicionais. \cite{hagen2002}
 
-Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas desde sua criação, além disso, sua
+Entretanto, a adoção do IPv6 de forma unânime ainda não aconteceu mesmo depois de duas décadas desde sua criação. Além disso, sua
 utilização completa em domótica levanta a questão quanto à necessidade em conectar dispositivos simples como sensores e atuadores
 à \textit{internet}, levando em consideração custo de implementação e vulnerabilidade. Alternativamente, existe a possibilidade em
 desenvolver uma rede específica para esses transdutores, permitindo implementar o monitoramento de um ambiente inteligente de
@@ -185,21 +185,31 @@ ambiente. \cite{sohraby_minoli_znati2007}
 
 Os quantitativos físicos que podem ser medidos são diversos, como temperatura, umidade, som, luz, radiação, etc. Como
 consequência, são várias as possibilidades de aplicação. Algumas das mais comuns são automação residencial e comercial,
-monitoramento ambiental e industrial, controle de tráfego, militarismo e assistência médica. A complexidade da rede deve ser
-proporcial à sua aplicação e vários aspectos devem ser levados em consideração, como por exemplo o meio de comunicação optado.
+monitoramento ambiental e industrial, controle de tráfego, aplicações militares e assistência médica. A complexidade da rede deve
+ser proporcial à sua aplicação e vários aspectos devem ser levados em consideração, como por exemplo o meio de comunicação optado.
 \cite{kuorilehto2007}
 
 A utilização de fios para realizar tal tarefa é normalmente descartada devido a diversos fatores como custo, manutenção,
-localização e mobilidade, portanto, uma comunicação sem fio, na maioria dos cenários, é um requerimento inevitável. Com isso,
-surgiu o termo Rede de Sensores Sem Fio (RSSF), que, apesar do nome, frequentemente também inclui atuadores.
-\cite{karl_willig2005}
+localização e mobilidade. Portanto, uma comunicação sem fio, na maioria dos cenários, é um requisito inevitável. Com isso, surgiu
+o termo Rede de Sensores Sem Fio (RSSF), que, apesar do nome, frequentemente também inclui atuadores.  \cite{karl_willig2005}
 
-No caso da aplicação deste conceito em domótica, é preferível que a implementação da RSSF seja de forma simples, a fim de obter
-uma solução com baixo custo e baixo consumo de eletricidade, sendo assim, é necessário escolher a tecnologia adequada para tal
-feito. O protocolo Wi-Fi, por exemplo, foi taxado como muito complexo e com suporte a largura de banda maior que o necessário, já
-sistemas infravermelho requerem uma linha de visão, o que nem sempre é possível neste caso. A tecnologia Bluetooth, por sua vez,
-aparentou ser promissora no início mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do
-padrão IEEE 802.15.4 no ano de 2003.  \cite{sohraby_minoli_znati2007}
+A Figura \ref{figura:wsn} ilustra um sistema de domótica baseado nos princípios mencionados anteriormente, porém utilizando uma
+rede sem fio para comunicação apenas com os sensores e atuadores ao invés de uma única rede de controle devido aos empecilhos já
+citados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/wsn.png}
+	\caption{Esboço de uma automação residencial}
+	\label{figura:wsn}
+\end{figure}
+
+No caso da aplicação deste conceito em domótica, é preferível que a implementação da RSSF seja simples, a fim de obter uma solução
+com baixo custo e baixo consumo de eletricidade. Sendo assim, é necessário escolher a tecnologia adequada para tal feito. O
+protocolo Wi-Fi, por exemplo, foi taxado como muito complexo e com suporte a largura de banda maior que o necessário; já sistemas
+infravermelho requerem uma linha de visão, o que nem sempre é possível neste caso. A tecnologia Bluetooth, por sua vez, aparentou
+ser promissora no início mas logo foi julgada como cara e complexa. Isso acabou abrindo as portas para a criação do padrão IEEE
+802.15.4 no ano de 2003.  \cite{sohraby_minoli_znati2007}
 
 A tecnologia IEEE 802.15.4 é um sistema de comunicação por rádio frequência de baixo alcance projetado para ter baixa
 complexidade, baixo custo, baixo consumo de energia e baixa taxa de transmissão de dados. Esse padrão implementa as camadas física
@@ -214,7 +224,7 @@ simples através de uma camada de adaptação e da otimização dos protocolos r
 Porém, os módulos que utilizam esses protocolos sofisticados possuem um preço relativamente maior em relação aos módulos com
 funcionamento mais básico e acabam inflando o custo total da RSSF de acordo com o número de nós da mesma. Portanto, a fim de se
 obter uma solução barata é necessário utilizar um transceptor simples e uma unidade de controle externa de baixo custo para
-implementar demais funcionalidades não realizadas pelo módulo.
+implementar as demais funcionalidades não realizadas pelo módulo.
 
 Como consequência, ao abrir mão das facilidades que os protocolos de comunicação avançados proporcionam, o esforço requerido para
 o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir e implementar diversos aspectos da mesma.
@@ -228,28 +238,20 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 
 	\subsection{Objetivo Geral}
 
-	Desenvolver uma rede de sensores sem fio para aplicação em automação de residências e escritórios de maneira simples e eficaz
+	Desenvolver uma rede de sensores sem fio, simples e eficáz, para aplicação em automação de residências e escritórios
 	utilizando tecnologias existentes e visando baixo custo e baixo consumo elétrico.
 	%-------------------------------------------------------------------------------
 
 	\subsection{Objetivos Específicos}
 
-	A figura \ref{figura:wsn} esboça os elementos de uma automação residencial. O objeto de estudo deste trabalho consiste na
-	parte destacada em vermelho, sendo assim, os principais objetivos específicos são:
+	Os principais objetivos específicos são:
 
 	\begin{itemize}
-		\item Rede - definir a topologia, comportamento e roteamento da camada de rede;
-		\item Mensagens - definir o escopo das mensagens utilizadas na comunicação;
-		\item Biblioteca - desenvolver uma pequena biblioteca com as funcionalidades necessárias para a solulção;
-		\item Protótipos - montar protótipos dos pontos de comunicação da rede.
+		\item Rede: definir a topologia, comportamento e roteamento da camada de rede;
+		\item Mensagens: definir o escopo das mensagens utilizadas na comunicação;
+		\item Biblioteca: desenvolver uma pequena biblioteca com as funcionalidades necessárias para a solulção;
+		\item Protótipos: montar protótipos dos pontos de comunicação e realizar a comunicação entre eles.
 	\end{itemize}
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=\textwidth]{images/wsn.png}
-		\caption{Esboço de uma automação residencial}
-		\label{figura:wsn}
-	\end{figure}
 	%-------------------------------------------------------------------------------
 
 
@@ -290,16 +292,15 @@ As atividades ocorrerão de acordo com o cronograma apresentado na Tabela \ref{t
 \begin{table}[H]
     \scriptsize
     \centering
-    \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
-        \hline &  \multicolumn{8}{|c|}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline &  \multicolumn{7}{|c|}
         {\textbf{Período}} \\ \cline{2-9}
-        \textbf{Atividades}     &Ago/15      &Set/15      &Out/15      &Nov/15      &Dez/15      &Jan/16      &Fev/16
-		&Mar/16   \\ \hline \hline
-        1 - Revisão Bibliográfica  &$\bullet$&$\bullet$&&&&&&  \\ \hline
-        2 - Desenvolvimento  &&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
-        3 - Monografia  &&&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
-        4 - Artigo   &&&&&&$\bullet$&$\bullet$& \\ \hline
-        5 - Apresentação   &&&&&&&&$\bullet$  \\ \hline
+        \textbf{Atividades}     &Ago/15      &Set/15      &Out/15      &Nov/15      &Dez/15      &Jan/16      &Fev/16 \\ \hline \hline
+        1 - Revisão Bibliográfica  &$\bullet$&$\bullet$&&&&&  \\ \hline
+        2 - Desenvolvimento  &&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
+        3 - Monografia  &&&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
+        4 - Artigo   &&&&&$\bullet$&$\bullet$&  \\ \hline
+        5 - Apresentação &&&&&&&$\bullet$&  \\ \hline
 
     \end{tabular}
      \caption{Cronograma das Atividades}
