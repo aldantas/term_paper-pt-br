@@ -162,11 +162,11 @@ Em relação à rede de controle, essa pode existir em três formatos: sem fio, 
 tecnologias têm melhorado significamente em termos de velocidade, confiabilidade e interoperabilidade através da padronização nos
 últimos dez anos. \cite{kyas2013}
 
-Contudo, ainda hoje não há um protocolo de comunicação que seja inteiramente adotado, em parte devido ao fato de requerer que
-os fabricantes concordem em criar eletrônicos com as mesmas interfaces e protocolos designados em seus produtos. Porém, as
-tentativas em padronizar a comunicação na domótica existem desde quase seu início. Uma das primeiras tentativas foi o X10, que
-utilizava a rede elétrica existente para transmitir mensagens através de pulsos codificados, mas devido a diversos problemas, como
-degradação de sinal e dificuldade para verificação de pacotes, ele acabou não ganhando muita aceitação. \cite{riley2012}
+Contudo, ainda hoje não há um protocolo de comunicação que seja inteiramente adotado, em parte devido ao fato de requerer que os
+fabricantes concordem em criar eletrônicos com as mesmas interfaces e protocolos designados em seus produtos. Porém, as tentativas
+em padronizar a comunicação na domótica existem desde quase seu início. Uma das primeiras tentativas foi o X10, que utilizava a
+rede elétrica existente para transmitir mensagens através de pulsos codificados, mas devido a diversos problemas, como degradação
+de sinal e dificuldade para verificação de pacotes, ele acabou não ganhando muita aceitação. \cite{riley2012}
 
 A expectativa é que todos os dispositivos eletroeletrônicos possuam conexão à internet, conceito que vem sendo chamado de Internet
 das Coisas e que prevê o endereçamento único para todos os nós conectados na rede mundial através da implantação do IPv6. Este
@@ -193,9 +193,8 @@ A utilização de fios para realizar tal tarefa é normalmente descartada devido
 localização e mobilidade. Portanto, uma comunicação sem fio, na maioria dos cenários, é um requisito inevitável. Com isso, surgiu
 o termo Rede de Sensores Sem Fio (RSSF), que, apesar do nome, frequentemente também inclui atuadores.  \cite{karl_willig2005}
 
-A Figura \ref{figura:wsn} ilustra um sistema de domótica baseado nos princípios mencionados anteriormente, porém utilizando uma
-rede sem fio para comunicação apenas com os sensores e atuadores ao invés de uma única rede de controle devido aos empecilhos já
-citados.
+A Figura \ref{figura:wsn} ilustra um sistema de domótica utilizando uma rede sem fio para comunicação apenas com os sensores e
+atuadores ao invés de uma única rede de controle entre todos os dispotivos.
 
 \begin{figure}[H]
 	\centering
@@ -294,13 +293,13 @@ As atividades ocorrerão de acordo com o cronograma apresentado na Tabela \ref{t
     \centering
     \begin{tabular}{|l|c|c|c|c|c|c|c|}
         \hline &  \multicolumn{7}{|c|}
-        {\textbf{Período}} \\ \cline{2-9}
+        {\textbf{Período}} \\ \cline{2-8}
         \textbf{Atividades}     &Ago/15      &Set/15      &Out/15      &Nov/15      &Dez/15      &Jan/16      &Fev/16 \\ \hline \hline
         1 - Revisão Bibliográfica  &$\bullet$&$\bullet$&&&&&  \\ \hline
         2 - Desenvolvimento  &&$\bullet$&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
         3 - Monografia  &&&$\bullet$&$\bullet$&$\bullet$&$\bullet$&  \\ \hline
         4 - Artigo   &&&&&$\bullet$&$\bullet$&  \\ \hline
-        5 - Apresentação &&&&&&&$\bullet$&  \\ \hline
+        5 - Apresentação &&&&&&&$\bullet$&  \hline
 
     \end{tabular}
      \caption{Cronograma das Atividades}
@@ -356,11 +355,11 @@ escalação da solução.
 
 Os critérios a serem avaliados são:
 \begin{itemize}
-	\item Custo e Consumo - o valor monetário necessário para a construção da RSSF tal como a quantidade de eletricidade
+	\item Custo e Consumo: o valor monetário necessário para a construção da RSSF, assim como a quantidade de eletricidade
 	utilizada pela solução. As informações inferidas através das especificações dos produtos e de lojas revendedoras serão
 	comparadas com outras tecnologias similares.
-	\item Confiabilidade - levando em consideração quantidade de nós na rede, distância média entre eles e tamanho e integridade de pacotes;
-	\item Código-fonte - a organização, legibilidade e funcionalidade do código-fonte.
+	\item Confiabilidade: levando em consideração quantidade de nós na rede, distância média entre eles e tamanho e integridade de pacotes;
+	\item Código-fonte: a organização, legibilidade e funcionalidade do código-fonte.
 \end{itemize}
 
 %-----------------------------------------------------------------
