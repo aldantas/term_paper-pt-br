@@ -248,7 +248,7 @@ o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir
 	\begin{itemize}
 		\item Rede: definir a topologia, comportamento e roteamento da camada de rede;
 		\item Mensagens: definir o escopo das mensagens utilizadas na comunicação;
-		\item Biblioteca: desenvolver uma pequena biblioteca com as funcionalidades necessárias para a solulção;
+		\item Biblioteca: desenvolver uma biblioteca com as funcionalidades necessárias para a solulção;
 		\item Protótipos: montar protótipos dos pontos de comunicação e realizar a comunicação entre eles.
 	\end{itemize}
 	%-------------------------------------------------------------------------------
@@ -312,41 +312,23 @@ As atividades ocorrerão de acordo com o cronograma apresentado na Tabela \ref{t
 
 \section{Material e Método}
 
-Os materiais utilizados devem ser compatíveis com o objetivo da solução, ou seja, devem possuir baixo custo e baixo consumo de
-energia elétrica. Em relação aos dispositivos de comunicação, existem várias opções com essas características simplistas
-disponíveis no mercado.
+Os materiais utilizados devem ser compatíveis com o objetivo da solução, portanto os \textit{hardwares} selecionados devem possuir
+baixo custo e baixo consumo de energia elétrica e os \textit{softwares} devem ser preferencialmente abertos e gratuitos.
 
-Uma possibilidade é utilizar o transceptor \texttt{CC2500} da empresa \textit{Texas Instruments}, que implementa o padrão IEEE
-802.15.4 e possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção,
-\SI{21.2}{\milli \ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e
-ótimo custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
+Para a prototipação, serão utilizados vários dispositivos elétricos como microcontroladores, transceptores, gravador de
+microcontrolador, \textit{protoboards}, resistores, capacitores, \textit{jumpers}, transdutores diversos, conversor serial, entre
+outros.
 
-Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic Semiconductor}. Embora
-possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens em relação aos demais
-módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs (quatro vezes mais que o
-\texttt{CC2500}) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli \ampere} durante
-recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera.  \cite{nrfdatasheet}
+A falta destes materiais impacta riscos quanto ao desenvolvimento dos protótipos e, por consequência, aos testes de validação.
+Contudo, todos os listados se encontram disponíveis no momento, sendo alguns provenientes de aquisições próprias e outros através
+do Centro Latino Americano de Tecnologias Abertas, que é um centro de pesquisas pertencente à Fundação Parque Tecnológico Itaipu.
 
-Além disso, o \texttt{nRF24L01+} oferece serviços como reconhecimento e retransmissão de pacotes automáticos, diminuindo o número
-de comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda
-mais o consumo elétrico necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos,
-tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
-
-Quanto aos microcontroladores, foi optada a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
-possuem todas as funcionalidades necessárias para o desenvolvimento do projeto e oferecem \textit{softwares} abertos e gratuitos
-para realizar a implementação do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma variação do \textit{GNU
-Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} que fornece um subconjunto da biblioteca C padrão. Além disso, há
-também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado para o microcontrolador.
-
-O \textit{software} da solução será desenvolvido em ambiente \texttt{GNU/Linux}, utilizando o \texttt{Vim} como editor de
-código-fonte, o \texttt{git} como sistema de controle de versão e o \texttt{make} para auxiliar na compilação e gravação do
-projeto. Além disso, serão utilizados vários dispositivos elétricos, como gravador de microcontrolador, \textit{protoboards},
-resistores, capacitores, \textit{jumpers}, sensores diversos, LEDs, conversor serial, entre outros.
+O \textit{software} será desenvolvido em ambiente \texttt{GNU/Linux}, utilizando o \texttt{Vim} como editor de código-fonte, o
+\texttt{git} como sistema de controle de versão e o \texttt{make} para auxiliar na compilação e gravação da solução.
 
 O projeto será realizado juntamente com pesquisas a materiais de estudo, tal como especificações técnicas das tecnologias
 utilizadas. Cada funcionalidade implementada será testada individualmente para garantir uma melhor estabilidade no processo de
 escalação da solução.
-
 
 %-----------------------------------------------------------------
 %               CRITÉRIOS DE AVALIAÇÃO
@@ -359,7 +341,7 @@ Os critérios a serem avaliados são:
 	utilizada pela solução. As informações inferidas através das especificações dos produtos e de lojas revendedoras serão
 	comparadas com outras tecnologias similares.
 	\item Confiabilidade: levando em consideração quantidade de nós na rede, distância média entre eles e tamanho e integridade de pacotes;
-	\item Código-fonte: a organização, legibilidade e funcionalidade do código-fonte.
+	\item Código-fonte: a organização, legibilidade e funcionalidade do código-fonte
 \end{itemize}
 
 %-----------------------------------------------------------------

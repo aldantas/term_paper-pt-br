@@ -1,0 +1,23 @@
+Uma possibilidade é utilizar o transceptor \texttt{CC2500} da empresa \textit{Texas Instruments}, que implementa o padrão IEEE
+802.15.4 e possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo \SI{17}{\milli \ampere} durante recepção,
+\SI{21.2}{\milli \ampere} durante transmissão e \SI{1.5}{\milli \ampere} em modo de espera. Devido ao baixo consumo elétrico e
+ótimo custo-benefício, esse dispositivo é amplamente utilizado. \cite{ccdatasheet}
+
+Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic Semiconductor}. Embora
+possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta diversas vantagens em relação aos demais
+módulos dessa categoria. Uma das principais vantagens é sua taxa máxima de transmissão aérea de 2 Mpbs (quatro vezes mais que o
+\texttt{CC2500}) e que, ao mesmo tempo, consome menos energia elétrica que os demais, sendo \SI{13.5}{\milli \ampere} durante
+recepção, \SI{11.3}{\milli \ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera. \cite{nrfdatasheet}
+
+Além disso, o \texttt{nRF24L01+} oferece serviços como reconhecimento e retransmissão de pacotes automáticos, diminuindo o número
+de comunicação com a unidade microtronladora tal como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda
+mais o consumo elétrico necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos,
+tornando-o então, a tecnologia escolhida para a implementação deste trabalho.
+
+Quanto aos microcontroladores, foi optada a utilização dos modelos \texttt{AVR} da empresa \textit{Atmel Corporation}, pois
+possuem todas as funcionalidades necessárias para o desenvolvimento do projeto e oferecem \textit{softwares} abertos e gratuitos
+para realizar a implementação do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma variação do \textit{GNU
+Compiler Collection} e utiliza a biblioteca \texttt{AVR-Libc} que fornece um subconjunto da biblioteca C padrão. Além disso, há
+também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado para o microcontrolador.
+
+
