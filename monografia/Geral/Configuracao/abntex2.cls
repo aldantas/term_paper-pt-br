@@ -1,5 +1,5 @@
 %% abntex2.cls, v-1.7.1 laurocesar
-%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -10,9 +10,9 @@
 %% version 2005/12/01 or later.
 %%
 %% This work has the LPPL maintenance status `maintained'.
-%% 
+%%
 %% The Current Maintainer of this work is the abnTeX2 team, led
-%% by Lauro César Araujo. Further information are available on 
+%% by Lauro César Araujo. Further information are available on
 %% http://abntex2.googlecode.com/
 %%
 %% This work consists of the file abntex2.cls.
@@ -65,7 +65,7 @@
 %%
 %% 2013.2.23 11h24	laurocesar
 %%  Altera o estilo dos cabecalhos dos artigos para \pagestyle{plain}
-%%  Adiciona lista de siglas e abreviaturas e lista de simbolos 
+%%  Adiciona lista de siglas e abreviaturas e lista de simbolos
 %%
 %% 2013.2.18 09h38	laurocesar
 %%  Adiciona \bookmarksetup{startatroot} a \textual e \postextual
@@ -99,11 +99,11 @@
 %%
 %% 2013.1.7 20h35 laurocesar
 %%  Uso da fonte de \ABNTEXfontereduzida em \caption, \legend e \footnote
-%%  Redefinicao da implementacao do ambiente resumo: agora ele usa abstract. 
+%%  Redefinicao da implementacao do ambiente resumo: agora ele usa abstract.
 %%  Criacao de \resumoname e do ambiente resumoumacoluna.
 %%  Tratamento especial dos capitulos e divisoes pre-textuais no caso da option
 %% article estar habilitada.
-%%  Altera a metrica usada para calcular o espacamento dos capitulos abnt de 
+%%  Altera a metrica usada para calcular o espacamento dos capitulos abnt de
 %% \textwidth para \columnwidth.
 %%
 %% 2013.1.3 09h02 laurocesar
@@ -112,7 +112,7 @@
 %%  Inclusão de \title{} \author{} e \date{} nos equivalentes em portugues
 %%
 %% 2012.12.2 09h38 laurocesar
-%%  Criacao do arquivo 
+%%  Criacao do arquivo
 %%
 
 % ------------------------------------------------------------------------
@@ -136,10 +136,10 @@
 	\renewcommand{\ABNTEXistwocolumn}{true}
 	\PassOptionsToClass{twocolumn}{memoir}%}
 }
-%	
+%
 % Opcoes chapter=TITLE, section=TITLE, subsection=TITLE e
 % subsubsection=TITLE: titulos em letras maiusculas
-% 
+%
 \newboolean{ABNTEXupperchapter}     %true=titles of chapter/appendix in uppercase
 \newboolean{ABNTEXuppersection}     %true=titles of sections in uppercase
 \newboolean{ABNTEXuppersubsection}  %true=titles of subsections in uppercase
@@ -154,7 +154,7 @@
 \DeclareOption{subsubsection=TITLE}{\setboolean{ABNTEXuppersubsubsection}{true}}
 
 %
-% Repassa demais opcoes a memoir	
+% Repassa demais opcoes a memoir
 %
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{memoir}%
@@ -169,7 +169,7 @@
 % ------------------------------------------------------------------------
 
 % ---
-% Comandos para controlar as opcoes de titulos com letras maiusculas 
+% Comandos para controlar as opcoes de titulos com letras maiusculas
 % ---
 
 % pacote que prove \MakeTextUppercase
@@ -200,7 +200,7 @@
 
 % ---
 % Controla os bookmarks do PDF
-\RequirePackage{bookmark}   			
+\RequirePackage{bookmark}
 % ---
 
 % ---
@@ -221,7 +221,7 @@
 \newcommand{\orientadorname}{Orientador:}
 \newcommand{\coorientadorname}{Coorientador:}
 \newcommand{\folhadeaprovacaoname}{Folha de aprova\c{c}\~ao}
-\newcommand{\resumoname}{Resumo} 
+\newcommand{\resumoname}{Resumo}
 \newcommand{\listadesiglasname}{Lista de abreviaturas e siglas}
 \newcommand{\listadesimbolosname}{Lista de s\'imbolos}
 %
@@ -252,7 +252,7 @@
   \renewcommand{\orientadorname}{Supervisor:}
   \renewcommand{\coorientadorname}{Co-supervisor:}
   \renewcommand{\folhadeaprovacaoname}{Approval}
-  \renewcommand{\resumoname}{Abstract} 
+  \renewcommand{\resumoname}{Abstract}
   \renewcommand{\listadesiglasname}{List of abbreviations and acronyms}
   \renewcommand{\listadesimbolosname}{List of symbols}
    %% adjusts names used by \autoref
@@ -361,7 +361,7 @@
   }{ % else
     \cleardoublepage%
   }
-}  
+}
 
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
@@ -370,7 +370,7 @@
 % ------------------------------------------------------------------------
 
 % ---
-% Notas de rodape - NBR 14724/2011 - 5.2.1 
+% Notas de rodape - NBR 14724/2011 - 5.2.1
 \makeatletter
 \renewcommand\@makefntext[1]{\hangindent=1.2em\leftskip=0.4em\hskip-0.4em\@makefnmark\hskip1.2em\relax#1}
 %\renewcommand\@makefntext[1]{\leftskip=0.7cm\hskip-0.15cm\@makefnmark#1}
@@ -413,13 +413,13 @@
 \settocdepth{subsubsection}   %\maxtocdepth{subsubsection}
 
 % lista de ilustracoes
-\renewcommand{\cftfigurename}{\figurename\space} 
+\renewcommand{\cftfigurename}{\figurename\space}
 \renewcommand*{\cftfigureaftersnum}{~~--}
- 
-% lista de tabelas  
+
+% lista de tabelas
 \renewcommand{\cfttablename}{\tablename\space}
-\renewcommand*{\cfttableaftersnum}{~~--}	
- 
+\renewcommand*{\cfttableaftersnum}{~~--}
+
 % fonte das partes e do capitulo do TOC
 \renewcommand{\tocheadstart}{\ABNTEXchapterfont}
 
@@ -429,16 +429,16 @@
 
 % ---
 % Configuracao dos titulos dos capitulos
-% Novo estido do memoir 
+% Novo estido do memoir
 % ABNT NBR 14724-2011 - 5.2.2-5.2.4; ABNT NBR 6024-2003 - 3.1-3.8
 \provideboolean{abntex@innonumchapter}
 \setboolean{abntex@innonumchapter}{true}
 \makechapterstyle{abnt}{%
-  \renewcommand{\chapterheadstart}{} 
+  \renewcommand{\chapterheadstart}{}
 
   \newlength{\chapternamenumlength}
 
-  % tamanhos de fontes de chapter e part	
+  % tamanhos de fontes de chapter e part
    \ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
      \setlength\beforechapskip{\baselineskip}
      \renewcommand{\chaptitlefont}{\ABNTEXsectionfont\ABNTEXsectionfontsize}
@@ -446,37 +446,37 @@
      \setlength{\beforechapskip}{0pt}
      \renewcommand{\chaptitlefont}{\ABNTEXchapterfont\ABNTEXchapterfontsize}
    }
-  
+
   \renewcommand{\chapnumfont}{\chaptitlefont}
   \renewcommand{\parttitlefont}{\ABNTEXpartfont\ABNTEXpartfontsize}
   \renewcommand{\partnumfont}{\ABNTEXpartfont\ABNTEXpartfontsize}
   \renewcommand{\partnamefont}{\ABNTEXpartfont\ABNTEXpartfontsize}
-  
+
   % tamanhos de fontes de section, subsection e subsubsection
   \setsecheadstyle{\ABNTEXsectionfont\ABNTEXsectionfontsize\ABNTEXsectionupperifneeded}
   \setsubsecheadstyle{\ABNTEXsubsectionfont\ABNTEXsubsectionfontsize\ABNTEXsubsectionupperifneeded}
   \setsubsubsecheadstyle{\ABNTEXsubsubsectionfont\ABNTEXsubsubsectionfontsize\ABNTEXsubsubsectionupperifneeded}
-  
+
   % impressao do numero do capitulo
   \renewcommand{\chapternamenum}{}
-  
+
   % impressao do nome do capitulo
   \renewcommand{\printchaptername}{%
    \chaptitlefont
    \ifthenelse{\boolean{abntex@apendiceousecao}}{\appendixname}{}%
   }
-    
+
   % impressao do titulo do capitulo
   \def\printchaptertitle##1{%
     \chaptitlefont%
     \ifthenelse{\boolean{abntex@innonumchapter}}{\centering\ABNTEXchapterupperifneeded{##1}}{%
     % else
-	    \settowidth{\chapternamenumlength}{\printchaptername\printchapternum\afterchapternum}%
-	    \parbox[t]{\columnwidth-\chapternamenumlength}{\ABNTEXchapterupperifneeded{##1}}%
-	}    
+	\settowidth{\chapternamenumlength}{\printchaptername\printchapternum\afterchapternum}%
+	\parbox[t]{\columnwidth-\chapternamenumlength}{\ABNTEXchapterupperifneeded{##1}}%
+	}
   }
-       
-  % impressao do numero do capitulo     	
+
+  % impressao do numero do capitulo
   \renewcommand{\printchapternum}{%
      \setboolean{abntex@innonumchapter}{false}
      \chapnumfont%
@@ -486,7 +486,7 @@
      }{} % else
   }
   \renewcommand{\afterchapternum}{}
-  
+
   % impressao do capitulo nao numerado
   \renewcommand\printchapternonum{%
      \setboolean{abntex@innonumchapter}{true}%
@@ -496,7 +496,7 @@
 % ---
 
 % -----
-% Declaracoes de cabecalhos 
+% Declaracoes de cabecalhos
 % -----
 % Cabecalho padrao
 \makepagestyle{abntheadings}
@@ -517,7 +517,7 @@
   \aliaspagestyle{cleared}{empty}
   \aliaspagestyle{part}{empty}
 }
-\renewcommand{\frontmatter}{\pretextual} 
+\renewcommand{\frontmatter}{\pretextual}
 
 % por default, inicializa o documento com elementos \pretextuais
 \AtBeginDocument{\pretextual}
@@ -528,12 +528,12 @@
 \newcommand{\textual}{%
   \ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
     \pagestyle{plain}%
-  }{%else  
+  }{%else
     \pagestyle{abntheadings}%
     \aliaspagestyle{chapter}{abntchapfirst}% customizing chapter pagestyle
-  }  
+  }
   \nouppercaseheads%
-  \bookmarksetup{startatroot}% 
+  \bookmarksetup{startatroot}%
 }
 \renewcommand{\mainmatter}{\textual}
 % ---
@@ -548,7 +548,7 @@
 
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
-% Comandos de dados para CAPA e FOLHA DE ROSTO 
+% Comandos de dados para CAPA e FOLHA DE ROSTO
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
 
@@ -603,7 +603,7 @@
 \newcommand{\membroII}[2][\membroIIname]%
   {\renewcommand{\imprimirmembroIIRotulo}{#1}%
    \renewcommand{\imprimirmembroII}{#2}}
-   
+
 % Comandos de dados - tipo de trabalho
 \providecommand{\imprimirtipotrabalho}{}
 \newcommand{\tipotrabalho}[1]{\renewcommand{\imprimirtipotrabalho}{#1}}
@@ -626,7 +626,7 @@
     \thispagestyle{empty}
     \begin{SingleSpacing}
       \ABNTEXfontereduzida
-}{%   
+}{%
     \end{SingleSpacing}%
 }%
 % ---
@@ -644,7 +644,7 @@
    \clearpage%
    \PRIVATEbookmarkthis{#1}%
    \begin{Spacing}{1.0}
-}{\end{Spacing}\PRIVATEclearpageifneeded}   
+}{\end{Spacing}\PRIVATEclearpageifneeded}
 % ---
 
 % ---
@@ -681,7 +681,7 @@
    \begin{abstract}
    \SingleSpacing
   }{\end{abstract}\PRIVATEclearpageifneeded}
-  
+
 \newenvironment{resumoumacoluna}[1][\resumoname]{%
    \PRIVATEbookmarkthis{#1}
    \renewcommand{\abstractnamefont}{\chaptitlefont}
@@ -734,14 +734,14 @@
  \renewcommand{\appendixname}{#1}
  \renewcommand{\appendixpagename}{#2}
  \renewcommand{\appendixtocname}{#2}
- 
+
  \switchchapname{#1}% Corrected from \switchapname -> \switchchapname
  \renewcommand*{\cftappendixname}{#1 \space}
 }
 % ---
 
 % ---
-% Apendices - comando 
+% Apendices - comando
 \newcommand{\apendices}{%
  \PRIVATEapendiceconfig{\apendicename}{\apendicesname}
  \appendix
@@ -761,7 +761,7 @@
 % Anexos - comando
 \newcommand{\anexos}{%
  \cftinserthook{toc}{AAA}
- 
+
  \PRIVATEapendiceconfig{\anexoname}{\anexosname}
  \appendix
  \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
@@ -769,7 +769,7 @@
 % Anexos - ambiente
 \newenvironment{anexosenv}{%
  \cftinserthook{toc}{AAA}
- 
+
  \PRIVATEapendiceconfig{\anexoname}{\anexosname}
  \begin{appendix}
  \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
@@ -789,7 +789,7 @@
   \appendixpage*
 }
 
-% atalhos para \partpage ou \appendixpage* 
+% atalhos para \partpage ou \appendixpage*
 \makeatletter
 \newcommand{\partapendices}{\@ifstar{\appendixpage*}{\partpage}}
 
@@ -835,7 +835,7 @@
 \newlist{incisos}{enumerate}{1}
 \setlist[incisos,1]{label={--},topsep=0pt,itemsep=0pt,leftmargin=*}%
 % ---
-  
+
 % ---
 % Comando \assinatura for signature
    % width of the line and text under the line
@@ -862,7 +862,7 @@
 }
    % assinatura sem estrela
 \newcommand{\ABNTEXcsign}[1]%
-  {\begingroup\par\centering\ABNTEXsign{#1}\par\endgroup}  
+  {\begingroup\par\centering\ABNTEXsign{#1}\par\endgroup}
 % ---
 
 % ------------------------------------------------------------------------
@@ -882,11 +882,11 @@
     \vspace*{\fill}
     {\ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo}
     \vspace*{\fill}
-    
+
     {\large\imprimirlocal}
     \par
     {\large\imprimirdata}
-    
+
     \vspace*{1cm}
   \end{capa}
 }
@@ -918,8 +918,8 @@
     \abntex@ifnotempty{\imprimirpreambulo}{%
       \hspace{.45\textwidth}
       \begin{minipage}{.5\textwidth}
-      	\SingleSpacing
-         \imprimirpreambulo
+	\SingleSpacing
+	\imprimirpreambulo
        \end{minipage}%
        \vspace*{\fill}
     }%
@@ -954,7 +954,7 @@
 \makeatletter
 \newcommand{\imprimirfolhaderosto}[1][\folhaderostoname]{%
    \@ifstar
-     \imprimirfolhaderostostar  
+     \imprimirfolhaderostostar
      \imprimirfolhaderostonostar
 }
 \makeatother

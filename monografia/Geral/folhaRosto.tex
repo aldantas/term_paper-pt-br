@@ -1,19 +1,19 @@
 \renewcommand{\orientadorname}{Orientador(a):}
 \makeatletter
-%----------------------------------------------------------------- 
+%-----------------------------------------------------------------
 % CONFIGURACÕES DA FOLHA DE ROSTO
-%----------------------------------------------------------------- 
+%-----------------------------------------------------------------
 
 \begin{capa}
-	\center	
+	\center
 	{\ABNTEXchapterfont\large\imprimirautor}
 
-    \vspace*{7cm}		
+    \vspace*{7cm}
 	%\vspace*{\fill}
-	
+
 	{\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
 
-	\vspace*{\fill}	
+	\vspace*{\fill}
 
 	\abntex@ifnotempty{\imprimirpreambulo}{
 		\hspace{.45\textwidth}
@@ -21,7 +21,7 @@
 			\SingleSpacing
 			\imprimirpreambulo
 		\end{minipage}
-	
+
 		\vspace*{\fill}
 	}
 
@@ -29,12 +29,12 @@
 	\abntex@ifnotempty{\imprimircoorientador}{
 		{\large\imprimircoorientadorRotulo~\imprimircoorientador}
 	}
-	
-	\vspace*{\fill}			
-	
+
+	\vspace*{\fill}
+
 	{\large\imprimirlocal}
-	
-	{\large\imprimirdata}		
+
+	{\large\imprimirdata}
 \end{capa}
 
 \makeatother

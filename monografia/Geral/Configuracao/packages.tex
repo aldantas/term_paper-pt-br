@@ -1,5 +1,5 @@
 \usepackage{cmap}				% Mapear caracteres especiais no PDF
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage{lmodern}			% Usa a fonte Latin Modern
 % \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
@@ -26,13 +26,13 @@
 % \usepackage{color}
 \usepackage{caption}
 % \usepackage{pdfpages}
-% \usepackage{lipsum}	
+% \usepackage{lipsum}
 \citebrackets[]
 
 
-% --- 
+% ---
 % CONFIGURAÇÕES DE PACOTES
-% --- 
+% ---
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
@@ -52,9 +52,9 @@
 
 \DeclareCaptionType{mycapequ}[][List of equations]
 \captionsetup[mycapequ]{labelformat=empty}
-% --- 
+% ---
 % CONFIGURAÇÕES DE CODIGO PYTHON
-% --- 
+% ---
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
@@ -84,7 +84,7 @@
         emph={@attribute, @relation, @data,numeric},          % Custom highlighting
         emphstyle=\ttb\color{deepblue},    % Custom highlighting style
         stringstyle=\color{deepgreen},
-        showstringspaces=false            % 
+        showstringspaces=false            %
     }
 }
 % Python environment
@@ -112,11 +112,11 @@
 \makeatletter
 \hypersetup{
      	%pagebackref=true,
-		pdftitle={\@title}, 
+		pdftitle={\@title},
 		pdfauthor={\@author},
     	pdfsubject={\imprimirpreambulo},
 	    pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={Canal de Fuga}{Itaipu}{Mineração de Dados}{abntex2}{trabalho acadêmico}, 
+		pdfkeywords={Canal de Fuga}{Itaipu}{Mineração de Dados}{abntex2}{trabalho acadêmico},
 		colorlinks=black,       		% false: boxed links; true: colored links
     	linkcolor=black,          	% color of internal links
     	citecolor=black,        		% color of links to bibliography
@@ -125,15 +125,15 @@
 		bookmarksdepth=3
 }
 \makeatother
-% --- 
-        
-% --- 
-% Espaçamentos entre linhas e parágrafos 
-% --- 
+% ---
+
+% ---
+% Espaçamentos entre linhas e parágrafos
+% ---
 
 % % O tamanho do parágrafo é dado por:
 \setlength{\parindent}{1.3cm}
 
 % % Controle do espaçamento entre um parágrafo e outro:
-\setlength{\parskip}{0.2cm}  % tente também 
+\setlength{\parskip}{0.2cm}  % tente também
 % \onelineskip
