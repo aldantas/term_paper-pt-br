@@ -1,15 +1,6 @@
 \chapter{Introdução}
+
 \label{cap:introducao}
-
-Introdução, estado da arte, proposta, justificativa, objetivos e organização da
-monografia).
-
-Teste de citação \cite{Weka2014}. No arquivo Geral/bibliografia.bib há diversos tipos de referências,
-exemplificados conforme o tipo de documento.
-
-Aqui segue um tipo de citação no parágrafo, onde o nome do autor se entra no texto: Conforme
-\citeonline{Scipy2013}, open source é ...
-
 
 Ao longo dos anos, a computação e suas aplicações se tornaram cada vez mais presentes no nosso cotidiano. Uma
 série de fatores contribuiu com a rápida difusão da tecnologia em vários setores, como os ambientes domésticos
@@ -102,12 +93,17 @@ que o necessário; já sistemas infravermelho requerem uma linha de visão, o qu
 caso. A tecnologia Bluetooth, por sua vez, aparentou ser promissora no início mas logo foi julgada como cara e
 complexa. \cite{sohraby_minoli_znati2007}
 
-A tecnologia IEEE 802.15.4 é um sistema de comunicação por rádio frequência de baixo alcance projetado para
+Enquanto isso, o uso da comunicação por radiofrequcência tem se tornado cada vez mais abrangente, indo desde
+as aplicações tradicionais, como transmissão de sinais de rádio e televisão, para as mais diversas utilidades,
+como monitoramento de pacientes em um hospital, \textit{mouses} e teclados sem fio, identificação por
+radiofrequência (RFID) e, naturalmente, redes de sensores sem fio. \cite{misra2001}
+
+O padrão IEEE 802.15.4 é uma especificação de comunicação por radiofrequência de baixo alcance projetado para
 ter baixa complexidade, baixo custo, baixo consumo de energia e baixa taxa de transmissão de dados. Esse
-padrão implementa as camadas física e de enlace do modelo ISO/OSI e é amplamente utilizado na construção de
+padrão implementa as camadas física e de controle de acesso ao meio (MAC) e é amplamente utilizado na construção de
 RSSFs. Além disso, serve como base para outros protocolos que implementam camadas superiores, como por exemplo
 o protocolo ZigBee, que fornece mecanismos para entrada e saída em uma rede, segurança de pacotes, roteamento,
-descoberta de caminho (para casos de rede malha), entre outros recursos. \cite{buratti2011}
+descoberta de caminho, entre outros recursos. \cite{buratti2011}
 
 Outro protocolo que se baseia no padrão IEEE 802.15.4 é o 6LoWPAN(\textit{IPv6 over Low power Wireless
 Personal Area Networks}), que possibilita o uso eficiente do IPv6 sobre redes sem fio de baixa taxa e baixo
@@ -124,7 +120,11 @@ Como consequência, ao abrir mão das facilidades que os protocolos de comunica�
 esforço requerido para o desenvolvimento de uma RSSF acaba se tornando maior, sendo necessário definir e
 implementar diversos aspectos da mesma.
 
+\section {Objetivo}
+Desenvolver uma rede de sensores sem fio, simples e eficáz, para aplicação em automação de residências e
+escritórios utilizando tecnologias existentes e visando baixo custo e baixo consumo elétrico.
 
+\section {Organização}
 Para o melhor entendimento, essa monografia foi organizada da seguinte forma:
 
 \begin{itemize} \item No Capítulo XXX (\ref{cap:XXX}) são descritos....
