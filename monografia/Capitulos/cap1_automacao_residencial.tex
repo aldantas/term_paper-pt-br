@@ -40,17 +40,17 @@ Para \citeonline{kyas2013}, uma automação residencial consiste em cinco blocos
 \end{itemize}
 
 \subsection{Dispositivos Sob Controle}
-Trata-se dos eletrodomésticos pertencentes à uma residência, como geladeira, televisão, etc. Atualmente,
-esses dispositivos já possuem diversas funcionalidades embutidas, podendo ser chamados de inteligentes por si
-só.
+Pode-se considerar todos os componentes de uma residência, como eletrodomésticos, móveis, objetos e até partes
+da construção, como portas e janelas. Atualmente, muitos desses dispositivos já possuem diversas
+funcionalidades embutidas, podendo ser chamados de inteligentes por si só.
 
 Um grande exemplo são as \textit{smart TVs}, que possibilitam com que a televisão deixe de ser apenas um
 aparelho de reprodução de conteúdo para ser um centro de entretenimento interativo.
 
-Ainda há muito a se explorar nessa área de aparelhos de consumo inteligentes. Teoriza-se possível, por
-exemplo, oferecer ao consumidor um mecanismo para comprar objetos e roupas que estão sendo exibidos em
-determinado filme, ou então controlar o estoque e validade dos alimentos mantidos na geladeira, entre muitas
-outras utilidades.
+As aplicações nessa área de aparelhos de consumo inteligentes são diversas. É possível, por exemplo, que uma
+cama seja programada para lembrar as configurações de temperatura, som, aroma e luz do usuário, ou então que
+uma geladeira possa controlar o estoque e validade dos alimentos mantidos, entre muitas outras utilidades.
+\cite{jiang_liu_yang2004}
 
 O principal desafio está em integrar todos esses eletrodomésticos ao sistema de automação residencial, sendo
 necessário definir um mecanismo de comunicação e adaptar os aparelhos que não o possuam.
@@ -84,14 +84,51 @@ imensa aceitação e passou a ser utilizado para diversos propósitos, como cent
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=300]{../images/raspeberry.jpg}
-	\caption{Raspberry Pi}
+	\includegraphics[width=300]{../images/raspberry.png}
+	\caption{Modelo de Raspberry Pi}
 	\label{figura:pi}
 \end{figure}
 
 \subsection{Sensores e Atuadores}
+São as verdadeiras interfaces para o mundo físico, ou seja, são dispositivos que podem observar ou controlar
+parâmetros físicos do ambiente. \cite{karl_willig2005}
 
+Para \citeonline{fraden2014}, o propósito de um sensor é receber algum tipo de propriedade física como
+entrada e convertê-la para um sinal elétrico que seja compatível com circuitos eletrônicos. Já um atuador
+pode ser descrito como o oposto de um sensor, pois converte um sinal elétrico para alguma tipo de energia,
+geralmente não elétrica.
+
+Este tópico será melhor aprofundado no Capítulo.
 
 \section{Desafios}
+Embora a área de automação residencial avançou muito na última década, ainda existem algumas barreiras que
+dificultam o desenvolvimento e gerenciamento de um sistema dessa categoria.
 
-\section {Considerações Finais}
+Para \citeonline{jiang_liu_yang2004}, existem três desafios fundamentais ao implementar um ambiente
+automatizado. O primeiro consiste em desenvolver o sistema utilizando uma abordagem de planejamento e
+integração desde o início, para que não ocorra adições crescentes de componentes tecnológicos sem que eles se
+beneficiem da solução. O segundo problema consiste na interoperabilidade devido aos inúmeros fabricantes
+existentes e a falta de um protocolo de comunicação acordado entre todos. Por último, tem-se a confiabilidade
+como um dos principais critérios a ser atendidos.
+
+Em uma pesquisa realizada por \citeonline{brush_2011} foram entrevistados 14 moradores de
+residências automatizadas, e as principais barreiras encontradas por eles foram:
+\begin{itemize}
+	\item \textbf{Alto custo de propriedade:} custo relacionado em adquirir e manter o sistema de automação, seja
+	ele monetário, de tempo gasto, ou ambos;
+	\item \textbf{Inflexibilidade:} dificuldade em alterar ou adicionar componentes devido à necessidade de
+	mudanças estruturais e à falta de compatibilidade entre dispositivos;
+	\item \textbf{Gerenciamento precário:} o sistema deve prever futuras iterações do desenvolvimento para que
+	essa barreira seja amenizada, além disso, é desejável que haja uma interface de usuário intuitiva
+	para realizar procedimentos de manutenção;
+	\item \textbf{Dificuldade em obter segurança:}  normalmente o nível de segurança é inversamente
+	proporcional ao de comodidade, deixando os usuários na dúvida quanto algumas questões como acesso
+	remoto, travamento de portas e janelas e vigilância.
+\end{itemize}
+
+Além desses, a característica pervasiva de uma automação domiciliar acarreta em alguns outros desafios, como
+a necessidade de auto-adaptação devido ao dinamismo de comportamento, localização e hábitos dos usuários tal
+como mudanças ambientais. A solução deve ser também capaz de lidar com um grande número de equipamentos
+dinâmicos, de modo que ela seja facilmente escalável. Por fim, a facilidade de uso é uma das principais
+barreiras que devem ser solucionadas a fim de popularizar cada vez mais esse tipo de automação.
+\cite{lalanda2010}
