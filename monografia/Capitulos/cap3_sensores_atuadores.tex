@@ -1,5 +1,56 @@
-\chapter {Sensores e Atuadores}
+\chapter{Sensores e Atuadores}
 \label{cap:3}
 
-\section {Considerações Iniciais}
+\section{Considerações Iniciais}
+Um sensor é um dispositivo que detecta ou mede um quantitativo físico e o transforma, normalmente, em um sinal
+elétrico. O dispositivo oposto é o atuador, que converte um sinal elétrico para alguma ação, normalmente
+mecânica \cite{sinclair2001}.
+
+Um transdutor é definido como qualquer dispositivo que converte um tipo de energia para outro. Alguns
+autores diferenciam-os de sensores, seja alegando que transdutores possuem uma preocupação maior com a eficiência
+da conversão de energia ou que o sensor é apenas uma parte do transdutor responsável por detectar a variável
+do ambiente \cite{sinclair2001,kondrasovas2013}.
+
+Contudo, neste trabalho considera-se que, por definição, sensores e atuadores são tipos de transdutores.
+
+\section{Sensores}
+Avanços tecnológicos recentes tem permitido o desenvolvimento de dispositivos sensores de baixo custo, baixo
+consumo de energia e pequenos portes. Eles podem medir distância, direção, velocidade, umidade, temperatura, luz,
+vibração, pressão, propriedades acústicas e muitos outros atributos \cite{hai_nayak_stojmenovic2010}.
+
+De acordo com \citeonline{karl_willig2005}, os sensores podem ser divididos em três categorias:
+\begin{itemize}
+	\item \textbf{Passivos e omnidirecionais:} medem informações físicas sem manipular o ambiente,
+	utilizando apenas os fenômenos existentes (vibração, luz, radiação, etc). Além disso, não possuem
+	noção de direção envolvida na medição. A maioria dos sensores pertencem à esta categoria, alguns
+	exemplos são termômetros, sensores de luz, umidade, fumaça, entre outros.
+	\item \textbf{Passivos e de feixe estreito:} diferenciam-se dos anteriores pois possuem uma noção bem
+	definida de direção. Um exemplo típico é uma câmera.
+	\item \textbf{Ativos:} ao contrário dos anteriores, sensores deste tipo emitem algum tipo de sinal,
+	como ondas ou elétrons, e captam as informações através do reflexo desses sinais emitidos. Os
+	exemplos mais conhecidos são os sensores sonares, radares e sísmicos.
+\end{itemize}
+
+Também podem ser classificados quanto à referência selecionada, sendo ela absoluta ou relativa. Um sensor
+absoluto converte um estímulo para uma escala física absoluta que é independente das condições de medição, já
+um sensor relativo produz um sinal que se refere à algum caso especial. Os sensores de pressão, por exemplo,
+podem ser absolutos, cujo sinal produzido é relativo ao vácuo (zero absoluto na escala de pressão), ou
+relativos, que poduzem sinais referentes à algum patamar, como a pressão atmosférica \cite{fraden2014}.
+
+Uma maneira lógica de classificar os sensores é através da propriedade física que está sendo medida, como
+temperatura, pressão, movimento, etc \cite{kenny_walt2005}.
+
+Há algumas características relevantes quando se trata de sensores, uma delas é a resolução, que mede a
+menor alteração do quantitativo físico que um sensor consegue detectar \cite{sinclair2001}.
+
+Outra característica importante é a área de cobertura ou alcance de um sensor, que consiste na distância em
+que ele consegue captar a informação de maneira precisa e confiável \cite{karl_willig2005}.
+
+Além desses, existem alguns outros atributos que caracterizam um sensor, sendo eles: sensitividade, que é a
+relação entre o sinal físico de entrada e o elétrico de saída; exatidão, a diferença entre o valor real e o
+valor gerado pelo sensor; precisão, a capacidade de reproduzir os resultados que foram obtidos
+experimentalmente da mesma forma; ruído, produzido pelo sensor a adicionado ao sinal de saída; largura de
+banda, velocidade com que o sensor consegue prover uma corrente de leitura \cite{kenny_walt2005,kondrasovas2013}.
+
+\subsection{Temperatura}
 
