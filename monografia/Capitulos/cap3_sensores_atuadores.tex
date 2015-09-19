@@ -23,7 +23,7 @@ De acordo com \citeonline{karl_willig2005}, os sensores podem ser divididos em t
 	\item \textbf{Passivos e omnidirecionais:} medem informações físicas sem manipular o ambiente,
 	utilizando apenas os fenômenos existentes (vibração, luz, radiação, etc). Além disso, não possuem
 	noção de direção envolvida na medição. A maioria dos sensores pertencem à esta categoria, alguns
-	exemplos são termômetros, sensores de luz, umidade, fumaça, entre outros.
+	exemplos são sensores de temperatura, luz, umidade, gases, entre outros.
 	\item \textbf{Passivos e de feixe estreito:} diferenciam-se dos anteriores pois possuem uma noção bem
 	definida de direção. Um exemplo típico é uma câmera.
 	\item \textbf{Ativos:} ao contrário dos anteriores, sensores deste tipo emitem algum tipo de sinal,
@@ -58,9 +58,119 @@ mesma forma; ruído, produzido pelo sensor a adicionado ao sinal de saída; larg
 o sensor consegue prover uma corrente de leitura \cite{kenny_walt2005,kondrasovas2013}.
 
 \subsection{Temperatura}
-Devido à grande significância de seu efeito em materiais, a temperatura é a variável mais medida e especifica
-o grau de ``quentura'' ou ``frieza'' referenciada à uma escala específica.\cite{fontes2005}.
+Devido à grande significância de seu efeito em materiais, a temperatura é a variável mais medida e determina o
+grau de ``quentura'' ou ``frieza'' referenciada à uma escala específica. Ela é proporcional à taxa de energia
+cinética das moléculas e átomos pertencentes a um objeto ou sistema.
+\cite{fontes2005,peeters_peetermans_indesteege2007}.
 
-Calor é a quantidade total de energia cinética das moléculas e átomos em um objeto ou sistema especifico,
-sendo assim, a temperatura de um corpo é proporcional à taxa de energia cinética das moléculas
-\cite{peeters_peetermans_indesteege2007}.
+Segundo \citeonline{fontes2005}, sensores de temperatura detectam uma mudança em um parâmetro físico, como
+resistência ou tensão de saída, que corresponde à uma mudança de temperatura e que pode ser medida através de
+duas maneiras:
+\begin{itemize}
+	\item \textbf{Com contato:} requer que o sensor esteja em contato físico direto com o objeto ou
+	sistema a ser mensurado;
+	\item \textbf{Sem contato:} a medição interpreta a energia radiante de uma fonte de calor emitida na
+	faixa infravermelha do espectro eletromagnético.
+\end{itemize}
+
+Essa leitura pode ser realizada de maneira estática, onde a temperatura do corpo permanece estável, e
+dinâmica, quando a temperatura varia durante a medição. No caso da leitura dinâmica, existe um tempo de
+retardo entre a temperatura e o valor medido que é chamado de erro dinâmico. Esse erro depende do tempo de
+resposta do sensor e da taxa de variação da temperatura \citeonline{peeters_peetermans_indesteege2007}.
+
+Os sensores de temperatura absoluta utilizam como referência o zero absoluto (0 K) ou qualquer outro ponto na
+escala de temperatura absoluta, como o 0ºC (273.15 K), já os relativos medem a diferença de temperatura entre
+dois objetos, sendo um deles a referência \cite{fraden2010}.
+
+Existem diversos tipos de sensores de temperatura, cada qual com suas vantagens e desvantagens de acordo com
+a aplicação. A seguir serão apresentados quatro dos principais tipos.
+
+\subsubsection{Termorresistências}
+Também chamados de RTD (\textit{Resistance Temperature Detector}), são sensores de temperatura cujo
+funcionamento se baseia na variação de resistência elétrica do elemento condutor em função da temperatura.
+Esse elemento responsável pela medição pode ser platina, níquel ou cobre \cite{thomazini_albuquerque2005}.
+
+A platina possui a relação entre temperatura e resisistência mais estável sobre a maior faixa de temperatura.
+Já o cobre possui a resistência mais linear mas oxida facilmente e o níquel é o mais barato porém possui uma
+faixa de temperatura limitada \cite{burns2014}.
+
+Devido à essa grande estabildiade e exatidão, a termorresistência mais utilizada é a de platina, sendo capaz de
+trabalhar na faixa de -200ºC a 850ºC \cite{thomazini_albuquerque2005}.
+
+A figura \ref{figura:rtd} mostra um modelo de RTD que contém uma cabeça de conexão que é comumente utilizada
+neste tipo de sensor e serve para fornecer uma transição entre o RTD e a fiação da aplicação além de prover
+uma proteção contra condições ambientais, como água e outros contaminantes \cite{burns2014}.
+\begin{figure}[H]
+	\caption{RTD com cabeça de conexão}
+	\centering
+	\includegraphics[scale=1.8]{../images/rtd.png}
+	\hspace{\linewidth}
+	Fonte: http://www.apcs.net.au
+	\label{figura:rtd}
+\end{figure}
+
+\subsubsection{Termistores}
+Assim como os RTDs, os termistores são dispositivos que alteram a resistência elétrica em relação à
+temperatura. No entanto, são formados por semicondutores fabricados com misturas de óxidos metálicos.
+\cite{white_sapoff2014}.
+
+Há dois tipos diferentes de termistores disponíveis: PTC (\textit{Positive Temperature Coefficient}), que
+exibem um aumento de resistência ao passo que a temperatua aumenta e NTC (\textit{Negative Temperature
+Coefficient}), que decrementam a resistência elétrica de acordo com o crescimento da temperatura
+\cite{fontes2005}.
+
+Os termistores do tipo PTC possuem um coeficiente de temperatura extremamente variável, que é denominado por
+uma região de temperatura em que o coeficiente de resistência aumenta rapidamente. Fora desse limite, o
+coeficiente é negativo ou nulo, o que os torna não viáveis para medições de temperatura
+\cite{white_sapoff2014,thomazini_albuquerque2005}.
+
+Os do tipo NTC, por outro lado, são ideais para medições de temperatura, pois mesmo operando com uma faixa de
+temperatura útil pequena em comparação à um RTD, por exemplo, conseguem realizar medições mais sensíveis
+dentro dessa faixa, que normalmente varia entre -80ºC à 250ºC \cite{sinclair2001,thomazini_albuquerque2005}.
+
+Devido ao simples processo de fabricação, termistores pode ser feitos em escala pequena, conforme ilustrado na
+figura \ref{figura:ntc}, o que torna o tempo de resposta térmico extremamente rápido
+\cite{peeters_peetermans_indesteege2007,sinclair2001}.
+\begin{figure}[H]
+	\caption{Modelo de termistor NTC}
+	\centering
+	\includegraphics[scale=0.5]{../images/thermistor.png}
+	\hspace{\linewidth}
+	Fonte: http://www.globalsources.com
+	\label{figura:ntc}
+\end{figure}
+
+\subsubsection{Termopares}
+Também chamados de sensores de contato termoelétrico, os termopares são formados quando dois condutores
+elétricos de metais diferentes são ligados à uma extremidade de um circuito. Entretanto, é necessário ter
+pelo menos duas ligações para obter um sensor prático. Desse modo, esses sensores possuem uma ligação de
+medição, que é exposta à temperatura do processo, e uma ligação de referência, que é mantida à uma referência
+de temperatura conhecida \cite{fraden2010,fontes2005}.
+
+Quando as duas junções estiverem em temperaturas diferentes, uma corrente irá fluir pelos fios
+proporcionalmente à essa diferença. A temperatura na junção de medição pode então ser determinada a partir do
+tipo de termopar utilizado e da temperatura da junção de referência \cite{fraden2010}.
+
+Os termopares são amplamente utilizados em ambientes industriais, pois são os que cobrem a maior faixa de
+temperatura (-200 a 2.3000ºC aproximadamente) e possuem uma boa exatidão e precisão
+\cite{thomazini_albuquerque2005}.
+
+\subsubsection{Eletrônicos}
+São dispositivos à base de silício que utilizam propriedades de resistência elétrica para medir a temperatura
+e oferecem uma curva de resistência quase linear. Dois grandes exemplos são os diodos, que possuem um
+decaimento de tensão para cada aumento de grau térmico, e os transistores, cujos parâmetros variam com a
+temperatura \cite{thomazini_albuquerque2005}.
+
+Além desses, também existem sensores eletrônicos na forma de circuito integrado, que podem fornecer uma
+leitura de temperatura direta e digital, além de outras funções como filtros, reguladores e proteções
+\cite{fontes2005,thomazini_albuquerque2005}.
+
+\subsubsection{Qual utilizar}
+Os quatro tipos apresentados são opções viáveis para medição de temperatura, porém, os que mais se adequam a
+aplicações residenciais são os termistores e eletrônicos, pois atuam em uma faixa de temperatura compatível
+com a encontrada nesse tipo de ambiente e possuem um ótimo custo-benefício.
+
+Os termopares são os menos estáveis e sensíveis e requerem fios de extensão especiais. Já os RTDs, apesar de
+serem os mais exatos e precisos, são relativamente grandes e caros \cite{fontes2005}.
+
+\subsection{Pressão}
