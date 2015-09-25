@@ -181,12 +181,47 @@ humano. Esses sensores podem ser divididos em quânticos e térmicos \cite{frade
 A luz e as demais formas de radiação possuem partículas elementares chamadas fótons, que são responsáveis por
 quantificar a força eletromagnética. Os sensores quânticos absorvem esses fótons e emitem elétrons contendo a
 energia radioativa correspondente, efeito conhecido como fotoelétrico. Já os sensores térmicos, recebem a
-radiação infravermelha e utilizam um termômetro para medir o aumento de temperatura do corpo detector \cite{kenny2005}.
+radiação infravermelha e utilizam um termômetro para medir o aumento de temperatura do corpo detector
+\cite{kenny2005}.
 
 Para aplicações residenciais e prediais, a faixa que mais interessa é a de luz visível. Sendo assim, é
-preferível a utilização de sensores de luz quânticos, que oferecem o melhor desempenho para detecção de
-radiação ótica e que geralmente são produzidos na forma de fotodiodos, fototransistores ou fotoresistores
+preferível a utilização de sensores de luz quânticos, pois oferecem o melhor desempenho para detecção de
+radiação ótica e que geralmente são produzidos nas formas de fotodiodos, fototransistores ou fotoresistores
 \cite{fraden2010}.
 
 \subsubsection{Fotodiodos}
+O fotodiodo é um diodo cuja junção de semicondutores está exposta à incidência de raios luminosos, onde a
+energia recebida através dos fótons permite com que essa junção se comporte como condutora elétrica
+independente da polarização aplicada, gerando assim uma energia elétrica correspondente \cite{sinclair2001}.
 
+Ele possui dois modos de operação, fotovoltaico (FV) e fotocondutivo (FC). No modo FV não há polarização do
+diodo, dessa forma, ele opera como um dispositivo gerador de corrente pois converte a energia luminosa em
+tensão elétrica. Normalmente é utilizado como uma pequena bateria solar e raramente como sensor \cite{fraden2010}.
+
+Já no modo FC, o diodo é polarizado. Se essa polarização for direta, o aumento de corrente gerado pela
+incidência luminosa será pequeno refente à corrente negra (gerada pelo circuito e conduzida pelo diodo na
+ausência de luz), tornando-os não muito úteis para atuarem como sensores. Senso assim, normalmente os
+fotodiodos no modo FC são inversamente polarizados, gerando uma corrente elétrica quase linearmente
+proporcional à intensidade de luz \cite{dado_fischer2007}.
+
+\subsubsection{Fototransistores}
+Opera como uma combinação de um fotodiodo polarizado inversamente e um transistor convencional. Dessa forma,
+a corrente gerada pelo efeito fotoelétrico na junção do transistor é amplificada, o que torna um
+fototransistor um sensor de luz extremamente sensível \cite{dado_fischer2007}.
+
+Contudo, a penalidade para este grande aumento de sensibilidade é um tempo de resposta muito maior que o dos
+fotodiodos. Devido a isso, os fototransistores são pouco utilizados, pois é possível obter uma boa
+sensibilidade e tempo de resposta utilizando fotodiodos integrados com amplificadores operacionais
+\cite{sinclair2001}.
+
+\subsubsection{Fotoresistores}
+Também chamados de LDR (\textit{Light Dependent Resistor}), são dispositivos cuja resistência alteram sob a
+incidência luminosa na superfície, que normalmente é fabricada com materiais baseados em cádmio
+\cite{dado_fischer2007}.
+
+Possuem sensibilidade normalmente maior que os fotodiodos que varia dependendo do tamanho da superfície e
+possuem o pior tempo de resposta entre os três fotosensores mencionados \cite{thomazini_albuquerque2005}.
+
+\subsubsection{Qual utilizar}
+Embora possuam algumas diferenças de performance, tanto os fotodiodos, fototransisotres e fotoresistores
+possuem baixo custo e são opções válidas para atuarem como sensores de luz em uma aplicação residencial.
