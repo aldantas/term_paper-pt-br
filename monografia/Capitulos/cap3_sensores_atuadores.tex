@@ -54,8 +54,9 @@ que ele consegue captar a informação de maneira precisa e confiável \cite{kar
 Além desses, existem alguns outros atributos que caracterizam um sensor, sendo eles: sensibilidade, a relação
 entre o sinal físico de entrada e o elétrico de saída; exatidão, a diferença entre o valor real e o valor
 gerado pelo sensor; precisão, a capacidade de reproduzir os resultados que foram obtidos experimentalmente da
-mesma forma; ruído, produzido pelo sensor a adicionado ao sinal de saída; largura de banda, velocidade com que
-o sensor consegue prover uma corrente de leitura \cite{kenny_walt2005,kondrasovas2013}.
+mesma forma; ruído, produzido pelo sensor a adicionado ao sinal de saída; largura de banda ou tempo de
+resposta, velocidade com que o sensor consegue prover uma corrente de leitura
+\cite{kenny_walt2005,kondrasovas2013}.
 
 \subsection{Temperatura}
 Devido à grande significância de seu efeito em materiais, a temperatura é a variável mais medida e determina o
@@ -219,9 +220,42 @@ Também chamados de LDR (\textit{Light Dependent Resistor}), são dispositivos c
 incidência luminosa na superfície, que normalmente é fabricada com materiais baseados em cádmio
 \cite{dado_fischer2007}.
 
-Possuem sensibilidade normalmente maior que os fotodiodos que varia dependendo do tamanho da superfície e
-possuem o pior tempo de resposta entre os três fotosensores mencionados \cite{thomazini_albuquerque2005}.
+A sensibilidade desses dispositivos varia dependendo do tamanho da superfície, mas normalmente é maior que a
+de um fotodiodo e possuem o pior tempo de resposta entre os três fotosensores mencionados
+\cite{thomazini_albuquerque2005}.
 
 \subsubsection{Qual utilizar}
 Embora possuam algumas diferenças de performance, tanto os fotodiodos, fototransisotres e fotoresistores
 possuem baixo custo e são opções válidas para atuarem como sensores de luz em uma aplicação residencial.
+
+\subsection{Umidade}
+É um quantitativo físico definido como a quantidade de vapor de água contida no ar ou em outros gases e é um
+dos fatores mais importantes quando se refere à conforto e bem-estar, juntamente com a temperatura
+\cite{fontesII2005,fraden2010}.
+
+A quantidade real de vapor de água, expressa em gramas por metro cúbico de ar (densidade), contida na
+atmosfera é chamada de umidade absoluta e muda de acordo com a temperatura do ambiente. Quando o valor máximo
+em que essa densidade por atingitr é alcançado à determinada temperatura, diz-se que o ar está saturado,
+condição conhecida como ponto de orvalho. Com isso, é possível obter a chamada umidade relativa (RH -
+\textit{Relative Humidity}), que é o quociente entre a umidade absoluta e o ponto de orvalho
+\cite{fraden2010,thomazini_albuquerque2005}.
+
+Os avanços recentes no desenvolvimento de tecnologias semicondutoras permitiram a existência de sensores de
+umidade que são altamente precisos, duráveis e eficazes em relação ao custo. Os mais comuns são os
+capacitivos, resistivos e termicamente condutivos \cite{fontesII2005}.
+ w
+\subsubsection{Capacitivos}
+São sensores de umidade relativa que respondem às variações de quantidade de vapor de água alterando a
+permissividade relativa \footnote{Permissividade relativa é uma propriedade que indica o quão facilmente um
+material pode se tornar polarizado pela imposição de um campo elétrico em um material isolante
+\cite{engineeringtoolbox}.}de maneira diremante proporcional. Podem funcionar à altas temperaturas de
+ambiente (até 200º C) e representam mais de 75\% dos sensores de umidade disponíveis no mercado
+\cite{farahani_wagiran_hamidon2014}.
+
+\subsubsection{Resistivos}
+Medem a variação de impedância elétrica \footnote{Impedância elétrica é a medição da oposição que um circuito
+possui em relação à corrente elétrica \cite{britannica_2015}.}gerada por um relacionamento exponencialmente inverso com a umidade.
+Assim como os capacitivos, também são sensores de umidade relativa \cite{fontesII2005}.
+
+\subsubsection{Termicamente Condutivos}
+
