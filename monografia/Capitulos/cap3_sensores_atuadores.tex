@@ -19,6 +19,7 @@ consumo de energia e pequenos portes. Eles podem medir distância, direção, ve
 vibração, pressão, propriedades acústicas e muitos outros atributos \cite{hai_nayak_stojmenovic2010}.
 
 De acordo com \citeonline{karl_willig2005}, os sensores podem ser divididos em três categorias:
+
 \begin{itemize}
 	\item \textbf{Passivos e omnidirecionais:} medem informações físicas sem manipular o ambiente,
 	utilizando apenas os fenômenos existentes (vibração, luz, radiação, etc). Além disso, não possuem
@@ -67,6 +68,7 @@ cinética das moléculas e átomos pertencentes a um objeto ou sistema.
 Segundo \citeonline{fontes2005}, sensores de temperatura detectam uma mudança em um parâmetro físico, como
 resistência ou tensão de saída, que corresponde à uma mudança de temperatura e que pode ser medida através de
 duas maneiras:
+
 \begin{itemize}
 	\item \textbf{Com contato:} requer que o sensor esteja em contato físico direto com o objeto ou
 	sistema a ser mensurado;
@@ -77,7 +79,7 @@ duas maneiras:
 Essa leitura pode ser realizada de maneira estática, onde a temperatura do corpo permanece estável, e
 dinâmica, quando a temperatura varia durante a medição. No caso da leitura dinâmica, existe um tempo de
 retardo entre a temperatura e o valor medido que é chamado de erro dinâmico. Esse erro depende do tempo de
-resposta do sensor e da taxa de variação da temperatura \citeonline{peeters_peetermans_indesteege2007}.
+resposta do sensor e da taxa de variação da temperatura \cite{peeters_peetermans_indesteege2007}.
 
 Os sensores de temperatura absoluta utilizam como referência o zero absoluto (0 K) ou qualquer outro ponto na
 escala de temperatura absoluta, como o 0ºC (273.15 K), já os relativos medem a diferença de temperatura entre
@@ -101,7 +103,8 @@ trabalhar na faixa de -200ºC a 850ºC \cite{thomazini_albuquerque2005}.
 A figura \ref{figura:rtd} mostra um modelo de RTD que contém uma cabeça de conexão que é comumente utilizada
 neste tipo de sensor e serve para fornecer uma transição entre o RTD e a fiação da aplicação além de prover
 uma proteção contra condições ambientais, como água e outros contaminantes \cite{burns2014}.
-\begin{figure}[H]
+
+\begin{figure}[h]
 	\caption{RTD com cabeça de conexão}
 	\centering
 	\includegraphics[scale=1.8]{../images/rtd.png}
@@ -132,10 +135,11 @@ dentro dessa faixa, que normalmente varia entre -80ºC à 250ºC \cite{sinclair2
 Devido ao simples processo de fabricação, termistores podem ser feitos em escala pequena, conforme ilustrado na
 figura \ref{figura:ntc}, o que torna o tempo de resposta térmico extremamente rápido
 \cite{peeters_peetermans_indesteege2007,sinclair2001}.
-\begin{figure}[H]
+
+\begin{figure}[h]
 	\caption{Modelo de termistor NTC}
 	\centering
-	\includegraphics[scale=0.5]{../images/thermistor.png}
+	\includegraphics[scale=0.3]{../images/thermistor.png}
 	\hspace{\linewidth}
 	Fonte: http://www.globalsources.com
 	\label{figura:ntc}
@@ -152,9 +156,18 @@ Quando as duas junções estiverem em temperaturas diferentes, uma corrente irá
 proporcionalmente à essa diferença. A temperatura na junção de medição pode então ser determinada a partir do
 tipo de termopar utilizado e da temperatura da junção de referência \cite{fraden2010}.
 
-Os termopares são amplamente utilizados em ambientes industriais, pois são os que cobrem a maior faixa de
-temperatura (-200 a 2.3000ºC aproximadamente) e possuem uma boa exatidão e precisão
-\cite{thomazini_albuquerque2005}.
+Os termopares, exemplificados pela figura \ref{figura:thermocouple}, são amplamente utilizados em ambientes
+industriais, pois são os que cobrem a maior faixa de temperatura (-200 a 2.3000ºC aproximadamente) e possuem
+uma boa exatidão e precisão \cite{thomazini_albuquerque2005}.
+
+\begin{figure}[h]
+	\caption{Exemplo de termopar}
+	\centering
+	\includegraphics[scale=0.15]{../images/termopar.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.kalkaheater.com
+	\label{figura:thermocouple}
+\end{figure}
 
 \subsubsection{Eletrônicos}
 São dispositivos à base de silício que utilizam propriedades de resistência elétrica para medir a temperatura
@@ -162,9 +175,21 @@ e oferecem uma curva de resistência quase linear. Dois grandes exemplos são os
 decaimento de tensão para cada aumento de grau térmico, e os transistores, cujos parâmetros variam com a
 temperatura \cite{thomazini_albuquerque2005}.
 
-Além desses, também existem sensores eletrônicos na forma de circuito integrado, que podem fornecer uma
-leitura de temperatura direta e digital, além de outras funções como filtros, reguladores e proteções
+Esses sensores eletrônicos também podem vir na forma de circuito integrado, que além de fornecer uma leitura
+de temperatura direta e digital, também possuem outras funções como filtros, reguladores e proteções
 \cite{fontes2005,thomazini_albuquerque2005}.
+
+A figura \ref{figura:e-thermsensor} mostra um sensor de temperatura eletrônico que utiliza um diodo para
+efetuar a medição.
+
+\begin{figure}[h]
+	\caption{Sensor de temperatura eletrônico}
+	\centering
+	\includegraphics[scale=0.8]{../images/e-thermsensor.jpg}
+	\hspace{\linewidth}
+	Fonte: https://www.sparkfun.com
+	\label{figura:e-thermsensor}
+\end{figure}
 
 \subsubsection{Qual utilizar}
 Os quatro tipos apresentados são opções viáveis para medição de temperatura, porém, os que mais se adequam a
@@ -191,9 +216,18 @@ radiação ótica e que geralmente são produzidos nas formas de fotodiodos, fot
 \cite{fraden2010}.
 
 \subsubsection{Fotodiodos}
-O fotodiodo é um diodo cuja junção de semicondutores está exposta à incidência de raios luminosos, onde a
+O fotodiodo, representado na figura \ref{figura:photodiode}, é um diodo cuja junção de semicondutores está exposta à incidência de raios luminosos, onde a
 energia recebida através dos fótons permite com que essa junção se comporte como condutora elétrica
 independente da polarização aplicada, gerando assim uma energia elétrica correspondente \cite{sinclair2001}.
+
+\begin{figure}[h]
+	\caption{Fotodiodo}
+	\centering
+	\includegraphics[scale=0.2]{../images/photodiode.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.digikey.com
+	\label{figura:photodiode}
+\end{figure}
 
 Ele possui dois modos de operação, fotovoltaico (FV) e fotocondutivo (FC). No modo FV não há polarização do
 diodo, dessa forma, ele opera como um dispositivo gerador de corrente pois converte a energia luminosa em
@@ -206,9 +240,19 @@ fotodiodos no modo FC são inversamente polarizados, gerando uma corrente elétr
 proporcional à intensidade de luz \cite{dado_fischer2007}.
 
 \subsubsection{Fototransistores}
-Opera como uma combinação de um fotodiodo polarizado inversamente e um transistor convencional. Dessa forma,
-a corrente gerada pelo efeito fotoelétrico na junção do transistor é amplificada, o que torna um
-fototransistor um sensor de luz extremamente sensível \cite{dado_fischer2007}.
+Opera como uma combinação de um fotodiodo polarizado inversamente e um transistor convencional. Dessa forma, a
+corrente gerada pelo efeito fotoelétrico na junção do transistor é amplificada, o que torna um fototransistor,
+ilustrado na figura \ref{figura:phototransistor},  um sensor de luz extremamente sensível
+\cite{dado_fischer2007}.
+
+\begin{figure}[h]
+	\caption{Fototransistor}
+	\centering
+	\includegraphics[scale=0.2]{../images/phototransistor.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.digikey.com
+	\label{figura:phototransistor}
+\end{figure}
 
 Contudo, a penalidade para este grande aumento de sensibilidade é um tempo de resposta muito maior que o dos
 fotodiodos. Devido a isso, os fototransistores são pouco utilizados, pois é possível obter uma boa
@@ -216,9 +260,19 @@ sensibilidade e tempo de resposta utilizando fotodiodos integrados com amplifica
 \cite{sinclair2001}.
 
 \subsubsection{Fotoresistores}
-Também chamados de LDR (\textit{Light Dependent Resistor}), são dispositivos cuja resistência alteram sob a
-incidência luminosa na superfície, que normalmente é fabricada com materiais baseados em cádmio
+Também chamados de LDR (\textit{Light Dependent Resistor}), são dispositivos cuja resistência altera sob a
+incidência luminosa na superfície, que normalmente é fabricada com materiais baseados em cádmio como o
+mostrado na figura \ref{figura:photoresistor}
 \cite{dado_fischer2007}.
+
+\begin{figure}[h]
+	\caption{Fotoresistor}
+	\centering
+	\includegraphics[scale=0.2]{../images/photoresistor.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.digikey.com
+	\label{figura:photoresistor}
+\end{figure}
 
 A sensibilidade desses dispositivos varia dependendo do tamanho da superfície, mas normalmente é maior que a
 de um fotodiodo e possuem o pior tempo de resposta entre os três fotosensores mencionados
@@ -235,27 +289,97 @@ dos fatores mais importantes quando se refere à conforto e bem-estar, juntament
 
 A quantidade real de vapor de água, expressa em gramas por metro cúbico de ar (densidade), contida na
 atmosfera é chamada de umidade absoluta e muda de acordo com a temperatura do ambiente. Quando o valor máximo
-em que essa densidade por atingitr é alcançado à determinada temperatura, diz-se que o ar está saturado,
-condição conhecida como ponto de orvalho. Com isso, é possível obter a chamada umidade relativa (RH -
-\textit{Relative Humidity}), que é o quociente entre a umidade absoluta e o ponto de orvalho
-\cite{fraden2010,thomazini_albuquerque2005}.
+em que essa densidade pode atingitr é alcançado à determinada temperatura, diz-se que o ar está saturado,
+condição conhecida como ponto de orvalho. Com isso, é possível obter a chamada umidade relativa, que é o
+quociente entre a umidade absoluta e o ponto de orvalho \cite{fraden2010,thomazini_albuquerque2005}.
 
 Os avanços recentes no desenvolvimento de tecnologias semicondutoras permitiram a existência de sensores de
 umidade que são altamente precisos, duráveis e eficazes em relação ao custo. Os mais comuns são os
 capacitivos, resistivos e termicamente condutivos \cite{fontesII2005}.
- w
+
 \subsubsection{Capacitivos}
 São sensores de umidade relativa que respondem às variações de quantidade de vapor de água alterando a
-permissividade relativa \footnote{Permissividade relativa é uma propriedade que indica o quão facilmente um
-material pode se tornar polarizado pela imposição de um campo elétrico em um material isolante
-\cite{engineeringtoolbox}.}de maneira diremante proporcional. Podem funcionar à altas temperaturas de
-ambiente (até 200º C) e representam mais de 75\% dos sensores de umidade disponíveis no mercado
+permissividade relativa\footnote{Permissividade relativa é uma propriedade que indica o quão facilmente um
+material dielétrico pode se tornar polarizado pela imposição de um campo elétrico sobre ele
+\cite{engineeringtoolbox}.} de maneira diremante proporcional. Podem funcionar à altas temperaturas de ambiente
+(até 200º C) e representam mais de 75\% dos sensores de umidade disponíveis no mercado
 \cite{farahani_wagiran_hamidon2014}.
 
+O modelo mostrado na figura \ref{figura:capacitive_humidity} é um exemplo desse tipo de sensor.
+
+\begin{figure}[h]
+	\caption{Sensor de umidade capacitivo}
+	\centering
+	\includegraphics[scale=0.18]{../images/capacitive-humidity.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.epluse.com
+	\label{figura:capacitive_humidity}
+\end{figure}
+
 \subsubsection{Resistivos}
-Medem a variação de impedância elétrica \footnote{Impedância elétrica é a medição da oposição que um circuito
-possui em relação à corrente elétrica \cite{britannica_2015}.}gerada por um relacionamento exponencialmente inverso com a umidade.
-Assim como os capacitivos, também são sensores de umidade relativa \cite{fontesII2005}.
+Medem a variação da impedância elétrica\footnote{Impedância elétrica é a medição da oposição que um circuito
+possui em relação à corrente elétrica \cite{britannica_2015}.} gerada por um relacionamento exponencialmente
+inverso com a umidade \cite{fontesII2005}.
+
+Assim como os capacitivos, também são sensores de umidade relativa, e estão representados pela figura
+\ref{figura:resistive_humidity}.
+
+\begin{figure}[h]
+	\caption{Sensor de umidade resistivo}
+	\centering
+	\includegraphics[scale=0.18]{../images/resistive-humidity.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.amazon.co.uk
+	\label{figura:resistive_humidity}
+\end{figure}
 
 \subsubsection{Termicamente Condutivos}
+É possível utilizar a condutividade térmica do ar para medir a umidade através de um sensor baseado em
+termistor. Esse tipo de sensor utiliza dois termistores NTC conectados por um circuito ponte, onde um deles é
+exposto ao gás atmosférico e o outro é hermeticamente selado em ar seco. A diferença das resistências entre os
+dois é diretamente proporcional à umidade absoluta \cite{fraden2010,fontesII2005}.
 
+Na figura \ref{figura:thermal_conductivity_humidity} tem-se um sensor termicamente condutivo, sendo que à
+esquerda são mostrados os dois termisotres que o compõem.
+
+\begin{figure}[h]
+	\caption{Sensor de umidade termicamente condutivo}
+	\centering
+	\includegraphics[scale=0.6]{../images/conductivity-humidity.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.ohmicinstruments.com
+	\label{figura:thermal_conductivity_humidity}
+\end{figure}
+
+\subsubsection{Umidade em Sólidos}
+Diferente da língua inglesa onde há as palavras \textit{humidity} e \textit{moisture} que, em termos práticos,
+siginficam a quantidade de água no ar e em material sólido, respectivamente, em português ambas são traduzidas
+para umidade.
+
+A maneira mais simples para detectar a presença de umidade em sólidos de composição aproximadamente fixa é
+realizar uma leitura de resistência entre conectores postos à um determinada distância sobre o material, pois
+a presença de água no mesmo altera sua condutividade elétrica \cite{sinclair2001,fraden2010}.
+
+Um das utilizaçãoes mais comum deste tipo de detecção é para verificação de umidade em solos, que embora não
+resulta em uma medição precisa, é suficiente para determinar se uma planta precisa ser regada ou não, por
+exemplo \cite{sinclair2001}.
+
+A figura \ref{figura:soil_moisture} exemplifica um sensor de umidade que utiliza esse conceito de
+resistividade do solo.
+
+\begin{figure}[h]
+	\caption{Sensor de umidade em solo}
+	\centering
+	\includegraphics[scale=0.3]{../images/soil_moisture.jpg}
+	\hspace{\linewidth}
+	Fonte: https://www.sparkfun.com
+	\label{figura:soil_moisture}
+\end{figure}
+
+\subsubsection{Qual utilizar}
+Realizar a medição de humidade absoluta do ar é uma técnica bastante utilizada em alguns utensílios, como
+forno de microondas e secadoras de roupa, e em processos industriais, como máquinas de secagem e desidratação
+de alimentos \cite{fontesII2005}.
+
+Contudo, para aplicações residenciais é mais viável e prático medir a umidade relativa do ar, podendo utilizar
+tanto os sensores capacitivos quanto os resistivos, além, é claro, de utilizar sensores de umidade em sólidos.
