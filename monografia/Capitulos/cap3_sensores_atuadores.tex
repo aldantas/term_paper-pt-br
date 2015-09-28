@@ -345,7 +345,7 @@ esquerda são mostrados os dois termisotres que o compõem.
 \begin{figure}[h]
 	\caption{Sensor de umidade termicamente condutivo}
 	\centering
-	\includegraphics[scale=0.6]{../images/conductivity-humidity.jpg}
+	\includegraphics[scale=0.65]{../images/conductivity-humidity.jpg}
 	\hspace{\linewidth}
 	Fonte: http://www.ohmicinstruments.com
 	\label{figura:thermal_conductivity_humidity}
@@ -370,16 +370,80 @@ resistividade do solo.
 \begin{figure}[h]
 	\caption{Sensor de umidade em solo}
 	\centering
-	\includegraphics[scale=0.3]{../images/soil_moisture.jpg}
+	\includegraphics[scale=0.25]{../images/soil_moisture.jpg}
 	\hspace{\linewidth}
 	Fonte: https://www.sparkfun.com
 	\label{figura:soil_moisture}
 \end{figure}
 
 \subsubsection{Qual utilizar}
-Realizar a medição de humidade absoluta do ar é uma técnica bastante utilizada em alguns utensílios, como
-forno de microondas e secadoras de roupa, e em processos industriais, como máquinas de secagem e desidratação
-de alimentos \cite{fontesII2005}.
+Realizar a medição de umidade absoluta do ar é uma técnica bastante utilizada em alguns utensílios, como forno
+de microondas e secadoras de roupa, e em processos industriais, como máquinas de secagem e desidratação de
+alimentos \cite{fontesII2005}.
 
 Contudo, para aplicações residenciais é mais viável e prático medir a umidade relativa do ar, podendo utilizar
 tanto os sensores capacitivos quanto os resistivos, além, é claro, de utilizar sensores de umidade em sólidos.
+
+\subsection{Gás e Fumaça}
+A detecção de gás é um dos principais fatores quando se trata de segurança, seja em ambientes residenciais ou
+industriais, devido a existência de gases tóxicos e inflamáveis, como o monóxido de carbono. Além disso, a
+presença desse tipo de gás pode indicar ocorrências de incêndios, juntamente com a detecção de fumaça, que
+consiste em um conjunto de fragmentos sólidos, partículas líquidas e gases emitidos normalmente em um
+processo de combustão \cite{mulholland1995}.
+
+Em relação aos gases, são utilizados sensores químicos que reagem à determinada composição molecular. Quanto à
+fumaça, há os sensores inônicos e ópticos, que são externamente semelhantes conforme mostrado na figura
+\ref{figura:smoke}.
+
+\begin{figure}[h]
+	\caption{Sensor de fumaça}
+	\centering
+	\includegraphics[scale=0.35]{../images/smoke.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.dsc.com
+	\label{figura:smoke}
+\end{figure}
+
+\subsubsection{Químicos}
+De acordo com \citeonline{mcmahon2007}, um sensor químico pode ser definido como um dispositivo que possui uma
+membrana sensitiva e que gera um sinal em resposta à alguma reação química, como uma ligação entre duas
+moléculas.
+
+Duas características importantes para sensores químicos é a seletividade, que descreve o grau em que o sensor
+responde apenas para o composto desejado, e a sensibilidade ao composto alvo, que dita a concentração mínima
+necessária para que determinado alvo seja detectado \cite{fraden2010}.
+
+A figura \ref{figura:gas} contém um sensor de monóxido de carbono que gera uma resistência como sinal de
+saída de acordo com a concentração do gás.
+
+\begin{figure}[h]
+	\caption{Sensor de gás}
+	\centering
+	\includegraphics[scale=0.5]{../images/carbon-monoxide.jpg}
+	\hspace{\linewidth}
+	Fonte: https://www.sparkfun.com
+	\label{figura:gas}
+\end{figure}
+
+\subsubsection{Iônicos}
+Consiste de uma fonte fraca de material radioativo entre duas superfícies metálicas com uma diferença de
+pontencial entre elas, tudo dentro de um espaço chamado câmara de ionização\footnote{Ionização é a geração de
+partículas eletricamente positivas ou negativas.}. As partículas provenientes desse material ionizam o ar
+contido nesse espaço o que permite uma pequena corrente elétrica passar entre os dois eletrodos.  Desse modo,
+as partículas de fumaça, ao entrarem na câmara de ionização farão com que essa corrente diminíua, ativando
+assim o sensor \cite{sinclair2001}.
+
+\subsubsection{Ópticos}
+Baseiam-se no uso de um LED pulsante e de uma célula fotoelétrica posicionada de forma a não receber nenhum
+tipo de luz. No momento em que ocorre a entrada de fumaça nesse ambiente, a mesma dispersa os raios luminosos do
+LED que refletem sobre o sensor fotoelétrico \cite{thomazini_albuquerque2005}.
+
+\subsubsection{Qual utilizar}
+Em relação aos gases, normalmente utiliza-se sensores de monóxido de carbono e de alguns gases inflamáveis como
+metano ou butano.
+
+Quanto aos sensores de fumaça, os iônicos são mais adequados para detectar fogos no estágio de fumaça visível
+enquanto os ópticos detectam melhor fogos no estágio latente. Recomenda-se utilizar os dois tipos de sensores
+em conjunto \cite{sinclair2001}.
+
+\section{Atuadores}

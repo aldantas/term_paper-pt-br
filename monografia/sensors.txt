@@ -9,3 +9,5 @@ Capacitive Humidity - http://www.epluse.com/en/products/humidity-instruments/hum
 Resistive Humidity - http://www.amazon.co.uk/Resistive-Humidity-Sensor-Resister-Hygristor/dp/B00BXX2LK0
 Thermal Conductivity Humidty - http://www.ohmicinstruments.com/home/?p=272
 Soil Moistures - https://www.sparkfun.com/products/13322
+Smoke - http://www.dsc.com/index.php?n=products&o=view&id=109
+Carbon Monoxide - https://www.sparkfun.com/products/9403
