@@ -13,6 +13,16 @@ múltiplos saltos, dependendo da topologia da rede, para um dispositivo principa
 outras redes, como a \textit{Internet}, e que oferece uma interface de interação entre o usuário e a RSSF
 \cite{buratti2011}.
 
+Segundo \citeonline{hai_nayak_stojmenovic2010}, há três tipos de aplicação para RSSFs:
+\begin{itemize}
+	\item \textbf{Orientada à Eventos:} os sensores reportam a informação obtida ao controlador quando alguma
+	evento específico é detectado;
+	\item \textbf{Periódica:} os sensores adquirem informações sobre o ambiente em tempos determinados e as enviam
+	para o controlador periodicamente;
+	\item \textbf{Sob Demanda:} os usuários é quem decidem quando obter dados ao enviar uma solicitação à RSSF e
+	aguardar respectiva resposta.
+\end{itemize}
+
 Quanto à sua aplicação em um sistema de automação residencial, de acordo com os princípios mencionados no
 Capítulo \ref{cap:2}, ela torna-se parte integrante da rede de controle, pois atua apenas sobre os sensores e
 atuadores e não sobre os aparelhos de consumo e possibilita com que o residente a gerencie através de um
@@ -129,3 +139,27 @@ necessário, possibilita uma implementação eficiente utilizando microcontrolad
 \end{figure}
 
 \subsection{Fonte de Energia}
+Consiste de um mecanismo de armazenamento de energia (normalmente uma bateria não recarregável), um regulador
+de tensão e, opcionalmente, uma unidade de obtenção energética. Essa obtenção pode ser através de diversos
+fenômenos, como a luz, vibrações, variação de temperatura, variação de pressão, entre oturos
+\cite{kuorilehto2007,karl_willig2005}.
+
+A característica de energia excassa que aplicações RSSF possuem, implica em alguns requerimentos de eficiência
+energética no planejamento dos nós, ou seja, o consumo deve ser minimizado. Há algumas estratágias que podem
+ser usadas para atingir esse objetivo, como reduzir a quantidade de informações transmitidas através de
+compreensão de dados ou redução, ativar o sensor apenas quando estiver coletando dados, implementar uma
+estratégia orientada à eventos para a coleta e transmissão, etc \cite{kuorilehto2007,townsend_arms2005}.
+
+\section{Topologia da Rede}
+\subsection{Estrela}
+Em uma rede deste tipo, cada nó se comunica diretamente com a estação base (controlador). A vantagem
+desta topologia consiste na sua simplicidade e na capacidade de manter o menor consumo de energia possível,
+entretanto, limita o alcance da RSSF e dificulta a escalabilidade da solução, já que depende de um único nó
+para gerenciar a rede e o mesmo pode sobrecarregar \cite{dargie_poellabauer2010,townsend_arms2005}.
+
+\subsection{Malha}
+Nessa rede, cada nó se comporta como um retransmissor para outros nós, ou seja, eles colaboram para propagar
+os dados até a base controladora. Dessa forma, torna mais fácil escalar a aplicação, além de não mais
+depender de um único nó, melhorando a estabilidade da RSSF. Em contrapartida, a complexidade aumenta pois
+surge a necessidade de criar mecanismos de roteamento, além de aumentar o consumo de energia elétrica
+\cite{dargie_poellabauer2010,townsend_arms2005}.
