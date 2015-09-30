@@ -11,3 +11,6 @@ Thermal Conductivity Humidty - http://www.ohmicinstruments.com/home/?p=272
 Soil Moistures - https://www.sparkfun.com/products/13322
 Smoke - http://www.dsc.com/index.php?n=products&o=view&id=109
 Carbon Monoxide - https://www.sparkfun.com/products/9403
+
+AVR - http://home.roboticlab.eu/en/avr
+NRF - http://www.techmake.com/00030.html
