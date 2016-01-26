@@ -309,7 +309,7 @@ O modelo mostrado na figura \ref{figura:capacitive_humidity} é um exemplo desse
 \begin{figure}[h]
 	\caption{Sensor de umidade capacitivo}
 	\centering
-	\includegraphics[scale=0.18]{../images/capacitive-humidity.jpg}
+	\includegraphics[scale=0.15]{../images/capacitive-humidity.jpg}
 	\hspace{\linewidth}
 	Fonte: http://www.epluse.com
 	\label{figura:capacitive_humidity}
@@ -326,7 +326,7 @@ Assim como os capacitivos, também são sensores de umidade relativa, e estão r
 \begin{figure}[h]
 	\caption{Sensor de umidade resistivo}
 	\centering
-	\includegraphics[scale=0.18]{../images/resistive-humidity.jpg}
+	\includegraphics[scale=0.15]{../images/resistive-humidity.jpg}
 	\hspace{\linewidth}
 	Fonte: http://www.amazon.co.uk
 	\label{figura:resistive_humidity}
@@ -344,7 +344,7 @@ esquerda são mostrados os dois termisotres que o compõem.
 \begin{figure}[h]
 	\caption{Sensor de umidade termicamente condutivo}
 	\centering
-	\includegraphics[scale=0.65]{../images/conductivity-humidity.jpg}
+	\includegraphics[scale=0.5]{../images/conductivity-humidity.jpg}
 	\hspace{\linewidth}
 	Fonte: http://www.ohmicinstruments.com
 	\label{figura:thermal_conductivity_humidity}
@@ -369,7 +369,7 @@ resistividade do solo.
 \begin{figure}[h]
 	\caption{Sensor de umidade em solo}
 	\centering
-	\includegraphics[scale=0.25]{../images/soil_moisture.jpg}
+	\includegraphics[scale=0.6]{../images/soil_moisture.jpg}
 	\hspace{\linewidth}
 	Fonte: https://www.sparkfun.com
 	\label{figura:soil_moisture}
@@ -445,4 +445,25 @@ Quanto aos sensores de fumaça, os iônicos são mais adequados para detectar fo
 enquanto os ópticos detectam melhor fogos no estágio latente. Recomenda-se utilizar os dois tipos de sensores
 em conjunto \cite{sinclair2001}.
 
-% \section{Atuadores}
+\section{Atuadores}
+São responsáveis pela variação de parâmetros do ambiente a ser controlado, a partir da recepção de sinais
+provenientes do agente controlador do sistema. Podem realizar com maior precisão quase todas as ações físicas
+realizáveis por um humano \cite{kondrasovas2013}.
+
+Alguns dos principais atuadores são os motores, para controle de movimentos de rotação e deslocamentos, e as
+válvulas, para controle de fluxo.
+
+O relé eletromecânico, ilustrado na figura \ref{figura:relay}, é raramente considerado um atuador, isso porque a energia
+mecânica que ele produz não altera diretamente algum parâmetro físico, ao invés disso, ele controla o estado de
+um circuito elétrico. Contudo, é válido classificá-lo nesta categoria pois em um sistema de automação
+residencial ele é essencial, sendo utilizado para o controle de lâmpadas, tomadas elétricas e
+eletrodomésticos.
+
+\begin{figure}[h]
+	\caption{Relé Eletromecânico}
+	\centering
+	\includegraphics[scale=0.6]{../images/relay.jpg}
+	\hspace{\linewidth}
+	Fonte: https://www.sparkfun.com
+	\label{figura:relay}
+\end{figure}

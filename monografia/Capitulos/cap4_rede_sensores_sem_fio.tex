@@ -112,25 +112,44 @@ comunicação avançados como o ZigBee e o Wi-Fi deixam a desejar em relação a
 sendo necessário optar por módulos mais simples.
 
 Uma possibilidade é utilizar o transceptor \texttt{CC2500} da empresa \textit{Texas Instruments}, que
-implementa o padrão IEEE 802.15.4 e possui uma taxa máxima de transmissão aérea de 500 Kbps, consumindo
-\SI{17}{\milli \ampere} durante recepção, \SI{21.2}{\milli \ampere} durante transmissão e \SI{1.5}{\milli
-\ampere} em modo de espera. Devido ao baixo consumo elétrico e ótimo custo-benefício, esse dispositivo é
-amplamente utilizado. \cite{ccdatasheet}
+implementa o padrão IEEE 802.15.4. Devido ao baixo consumo elétrico e ótimo custo-benefício, esse dispositivo
+é amplamente utilizado.
 
 Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic
 Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta
-diversas vantagens em relação aos demais módulos dessa categoria. Uma das principais vantagens é sua taxa
-máxima de transmissão aérea de 2 Mpbs (quatro vezes mais que o \texttt{CC2500}) e que, ao mesmo tempo, consome
-menos energia elétrica que os demais, sendo \SI{13.5}{\milli \ampere} durante recepção, \SI{11.3}{\milli
-\ampere} durante transmissão e \SI{26}{\micro \ampere} em modo de espera. \cite{nrfdatasheet}
+diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas no quadro
+\ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
+implementam protocolos de comunicação mais avançados. As informações foram retiradas de seus respectivos
+\textit{datasheets} e os preços são de módulos prontos para o uso encontrados no mercado.
 
-Além disso, o \texttt{nRF24L01+}, ilustrado na figura \ref{figura:nrf}, oferece serviços como reconhecimento e
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!} {
+		\begin{tabular}{|l|c|c|c|c|c|c|}
+		\hline
+		Transceptor   & Padrão/Protocolo       & Taxa de Transmissão Máxima & Consumo RX & Consumo TX &
+		Consumo Espera & Preço     \\ \hline \hline
+		nRF24L01+     & Enhanced ShockBurst    & 2 Mbps   & \SI{13.5}{\milli \ampere} & \SI{11.3}{\milli
+		\ampere} & \SI{26}{\micro \ampere} & U\$ 3,00  \\ \hline
+		CC2500        & IEEE 802.15.4          & 500 Kbps & \SI{17}{\milli \ampere}   & \SI{21.2} {\milli
+		\ampere}  & \SI{1.5}{\milli \ampere} & U\$ 4,00  \\ \hline
+		xBee Series 1 & IEEE 802.15.4 / ZigBee & 250 Kbps & \SI{50}{\milli \ampere}   & \SI{45}{\milli
+		\ampere} & \SI{10}{\micro \ampere}  & U\$ 25,00 \\ \hline
+		ESP8266       & Wi-Fi                  & 54 Mbps  & \SI{60}{\milli \ampere}   & \SI{145}{\milli
+		\ampere} & \SI{0.9}{\milli \ampere}& U\$ 7,00  \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparação entre módulos transceptores}
+	\label{quadro:transceivers}
+\end{table}
+
+O \texttt{nRF24L01+}, ilustrado na figura \ref{figura:nrf}, ainda oferece serviços como reconhecimento e
 retransmissão de pacotes automáticos, diminuindo o número de comunicação com a unidade microtronladora tal
 como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais o consumo elétrico
 necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos.
 
 \begin{figure}[h]
-	\caption{Transceptor NRF24L01+}
+	\caption{Módulo Transceptor NRF24L01+}
 	\centering
 	\includegraphics[scale=0.25]{../images/nrf.jpg}
 	\hspace{\linewidth}
