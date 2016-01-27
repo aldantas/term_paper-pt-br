@@ -173,12 +173,46 @@ estratégia orientada à eventos para a coleta e transmissão, etc \cite{kuorile
 \subsection{Estrela}
 Em uma rede deste tipo, cada nó se comunica diretamente com a estação base (controlador). A vantagem
 desta topologia consiste na sua simplicidade e na capacidade de manter o menor consumo de energia possível,
-entretanto, limita o alcance da RSSF e dificulta a escalabilidade da solução, já que depende de um único nó
-para gerenciar a rede e o mesmo pode sobrecarregar \cite{dargie_poellabauer2010,townsend_arms2005}.
+entretanto, o alcance fica limitado ao alcance do módulo transceptor, dificultando a escalabilidade da solução
+\cite{dargie_poellabauer2010,townsend_arms2005}.
+
+\begin{figure}[h]
+	\caption{Rede Estrela}
+	\centering
+	\includegraphics[scale=0.25]{../images/star.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:star}
+\end{figure}
 
 \subsection{Malha}
-Nessa rede, cada nó se comporta como um retransmissor para outros nós, ou seja, eles colaboram para propagar
-os dados até a base controladora. Dessa forma, torna mais fácil escalar a aplicação, além de não mais
-depender de um único nó, melhorando a estabilidade da RSSF. Em contrapartida, a complexidade aumenta pois
-surge a necessidade de criar mecanismos de roteamento, além de aumentar o consumo de energia elétrica
-\cite{dargie_poellabauer2010,townsend_arms2005}.
+Nessa rede, cada nó pode se comunicar diretamente com qualquer outro nó dentro de seu alcance, o que permite a
+chamada comunicação \textit{multihop}, ou seja, caso um nó queira se comunicar com outro fora de seu alcance,
+ele pode utilizar um intermediário para transmitir a mensagem adiante. Dessa forma, torna mais fácil escalar a
+aplicação e diminui a necessidade de uma estação central para certas operações. Em contrapartida, a
+complexidade aumenta pois surge a necessidade de criar mecanismos de roteamento, além de aumentar o consumo de
+energia elétrica \cite{townsend_arms2005}.
+
+\begin{figure}[h]
+	\caption{Rede Malha}
+	\centering
+	\includegraphics[scale=0.3]{../images/mesh.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:mesh}
+\end{figure}
+
+\subsection{Árvore}
+Também chamada de hierárquica, essa topologia permite uma comunicação \textit{multihop}, porém com um protocolo de
+roteamento mais simples, pois nela existe apenas uma rota para cada nó remoto a partir do controlador. Sendo
+assim, consome menos energia e é mais simples de implementar que uma rede malha e possui uma área de
+abrangência maior que uma rede estrela.
+
+\begin{figure}[h]
+	\caption{Rede Árvore}
+	\centering
+	\includegraphics[scale=0.25]{../images/tree.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:tree}
+\end{figure}
