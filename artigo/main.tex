@@ -1,0 +1,118 @@
+\documentclass[a4,11pt]{report}
+
+\usepackage[brazil]{babel}      % para texto em Português
+%\usepackage[english]{babel}    % para texto em Inglês
+
+%\usepackage[latin1]{inputenc}   % para acentuação em Português OU
+\usepackage[utf8]{inputenc}   % para acentuação em Português com o uso do Unicode,
+% mude a codificação desse template para utf-8
+
+%%
+%% POR FAVOR, NÃO FAÇA MUDANÇAS NESSE TEMPLATE QUE ACARRETEM  EM
+%% ALTERAÇÃO NA FORMATAÇÃO FINAL DO TEXTO
+%%
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage[centertags]{amsmath}
+\usepackage{graphicx,indentfirst,amsmath,amsfonts,amssymb,amsthm,newlfont}
+\usepackage{longtable}
+\usepackage{cite}
+\usepackage[]{siunitx}
+\usepackage[usenames,dvipsnames]{color}
+
+
+\begin{document}
+
+%********************************************************
+\title{Desenvolvimento de uma Rede de Sensores Sem Fio de Baixo Custo}
+
+\author{
+ {\large  Augusto Lopez Dantas}\thanks{aldantas@protonmail.com}\\
+ {\small Centro de Engenharias e Ciências Exatas, UNIOESTE, Foz do Iguaçu, PR} \\
+ }
+
+\criartitulo
+
+\section{Introdução}
+
+Uma rede de sensores sem fio (RSSF) é um conjunto de dispositivos que podem monitorar e controlar o ambiente e
+comunicar a informação adquirida utilizando o ar como meio físico de transmissão.
+
+Pode ser classificada em três categorias: orientada à eventos, onde a informação é reportada quando algum
+evento específico é detectado; periódica, que possui tempos determinados para a coleta a comunicação dos
+dados; sob demanda, na qual os usuários decidem quando obter os dados \cite{liu_nayak_stojmenovic}.
+
+Para a aplicação de uma RSSF em um ambiente domiciliar ou de escritório, é desejável desenvolver uma solução
+de baixo custo monetário e baixo consumo elétrico, pois o alcance e precisão necessários são reduzidos para
+esses ambientes.
+
+\section{Arquitetura Proposta}
+Cada estação da RSSF é composta por uma unidade microcontroladora, um transceptor de radiofrequência, uma
+fonte de energia e um sensor ou atuador.
+
+Os microcontroladores utlizados foram modelos AVR da empresa \textit{Atmel Corporation}, pois disponibilizam
+programas livres e gratuitos para a implementação do código embarcado.
+
+Para transceptor, existem diversos dispositivos disponíveis no mercado, sendo quatro deles comparados na
+Tabela \ref{quadro:transceivers}. As informações foram retiradas de seus respectivos \textit{datasheets} e os
+preços são de módulos prontos para o uso encontrados no mercado.
+
+\begin{table}[h]
+	\caption{\small Comparação entre módulos transceptores}
+	\resizebox{\textwidth}{!} {
+		\begin{tabular}{|l|c|c|c|c|c|c|}
+		\hline
+		Transceptor   & Padrão/Protocolo       & Taxa de Transmissão Máxima & Consumo RX & Consumo TX &
+		Consumo Espera & Preço     \\ \hline
+		nRF24L01+     & Enhanced ShockBurst    & 2 Mbps   & \SI{13.5}{\milli \ampere} & \SI{11.3}{\milli
+		\ampere} & \SI{26}{\micro \ampere} & U\$ 3,00  \\ \hline
+		CC2500        & IEEE 802.15.4          & 500 Kbps & \SI{17}{\milli \ampere}   & \SI{21.2} {\milli
+		\ampere}  & \SI{1.5}{\milli \ampere} & U\$ 4,00  \\ \hline
+		xBee Series 1 & IEEE 802.15.4 / ZigBee & 250 Kbps & \SI{50}{\milli \ampere}   & \SI{45}{\milli
+		\ampere} & \SI{10}{\micro \ampere}  & U\$ 25,00 \\ \hline
+		ESP8266       & Wi-Fi                  & 54 Mbps  & \SI{60}{\milli \ampere}   & \SI{145}{\milli
+		\ampere} & \SI{0.9}{\milli \ampere}& U\$ 7,00  \\ \hline
+		\end{tabular}
+	}
+	\label{quadro:transceivers}
+\end{table}
+
+Baseando-se nesses dados, o modelo selecionado foi o nRF24L01+ da empresa \textit{Nordic Semiconductors} pois
+é o que possui melhor custo-benefício em relação ao preço e consumo elétrico. Além disso, este módulo
+transceptor possui algumas funcionalidades como confirmação e retransmissão de pacotes automáticos, múltiplos
+canais de recepção e tamanho de mensagem dinâmico.
+
+A topologia selecionada para a RSSF foi a topologia árvore, porque permite um alcance suficiente para uma área
+domiciliar com um procolo de roteamento simples. Como a memória e o poder de processamento são escassos no mundo
+dos microcontroladores, não é recomendável calcular as rotas antes de cada transmissão, nem armazenar os
+caminhos disponíveis em cada nó.
+
+Sendo assim, o computador responsável por gerenciar a RSSF é quem armazena a rota necessária para cada estação
+remota. Como a topologia é árvore, há apenas um caminho conhecido para cada nó.
+
+A transmissão por múltiplos saltos acontece através do envio dos endereços dos nós pertencentes à rota na
+mensagem. O módulo nRF24L01+ permite até 32 bytes de mensagem e o endereço único de cada transceptor é de 5
+bytes. Dessa forma, utiliza-se 25 bytes para envio de endereços e 7 bytes para os dados, possibilitando uma
+comunicação de até 5 saltos.
+
+A RSSF pode conter as três caracterı́sticas citadas anteriormente: sob demanda para os nós que possuem
+atuadores; perı́odica para os sensores em geral; e orientada à eventos para sensores considerados crı́ticos,
+como o de gás.
+
+A implementação ainda possui um mecanismo de busca de caminho automático de modo que os nós recém inseridos
+possam se comunicar com a estação principal sem a necessidade de configuração explı́cita de rotas.
+
+\section{Conclusões}
+Uma RSSF pode ser implantada como parte integrante de um sistema de automação residencial, sendo assim, um
+desenvolvimento visando baixo custo e baixo consumo elétrico ajuda na popularização deste conceito que vem
+crescendo nos últimos anos.
+
+Este trabalho apresenta uma possível solução para este tipo de aplicação, utilizando tecnologias existentes e
+de fácil acesso.
+
+\bibliographystyle{unsrt}
+\bibliography{mybibfile}
+
+\end{document}
