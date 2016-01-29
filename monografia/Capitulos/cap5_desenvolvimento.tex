@@ -1,11 +1,125 @@
 \chapter{Desenvolvimento}
 \label{cap:6}
 
-\section{Proposta de Solução}
+\section{Arquitetura Proposta}
 Para atingir o objetivo de desenvolver uma RSSF de baixo custo monterário e baixo consumo elétrico para uso
-residencial e em escritório, propõe-se utilizar o transceptor \texttt{nRF24L01+} para a comunicação e modelos de
+residencial e em escritório, propõe-se utilizar o transceptor \{nRF24L01+} para a comunicação e modelos de
 microcontroladores \texttt{AVR} como unidade controladora dos nós.
 
-A RSSF será da topologia árvore e terá as três características consideras por
-\citeonline{hai_nayak_stojmenovic2010}: sob demanda para os nós que possuem atuadores; períodica para os
-sensores em geral; e orientada à eventos para sensores considerados críticos, como o de gás.
+A rede será da topologia árvore e terá as três características consideras por
+\citeonline{hai_nayak_stojmenovic2010} citadas anteriormente: sob demanda para os nós que possuem atuadores;
+períodica para os sensores em geral; e orientada à eventos para sensores considerados críticos, como o de gás.
+
+A implementação possuirá um mecanismo de busca de caminho de modo que os nós recém inseridos possam se
+comunicar com a estação principal sem a necessidade de configuração explícita de rotas.
+
+Para o desenvolvimento da RSSF foi implementada uma biblioteca contendo as funcionalidades utilizadas nos
+códigos embarcados nos microcontroladores. Os modelos \texttt{AVR} testados foram o \texttt{ATmega328P} e o
+\texttt{ATtiny84}.
+
+\section{Elementos da Arquitetura}
+Os nós, ou estações, da RSSF dividem-se em duas categorias com funcionalidades diferentes. Uma é o nó
+principal da rede árvore e os outros são os demais nós acessados remotamente. Ambas as categorias tem em comum
+um MCU e ao menos um transceptor de rádio frequência.
+
+\subsection{Comunicação Entre MCU e Transceptor}
+A interação do \texttt{AVR} com o módulo \texttt{nRF24L01+} é realizada utilizando a interface de comunicação
+SPI (\textit{Serial Peripheral Interface}) que permite uma tranferência de dados em alta velocidade e de forma
+síncrona.
+
+O SPI consegue essa alta taxa de transferência devido ao seu sistema de \textit{clock} que é baseado na
+transição do estado da onda digital da tensão. Um dos dispositivos é responsável por gerar essa onda e é
+chamado de mestre, o outro que recebe o sinal de \texttt{clock} é denominado escravo. Além disso,
+diferentemente do USART, não há acrécimo de informação na mensagem, como os bits de início e parada
+\cite{williams2014}.
+
+Devido à isso, o SPI é o mecanismo de comunicação utilizado na maioria dos periféricos, como transceptores,
+memórias externas e até mesmo o próprio MCU no processo de gravação do código embarcado.
+
+São necessários quatro canais (quatro fios) para efetuar uma comunicação utilizando o protocolo SPI, sendo
+eles:
+
+\begin{itemize}
+	\item \textbf{MOSI:} \textit{Master Out Salve In} , responsável por transmitir dados do dispositivo
+		mestre para o escravo;
+	\item \textbf{MISO:} \textit{Master In Slave Out}, responsável por transmitir dados do dispositivo
+		escravo para o mestre;
+	\item \textbf{SCK:} \textit{Source Clock}, é o sinal gerado pelo dispositivo mestre e
+		utilizado para determinar a frequência da comunicação;
+	\item \textbf{CSN:} \textit{Chip Select Not}, é utilizado para selecionar o periférico, permitindo
+		assim uma comunicação com mais de um dispositivo escravo de forma não paralela. Possui esse
+		nome pois é ativado no nível baixo da tensão. Também é chamado de \textbf{SS} (\textit{Slave Select}).
+\end{itemize}
+
+Além desses, o nRF24L01+ ainda possui um pino chamado \textbf{C}E (\textit{Chip Enable}) que determina o
+estado do transceptor entre transmissor/receptor e em espera.
+
+Essa quantidade de pinos disponíveis no MCU necessários dificulta a utilização de modelos \texttt{AVR} de oito
+pinos, pois com o transceptor, VCC, \textit{ground} e \textit{reset}, não restam pinos para realizar a
+interação com sensores, atuadores ou unidades computacionais.
+
+Para o modelo \texttt{ATmega328P} a utilização do SPI é trivial, pois ele possui um circuito dedicado para
+isso, sendo necessário apenas manipular alguns registradores designados. Já o modelo \texttt{ATtiny84} não
+possui SPI dedicado e sim uma interface para comunicação serial (USI - \textit{Universal Serial Interface})
+que deve ser configurada para atuar como um SPI.
+
+As rotinas de configuração e transferência para ambos os modelos são mostradas no Anexo A.
+
+\subsection{Interrupção de \textit{Hardware}}
+Em um programa embarcado em microcontrolador há um ciclo principal que é executado enquanto for fornecida
+eletrecidade. Sendo assim, ao implementar um sistema multi-tarefas é necessário organizá-las em forma de
+\textit{polling}, ou seja, são posicionadas sequencialmente dentro do ciclo principal e executadas
+atomicamente, de modo que uma tarefa precisa aguardar o encerramento de outra tarefa antes de entrar em vigor.
+
+Esse modo de implementação impossibilita que alguma ação crítica seja executada imediatamente em determinada
+condição e requer que o MCU esteja em execução o tempo todo. Para contornar esses empecilhos, usa-se
+interrupções de \textit{hardware}.
+
+Esse mecanismo funciona através de um conjunto de \textit{flags} que sinalizam as possíveis interrupções e que
+são constantemente verificadas. Quando há alguma ocorrência, o MCU armazena o estado atual e executa a rotina
+ISR (\textit{Interrupt Service Routine}) responsável por determinada requisição de interrupção. O endereço de
+memória em que a ISR se encontra é fornecido pela tabela de vetores de interrupção. Ao finalizar a rotina, o
+MCU executa as demais ISRs e retorna ao ciclo principal quando não houver mais sinalizadores de interrupção
+ativos \cite{williams2014}.
+
+O AVR possui suporte para interrupções internas e externas. As interrupções internas são referentes à algumas
+funcionalidades disponíveis, como SPI, USART, conversor analógico para digital, contadores, etc.
+
+Quanto às externas, a maioria dos modelos \texttt{AVR} disponibilizam ao menos um pino dedicado à um circuito
+responsável por disparar a interrupção. Nesse canal dedicado é possível selecionar qual nível ou borda da tensão
+aplicada atua como gatilho. Há também uma outra forma mais simples de gerar interrupção externa, onde um
+conjunto de pinos compartilham a mesma \textit{flag} e o gatilho se dá por qualquer alteração lógica
+ocorrente.
+
+O módulo nRF24L01+ possui um pino \textbf{IRQ} (\textit{Interrupt Request}) que sinaliza três possíveis
+eventos: envio de pacote bem sucedido, número máximo de retransmissão atingido e pacote recebido. O nível
+baixo nesse pino significa a ocorrência desses eventos e, portanto, para interrupção externa proveniente do
+transceptor foram utilizados os pinos dedicados à isso. Sendo assim, a implementação necessita que o MCU
+utilizado possua esta funcionalidade embutida.
+
+\subsection{Estação Principal}
+É a estação responsável pela coleta de dados e envio de comandos aos nós remotos da RSSF e pela comunicação
+com o sistema computacional da automação.
+
+A comunicação entre o \texttt{AVR} e o computador foi realizada através do dispositivo serial USART
+(\textit{Universal Synchronous and Asynchronous serial Receiver and Transmitter} disponível em alguns modelos
+de microcontrolador.
+
+O USART permite que o \texttt{AVR} transmita e receba dados sequencialmente de outros dispositivos. Essa
+transferência é feita utilizando uma comunicação \textit{full-duplex} e pode ser de forma síncrona ou
+assíncrona. A forma utilizada foi a assíncrona, que possui apenas os canais RX e TX e não um que determina o
+\textit{clock}. Dessa forma a frequência da comunicação deve ser igual e pré-determinada em ambas as partes.
+
+Como o circuito já vem embutido no microcontrolador, é necessário apenas configurar os registradores que
+controlam a interface USART. Alguns dos critérios a serem definidos são a taxa de transferência, o modo de
+comunicação (síncrono ou assíncrono), a paridade (ativada ou destivada), a quantidade de \textit{stop bits} e
+o tamanho de cada caractere da mensagem.
+
+Na biblioteca, essa configuração é feita através método \texttt{USART\_init} como monstra o trecho de código
+aseguir. Foi implementada e testada para o modelo \textit{AVR 328p}, que foi o utilizado como MCU da estação
+principal.
+
+A estação central precisa ficar ouvindo a todo instante a faixa de frequência utilizada devido à
+característica orientada à eventos da RSSF implementada e do mecanimo de descobrimento de caminho. O nRF24L01+
+pode operar em modo de transmissão e recepção, porém, não os dois ao mesmo tempo. Portanto, na estação
+central, foram utilizados dois módulos transceptores, um para atuar como transmissor e um como receptor.
