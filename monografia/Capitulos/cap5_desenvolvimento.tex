@@ -115,8 +115,8 @@ de microcontrolador.
 O USART permite que o \texttt{AVR} transmita e receba dados sequencialmente de outros dispositivos. Essa
 transferência é feita utilizando uma comunicação \textit{full-duplex} e pode ser de forma síncrona ou
 assíncrona. A forma utilizada foi a assíncrona, que possui apenas os canais RX e TX e não possui um que
-determina o \textit{clock}. Dessa forma a frequência da comunicação deve ser igual e pré-determinada em ambas
-as partes.
+determina o \textit{clock}. Dessa forma, a frequência da comunicação deve ser igual e pré-determinada em ambas
+as partes \cite{williams2014}.
 
 Para utilizar este recurso, é necessário apenas configurar os registradores que controlam a interface USART.
 Alguns dos critérios a serem definidos são a taxa de transferência, o modo de comunicação (síncrono ou
@@ -124,3 +124,28 @@ assíncrono), a paridade (ativada ou destivada), a quantidade de \textit{stop bi
 caractere da mensagem.
 
 A rotina de configuração implementada na biblioteca pode ser visualizada no Anexo B.
+
+\subsection{Estações Remotas}
+São todos os nós da rede que realizam interação com o ambiente físico, ou seja, que possuem atuadores e/ou
+sensores. Também atuam como repetidor, sendo utilizados para passar a mensagem adiante para os nós não acessíveis
+diretamente pela estação principal.
+
+\subsubsection{Interação com Sensores e Atuadores}
+Diferentemente da estação principal, onde a comunicação com o sistema computacional se dá sempre por USART, a
+forma de interação desses nós com os sensores e atuadores depende do sensor ou atuador utilizado.
+
+No caso de sensores digitais, a comunicação varia ainda mais, pois normalmente cada um utiliza um protocolo de
+comunicação próprio. A vantagem de utilizar esse tipo de sensor é que, embora o tempo de resposta normalmente
+seja maior que o de um analógico, o valor retornado já está convertido para a compreensão do usuário. Além
+disso, possibilita o uso de MCUs mais simples, pois o único requisito passa a ser apenas a possibilidade de se
+comunicar com o \texttt{nRF24L01+} por SPI, seja de maneira dedicada ou por USI.
+
+Já com sensores analógicos, a leitura é realizada de forma mais uniforme, pois basta apenas converter o sinal
+recebido para um valor digital. No \texttt{AVR}, isso é feito através do circuito ADC (\textit{Analog-to-Digital
+Conveter})
+
+O ADC converte uma entrada analógica para um valor digital de 10 bits através de aproximação sucessiva.
+
+A vantagem em utilizar sensores analógicos é que eles normalmente são mais baratos e mais rápidos que os
+digitais, em contrapartida, fica à cargo do sistema computacional da rede de controle transformar o valor
+obtido em algo compreensível ao usuário.
