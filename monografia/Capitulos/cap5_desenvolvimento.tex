@@ -3,7 +3,7 @@
 
 \section{Arquitetura Proposta}
 Para atingir o objetivo de desenvolver uma RSSF de baixo custo monterário e baixo consumo elétrico para uso
-residencial e em escritório, propõe-se utilizar o transceptor \{nRF24L01+} para a comunicação e modelos de
+residencial e em escritório, propõe-se utilizar o transceptor \texttt{nRF24L01+} para a comunicação e modelos de
 microcontroladores \texttt{AVR} como unidade controladora dos nós.
 
 A rede será da topologia árvore e terá as três características consideras por
@@ -30,8 +30,8 @@ síncrona.
 O SPI consegue essa alta taxa de transferência devido ao seu sistema de \textit{clock} que é baseado na
 transição do estado da onda digital da tensão. Um dos dispositivos é responsável por gerar essa onda e é
 chamado de mestre, o outro que recebe o sinal de \texttt{clock} é denominado escravo. Além disso,
-diferentemente do USART, não há acrécimo de informação na mensagem, como os bits de início e parada
-\cite{williams2014}.
+diferentemente de comunicações como a USART, não há acrécimo de informação na mensagem, como os bits de início
+e parada \cite{williams2014}.
 
 Devido à isso, o SPI é o mecanismo de comunicação utilizado na maioria dos periféricos, como transceptores,
 memórias externas e até mesmo o próprio MCU no processo de gravação do código embarcado.
@@ -91,7 +91,7 @@ aplicada atua como gatilho. Há também uma outra forma mais simples de gerar in
 conjunto de pinos compartilham a mesma \textit{flag} e o gatilho se dá por qualquer alteração lógica
 ocorrente.
 
-O módulo nRF24L01+ possui um pino \textbf{IRQ} (\textit{Interrupt Request}) que sinaliza três possíveis
+O módulo \texttt{nRF24L01+} possui um pino \textbf{IRQ} (\textit{Interrupt Request}) que sinaliza três possíveis
 eventos: envio de pacote bem sucedido, número máximo de retransmissão atingido e pacote recebido. O nível
 baixo nesse pino significa a ocorrência desses eventos e, portanto, para interrupção externa proveniente do
 transceptor foram utilizados os pinos dedicados à isso. Sendo assim, a implementação necessita que o MCU
@@ -101,25 +101,26 @@ utilizado possua esta funcionalidade embutida.
 É a estação responsável pela coleta de dados e envio de comandos aos nós remotos da RSSF e pela comunicação
 com o sistema computacional da automação.
 
-A comunicação entre o \texttt{AVR} e o computador foi realizada através do dispositivo serial USART
-(\textit{Universal Synchronous and Asynchronous serial Receiver and Transmitter} disponível em alguns modelos
+% Ela precisa ficar à espera de pacotes a todo instante devido à característica orientada à eventos da RSSF
+% implementada e da busca do caminho. O nRF24L01+ pode operar em modo de transmissão e recepção, porém, não os
+% dois ao mesmo tempo. Portanto, para evitar que algum dos dois eventos anteriores ocorra enquanto a estação
+% central estiver transmitindo, foram utilizados dois módulos transceptores, um para atuar como transmissor e um
+% como receptor.
+
+\subsubsection{Comunicação Entre MCU e Computador}
+A comunicação entre o \texttt{AVR} e o computador é realizada através do dispositivo serial USART
+(\textit{Universal Synchronous and Asynchronous serial Receiver and Transmitter}) disponível em alguns modelos
 de microcontrolador.
 
 O USART permite que o \texttt{AVR} transmita e receba dados sequencialmente de outros dispositivos. Essa
 transferência é feita utilizando uma comunicação \textit{full-duplex} e pode ser de forma síncrona ou
-assíncrona. A forma utilizada foi a assíncrona, que possui apenas os canais RX e TX e não um que determina o
-\textit{clock}. Dessa forma a frequência da comunicação deve ser igual e pré-determinada em ambas as partes.
+assíncrona. A forma utilizada foi a assíncrona, que possui apenas os canais RX e TX e não possui um que
+determina o \textit{clock}. Dessa forma a frequência da comunicação deve ser igual e pré-determinada em ambas
+as partes.
 
-Como o circuito já vem embutido no microcontrolador, é necessário apenas configurar os registradores que
-controlam a interface USART. Alguns dos critérios a serem definidos são a taxa de transferência, o modo de
-comunicação (síncrono ou assíncrono), a paridade (ativada ou destivada), a quantidade de \textit{stop bits} e
-o tamanho de cada caractere da mensagem.
+Para utilizar este recurso, é necessário apenas configurar os registradores que controlam a interface USART.
+Alguns dos critérios a serem definidos são a taxa de transferência, o modo de comunicação (síncrono ou
+assíncrono), a paridade (ativada ou destivada), a quantidade de \textit{stop bits} e o tamanho de cada
+caractere da mensagem.
 
-Na biblioteca, essa configuração é feita através método \texttt{USART\_init} como monstra o trecho de código
-aseguir. Foi implementada e testada para o modelo \textit{AVR 328p}, que foi o utilizado como MCU da estação
-principal.
-
-A estação central precisa ficar ouvindo a todo instante a faixa de frequência utilizada devido à
-característica orientada à eventos da RSSF implementada e do mecanimo de descobrimento de caminho. O nRF24L01+
-pode operar em modo de transmissão e recepção, porém, não os dois ao mesmo tempo. Portanto, na estação
-central, foram utilizados dois módulos transceptores, um para atuar como transmissor e um como receptor.
+A rotina de configuração implementada na biblioteca pode ser visualizada no Anexo B.
