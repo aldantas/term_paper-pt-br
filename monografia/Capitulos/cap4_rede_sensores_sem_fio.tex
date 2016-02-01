@@ -36,7 +36,7 @@ Em relação à sua implementação, alguns aspectos importantes devem ser defin
 desenvolvimento, sendo eles a composição dos nós, a topologia da rede e os mecanismos de segurança.
 
 \section{Composição dos Nós}
-Os nós de uma RSSF são compostos de cinco componentes principais, sende eles uma unidade controladora, um
+Os nós de uma RSSF são formados de cinco componentes principais, sende eles uma unidade controladora, um
 dispositivo de armazenamento de memória, sensores e atuadores, um transceptor\footnote{Transceptor refere-se a
 um dispositivo que atua como transmissor e receptor.} sem fio e uma fonte de energia. Cada um desses
 componentes deve operar seguindo um equilíbrio entre o menor consumo de energia possível e a necessidade de
@@ -54,6 +54,9 @@ composição de um nó de uma RSSF é normalmente conforme ilustrado na figura \
 	Fonte: elaborada pelo autor
 	\label{figura:node}
 \end{figure}
+
+Segue uma breve descrição de cada um dos componentes, com exceção dos sensores e atuadores, já descritos no
+Capítulo \ref{cap:3}.
 
 \subsection{Microcontrolador}
 Microcontroladores são geralmente definidos como computadores completos em um único \textit{chip}, pois
@@ -93,9 +96,6 @@ implementadas, entre outras.  Contudo, o objetivo principal do \texttt{Arduino} 
 pessoas fora da área possam realizar prototipações de computação de baixo nível. Embora seja uma ótima
 plataforma, seu custo chega a ser quatro vez mais que um \texttt{AVR} separado \cite{trevennor2012}.
 
-\subsection{Sensor/Atuador}
-Ver Capítulo \ref{cap:3}.
-
 \subsection{Transceptor}
 O uso da comunicação por radiofrequcência (RF) tem se tornado cada vez mais abrangente, indo desde as
 aplicações tradicionais, como transmissão de sinais de rádio e televisão, para as mais diversas utilidades,
@@ -105,7 +105,7 @@ radiofrequência (RFID) e, naturalmente, redes de sensores sem fio \cite{misra20
 Embora transceptores baseados em ondas ópticas possuam uma eficiência energética melhor, sua necessidade por
 uma condição de linha de visão devido ao seu comportamento direcional faz com que a comunicação baseada em RF
 seja a mais relevante para a construção de uma RSSF, pois, além de ser omnidirecional, provê uma distância de
-alcance e uma taxa de tranferência de dados relativamente grandes \cite{kuorilehto2007,karl_willig2005}.
+alcance e uma taxa de tranferência de dados relativamente altas \cite{kuorilehto2007,karl_willig2005}.
 
 Conforme mencionado no Capítulo \ref{cap:1}, os módulos transceptores RF que implementam protocolos de
 comunicação avançados como o ZigBee e o Wi-Fi deixam a desejar em relação ao preço e consumo energético,
@@ -117,7 +117,7 @@ implementa o padrão IEEE 802.15.4. Devido ao baixo consumo elétrico e ótimo c
 
 Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic
 Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta
-diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas no quadro
+diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas na tabela
 \ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
 implementam protocolos de comunicação mais avançados. As informações foram retiradas de seus respectivos
 \textit{datasheets} e os preços são de módulos prontos para o uso encontrados no mercado.
@@ -144,7 +144,7 @@ implementam protocolos de comunicação mais avançados. As informações foram 
 \end{table}
 
 O \texttt{nRF24L01+}, ilustrado na figura \ref{figura:nrf}, ainda oferece serviços como reconhecimento e
-retransmissão de pacotes automáticos, diminuindo o número de comunicação com a unidade microtronladora tal
+retransmissão de pacotes automáticos, diminuindo o número de comunicação com a unidade microcontroladora tal
 como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais o consumo elétrico
 necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos.
 
@@ -164,7 +164,7 @@ fenômenos, como a luz, vibrações, variação de temperatura, variação de pr
 \cite{kuorilehto2007,karl_willig2005}.
 
 A característica de energia excassa que aplicações RSSF possuem, implica em alguns requerimentos de eficiência
-energética no planejamento dos nós, ou seja, o consumo deve ser minimizado. Há algumas estratágias que podem
+energética no planejamento dos nós, ou seja, o consumo deve ser minimizado. Há algumas estratégias que podem
 ser usadas para atingir esse objetivo, como reduzir a quantidade de informações transmitidas através de
 compreensão de dados ou redução, ativar o sensor apenas quando estiver coletando dados, implementar uma
 estratégia orientada à eventos para a coleta e transmissão, etc \cite{kuorilehto2007,townsend_arms2005}.

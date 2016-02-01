@@ -11,7 +11,7 @@ A rede será da topologia árvore e terá as três características consideras p
 períodica para os sensores em geral; e orientada à eventos para sensores considerados críticos, como o de gás.
 
 Cada nó da rede poderá comportar até 2 sensores ou atuadores. Isso é útil pois existem alguns dispositivos que
-normalmente atuam em conjunto como o sensor de temperatura com o de humidade ou o sensor de tensão com um relé
+normalmente atuam em conjunto como o sensor de temperatura com o de umidade ou o sensor de tensão com um relé
 eletromecânico em tomadas elétricas.
 
 A implementação possuirá um mecanismo de busca de caminho, de modo que os nós recém inseridos possam se
@@ -33,7 +33,7 @@ síncrona.
 
 O SPI consegue essa alta taxa de transferência devido ao seu sistema de \textit{clock} que é baseado na
 transição do estado da onda digital da tensão. Um dos dispositivos é responsável por gerar essa onda e é
-chamado de mestre, o outro que recebe o sinal de \texttt{clock} é denominado escravo. Além disso,
+chamado de mestre, o outro que recebe o sinal de \textit{clock} é denominado escravo. Além disso,
 diferentemente de comunicações como a USART, não há acrécimo de informação na mensagem, como os bits de início
 e parada \cite{williams2014}.
 
@@ -55,8 +55,8 @@ eles:
 		nome pois é ativado no nível baixo da tensão. Também é chamado de \textbf{SS} (\textit{Slave Select}).
 \end{itemize}
 
-Além desses, o nRF24L01+ ainda possui um pino chamado \textbf{C}E (\textit{Chip Enable}) que determina o
-estado do transceptor entre transmissor/receptor e em espera.
+Além desses, o \texttt{nRF24L01+} ainda possui um pino denominado \textbf{C}E (\textit{Chip Enable}) que
+determina o estado do transceptor entre transmissor/receptor e em espera.
 
 Essa quantidade de pinos disponíveis no MCU necessários dificulta a utilização de modelos \texttt{AVR} de oito
 pinos, pois com o transceptor, VCC, \textit{ground} e \textit{reset}, não restam pinos para realizar a
@@ -67,11 +67,9 @@ isso, sendo necessário apenas manipular alguns registradores designados. Já o 
 possui SPI dedicado e sim uma interface para comunicação serial (USI - \textit{Universal Serial Interface})
 que deve ser configurada para atuar como um SPI.
 
-As rotinas de configuração e transferência para ambos os modelos são mostradas no Anexo A.
-
 \subsection{Interrupção de \textit{Hardware}}
 Em um programa embarcado em microcontrolador há um ciclo principal que é executado enquanto for fornecida
-eletrecidade. Sendo assim, ao implementar um sistema multi-tarefas é necessário organizá-las em forma de
+eletricidade. Sendo assim, ao implementar um sistema multi-tarefas é necessário organizá-las em forma de
 \textit{polling}, ou seja, são posicionadas sequencialmente dentro do ciclo principal e executadas
 atomicamente, de modo que uma tarefa precisa aguardar o encerramento de outra tarefa antes de entrar em vigor.
 
@@ -105,12 +103,6 @@ utilizado possua esta funcionalidade embutida.
 É a estação responsável pela coleta de dados e envio de comandos aos nós remotos da RSSF e pela comunicação
 com o sistema computacional da automação.
 
-% Ela precisa ficar à espera de pacotes a todo instante devido à característica orientada à eventos da RSSF
-% implementada e da busca do caminho. O nRF24L01+ pode operar em modo de transmissão e recepção, porém, não os
-% dois ao mesmo tempo. Portanto, para evitar que algum dos dois eventos anteriores ocorra enquanto a estação
-% central estiver transmitindo, foram utilizados dois módulos transceptores, um para atuar como transmissor e um
-% como receptor.
-
 \subsubsection{Comunicação Entre MCU e Computador}
 A comunicação entre o \texttt{AVR} e o computador é realizada através do dispositivo serial USART
 (\textit{Universal Synchronous and Asynchronous serial Receiver and Transmitter}) disponível em alguns modelos
@@ -126,8 +118,6 @@ Para utilizar este recurso, é necessário apenas configurar os registradores qu
 Alguns dos critérios a serem configurados são a taxa de transferência, o modo de comunicação (síncrono ou
 assíncrono), a paridade (ativada ou destivada), a quantidade de \textit{stop bits} e o tamanho de cada
 caractere da mensagem.
-
-A rotina de configuração implementada na biblioteca pode ser visualizada no Anexo B.
 
 \subsection{Estações Remotas}
 São todos os nós da rede que realizam interação com o ambiente físico, ou seja, que possuem atuadores e/ou
@@ -146,7 +136,7 @@ comunicar com o \texttt{nRF24L01+} por SPI, seja de maneira dedicada ou por USI.
 
 Já com sensores analógicos, a leitura é realizada de forma mais uniforme, pois basta apenas converter o sinal
 recebido para um valor digital. No \texttt{AVR}, isso é feito através do circuito ADC (\textit{Analog-to-Digital
-Conveter})
+Converter})
 
 O ADC converte uma entrada analógica para um valor digital de 10 bits através de aproximação sucessiva. Esse
 método consiste em utilizar um intervalo de tensão como referência e comparar o valor central desse intervalo
@@ -198,6 +188,18 @@ que atua na camada de enlace de dados e é responsável pelo tratamento de pacot
 automáticas. Devido a isso, torna-se possível a implementação de comunicação de alto desempenho e energia
 ultra baixa com MCU de baixo custo.
 
+A Figura \ref{figura:point_to_point} ilustra uma comunicação ponto a ponto entre uma estação central e um nó
+remoto com sensor analógico.
+
+\begin{figure}[h!]
+	\caption{Exemplo Ponto a Ponto}
+	\centering
+	\includegraphics[width=\textwidth]{../images/diagrama_ponto_a_ponto.png}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:point_to_point}
+\end{figure}
+
 De acordo com o \textit{datasheet} do \texttt{nRF24L01+}, o tratamento da transação de pacotes entre um
 dispositivo PTX ({\textit{Primary Transmitter}) e PRX (\textit{Primary Receiver}) ocorre da
 seguinte maneira:
@@ -214,11 +216,11 @@ seguinte maneira:
 \end{enumerate}
 
 Essa transação ocorre em um uma faixa de frequência entre 2.4 GHz e 2.4835 GHz e a uma taxa de transferência
-que pode ser de 250 Kbps, 1000 Mbps ou 2000 Mpbs que devem ser pré-definidos e iguais em ambos os
+que pode ser de 250 Kbps, 1 Mbps ou 2 Mpbs que devem ser pré-definidos e iguais em ambos os
 transceptores \cite{nrfdatasheet}.
 
 Na implementação da RSSF foram definidos um tempo de espera de retranmissão de \SI{1250}{\micro \second} e uma
-quantidade máxima de 15 retransmissões a uma taxa de 1000 Mbps para todos os módulos. Essa configuração
+quantidade máxima de 15 retransmissões a uma taxa de 1 Mbps para todos os módulos. Essa configuração
 permitiu uma comunicação direta a 15 metros de distância com 3 obstáculos de alvenaria no caminho e com o
 Wi-Fi de rede doméstica ligado.
 
@@ -257,7 +259,7 @@ endereço único do transceptor e para o canal 1, o dado de resposta é o valor 
 \section{Roteamento}
 O protocolo de roteamento é o responsável por permitir uma comunicação indireta entre estações. Devido ao
 baixo poder de processamento e baixa memória disponíveis em um MCU, o roteamento deve ser realizado de uma
-maneira simples. Não é viável, por exemplo, armarzenar todos os endereços das estações adjacentes nem
+maneira simples. Não é viável, por exemplo, armazenar todos os endereços das estações adjacentes nem
 calcular as rotas dinamicamente como ocorre normalmente em redes de computadores.
 
 Para atender essa necessidade, utilizou-se o própio corpo do pacote de dados para transmitir a rota
@@ -311,14 +313,15 @@ novo nó para substituir o endereço padrão contido nele até então. A forma c
 indiferente para a RSSF, contanto que não seja igual a algum já existente. Do ponto de vista de segurança, é
 recomendável que ele seja gerado de forma aleatória.
 
-Se o novo nó não receber a mensagem contendo seu novo endereço após determinado tempo, um LED é ligado para alertar
-que a tentativa de ingressar na RSSF foi mal-sucedida.
+Se o novo nó não receber a mensagem contendo seu novo endereço após determinado tempo, um LED é ligado para
+alertar que a tentativa de ingressar na RSSF foi mal-sucedida.
 
 \section{Mensagem}
 O formato da mensagem recebida é o que determina o comportamento que a estação deve adotar naquele momento.
-Sendo assim, é uma parte essencial da RSSF a ser definida.
+Sendo assim, neste capítulo será abordada a estrutura de mensagens elaborada para o desenvolvimento da RSSF
+proposta.
 
-Além de conter dados de sensores ou valores de entrada para atuadores, a mensagem também deve possui
+Além de conter dados de sensores ou valores de entrada para atuadores, a mensagem também deve possuir
 informações adicionais sobre os dados para que eles sejam processados de forma adequada. Foi optado por
 utilizar informações a nível de \texit{byte} ao invés de \textit{bit} pois torna mais fácil a manipulação dos
 dados com o custo de alguns \textit{bytes} a mais no corpo da mensagem transmitida.
@@ -328,7 +331,9 @@ possuir tamanho máximo de 12 \textit{bytes}, o que é suficiente para a impleme
 mostrado a seguir, a maior mensagem utilizada tem apenas 9 \textit{bytes}, deixando os 3 restantes reservados
 para possíveis usos futuros.
 
-O \textit{payload} utilizado nas comunicações que contém a mensagem é estruturado conforme ilustrado na Figura \ref{figura:message_types}.
+O \textit{payload} utilizado nas comunicações que contém a mensagem é estruturado conforme ilustrado na Figura
+\ref{figura:message_types}.
+
 \begin{figure}[h!]
 	\caption{Formato Geral de Mensagem}
 	\centering
@@ -400,7 +405,7 @@ físico medido ou o tipo de atuador, a categoria da medição e o valor medido.
 \end{figure}
 
 O parâmetro físico medido ou atuador são representados por um valor ASCII que é definido previamente. Os valores utilizados
-por ora são 'T' (Temperatura), 'H' (Humidade), 'L' (Luz), 'G' (Gás), 'R' (Relé) e '0' (Vazio). Já no campo categoria, os
+por ora são 'T' (Temperatura), 'H' (umidade), 'L' (Luz), 'G' (Gás), 'R' (Relé) e '0' (Vazio). Já no campo categoria, os
 valores utilizados são 'A' (Analógico) ou 'D' (Digital) e '0' quando o campo Periférico for '0'.
 
 \subsection{Novo Nó}
@@ -446,22 +451,87 @@ Embora qualquer transação com o canal 1 de um nó remoto acarrete em uma leitu
 O valor contido é diretamente o que será transmitido ao atuador. Caso o periférico em questão seja
 um sensor, o valor é ignorado.
 
-\section{Considerações Finais}
-O resultado obtido nesta etapa é fruto de um estudo detalhado de várias características dos
-microcontroladores \texttt{AVR} tal como do funcionamento do módulo transceptor \texttt{nRF24L01+}.
+\section{Experimentação}
+Para experimento foram utilizados cinco estações, onde uma delas é a principal e as demais remotas. Os
+transdutores foram selecionados de modo que se possa explorar todas as características da implementação da
+RSSF, sendo eles:
 
-Embora a solução obtida não possua uma característica totalmente \textit{plug-and-play}, a quantidade de
-configuração necessária é mínima, sendo ela a definição dos endereços da estação principal e de
-\textit{broadcast} da RSSF.
+\begin{itemize}
+	\item Fotoresistor: para operar com valores analógicos;
+	\item Temperatura e Umidade Digitais: para ter uma estação com dois periféricos;
+	\item Relé Eletromecânico: um atuador para utilizar a mensagem de comando;
+	\item Sensor de Gás: um sensor de emergência para testar a orientação à evento.
+\end{itemize}
 
-Considerando um casa de 10 cômodos, onde cada um possui um nó para temperatura e humidade, um para luz e uma
-para relé. E ainda considerando um nó para sensor de gás na cozinha, cinco nós de sensor de humidade em
-sólidos para plantas e um principal, a quantidade total de nós seria igual a 37.
+A comunicação entre o computador e o nó central foi realizada através do programa \texttt{CuteCom}, mostrado na Figura
+\ref{figura:cutecom}.
+
+\begin{figure}[h!]
+	\caption{CuteCom}
+	\centering
+	\includegraphics[scale=0.5]{../images/cutecom.png}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:cutecom}
+\end{figure}
+
+\subsection{Protótipos}
+Como a estação principal utiliza USART para se comunicar com o sistema computacional, o MCU utilizado
+precisa ter essa funcionalidade, sendo utilizado então o ATmega328P como mostra a figura
+\ref{figura:prot_main}. Para possibilitar a comunicação USART é utilizado um dispositivo conversor USB/Serial,
+que também atua como fonte de energia ao MCU e ao transceptor, que suporta até 3.3 V.
+
+\begin{figure}[h!]
+	\caption{Protótipo Estação Principal}
+	\centering
+	\includegraphics[scale=0.1]{../images/prot_principal.jpg}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:prot_main}
+\end{figure}
+
+Já os nós remotos não precisam de USART, tornando possível utilizar MCUs mais simples como o ATtiny84. A
+Figura \ref{figura:prot_remote} exemplifica um protótipo de nó remoto contendo um sensor digital de umidade e
+temperatura. O LED à direita é utilizado para sinalizar que o ingresso na rede falhou e à esquerda do sensor
+há um circuito conversor de tensão usado para gerar uma tensão de 3.3 V necessária para alimentar o transceptor.
+
+\begin{figure}[h!]
+	\caption{Protótipo Estação Remota}
+	\centering
+	\includegraphics[scale=0.1]{../images/prot_remoto.jpg}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:prot_remote}
+\end{figure}
+
+\subsection{Testes}
+Primeiramente foram realizados testes de comunicação ponto a ponto. Nesta etapa houve um contra-tempo pois
+alguns erros esporádicos estavam ocorrendo. Uma leitura completa ao \textit{datasheet} do transceptor permitiu
+identificar e corrigir esses erros, que estavam relacionados ao tempo de espera necessário para mudar de um
+estado ao outro, à necessidade de restaurar as \textit{flags} de interrupções e à limpeza de buffer.
+
+Após essa fase, elaborou-se como a RSSF se comportaria, sendo definidos então a estrutura das mensagens, a
+taxa de transferência, número de retransmissões automáticas, entre outros quesitos também já mencionados
+anteriormente neste capítulo.
+
+\subsection{Lógica de Funcionamento}
+Para a estação principal, o funcionamento ocorre de acordo com o pseudo-código a seguir:
+
+TODO
+
+Já nas demais estações, o tratamento das mensagens recebidas ocorre conforme mostra o seguinte pseudo-código:
+
+TODO
+
+\section{Custo e Consumo}
+Considerando uma casa de 10 cômodos, onde cada um possui um nó para temperatura e umidade, um para luz e uma
+para relé. E ainda considerando um nó para sensor de gás na cozinha, cinco nós de sensor de umidade em sólidos
+para plantas e um principal, a quantidade total de nós seria igual a 37.
 
 A Tabela \ref{quadro:compare} baseia-se nessa quantidade para comparar a solução obtida com uma solução
 utilizando um \texttt{Arduino Mini} como MCU e um \textit{XBee} como transceptor, que é a configuração
 normalmente utilizada em implementações caseiras encontradas na \textit{Internet}. Os preços dos sensores e
-atuadores são estão sendo levados em consideração pois são constantes, ou seja, independem da implementação
+atuadores não estão sendo levados em consideração pois são constantes, ou seja, independem da implementação
 utilizada.
 
 \begin{table}[H]
@@ -477,3 +547,15 @@ utilizada.
 	\caption{Comparação entre implementações de RSSF}
 	\label{quadro:compare}
 \end{table}
+
+Em relação ao consumo elétrico, o nRF24L01+ é o transceptor com maior eficiência conforme mostrado na Tabela
+\ref{quadro:transceivers} do Capítulo \ref{cap:4}. Além disso, o Arduino obrigatoriamente opera a uma
+frequência de 16 MHz, enquanto o ATtiny84, por padrão, opera a 1 MHz, consumindo assim menos energia.
+
+\section{Considerações Finais}
+O resultado obtido nesta etapa é fruto de um estudo detalhado de várias características dos
+microcontroladores \texttt{AVR} tal como do funcionamento do módulo transceptor \texttt{nRF24L01+}.
+
+Embora a solução obtida não possua uma característica totalmente \textit{plug-and-play}, a quantidade de
+configuração necessária é mínima, sendo ela a definição dos endereços da estação principal e de
+\textit{broadcast} da RSSF.
