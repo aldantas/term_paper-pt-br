@@ -275,7 +275,7 @@ Esse processo se repete até chegar ao destino, onde a mensagem é processada. C
 caminho, é informado à estação principal transmitimdo o endereço em que ela ocorreu.
 
 No pior caso de uma comunicação bem-sucedida, isto é, quando a comunicação ocorre em 5 saltos com 15
-retransmissões em cada um, o tempo de máximo é de aproximadamente \SI{0.1875}{\milli \second}
+retransmissões em cada um, o tempo de máximo é de aproximadamente \SI{187.5}{\milli \second}
 ($\SI{1250}{\micro \second} * 15 * 5 * 2$).
 
 A única informação que os MCUs remotos precisam armazenar é o endereço da estação superior na hierarquia da
@@ -429,7 +429,7 @@ Embora qualquer transação com o canal 1 de um nó remoto acarrete em uma leitu
 \begin{figure}[h!]
 	\caption{Mensagem do Tipo Leitura}
 	\centering
-	\includegraphics[scale=0.5]{../images/mensagem_leitura.png}
+	\includegraphics[scale=0.35]{../images/mensagem_leitura.png}
 	\hspace{\linewidth}
 	Fonte: Elaborada pelo autor
 	\label{figura:message_read}
@@ -531,7 +531,8 @@ utilizada.
 		\begin{tabular}{l|c|c|c|c|c|}
 		\cline{2-6}
 		& MCU & Transceptor & Nó Principal & Nó Remoto & Total \\ \hline
-		\multicolumn{1}{|l|}{Solução Obtida} & U\$ 3,70 / U\$ 1,80 & U\$ 3,00    & U\$ 6,70     & U\$ 4,80  & U\$ 179,50    \\ \hline
+		\multicolumn{1}{|l|}{Solução Obtida} & U\$ 3,70 / U\$ 1,80 & U\$ 1,00    & U\$ 4,70     & U\$
+		2,80  & U\$ 105,50    \\ \hline
 		\multicolumn{1}{|l|}{Solução Comum}  & U\$ 10,00         & U\$ 25,00   & U\$ 35,00    & U\$ 35,00 & U\$ 1.295,00 \\ \hline
 		\end{tabular}
 	}
