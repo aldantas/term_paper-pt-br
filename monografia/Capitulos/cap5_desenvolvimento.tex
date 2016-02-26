@@ -1,5 +1,5 @@
 \chapter{Desenvolvimento}
-\label{cap:6}
+\label{cap:5}
 
 \section{Arquitetura Proposta}
 Para atingir o objetivo de desenvolver uma RSSF de baixo custo monterário e baixo consumo elétrico para uso
@@ -246,7 +246,7 @@ um mecanismo de detecção de erros no pacote \cite{nrfdatasheet}.
 
 Tanto para transmissão como para recepção, os pacotes são enfileirados em um mecanismo de FIFO (\textit{First
 In First Out}) com capacidade de até 3 pacotes. Se o FIFO de transmissão estiver cheio ao inserir um novo, o
-mais antigo é descartado. Já no FIFO de recpeção não é inserido um novo pacote caso o mesmo já esteja cheio.
+mais antigo é descartado. Já no FIFO de recepção não é inserido um novo pacote caso o mesmo já esteja cheio.
 
 Além disso, é possível também encapsular dados no pacote ACK, o que diminui a quantidade necessária de
 transmissões em uma comunicação bi-lateral pela metade. Para isto, é necessário ativar a funcionalidade de
@@ -262,13 +262,14 @@ baixo poder de processamento e baixa memória disponíveis em um MCU, o roteamen
 maneira simples. Não é viável, por exemplo, armazenar todos os endereços das estações adjacentes nem
 calcular as rotas dinamicamente como ocorre normalmente em redes de computadores.
 
-Para atender essa necessidade, utilizou-se o própio corpo do pacote de dados para transmitir a rota
+Para atender essa necessidade, utilizou-se o próprio corpo do pacote de dados para transmitir a rota
 que ele deve percorrer até o destino. Isso é possível pois o \texttt{nRF24L01+} permite até 32
 \textit{bytes} de dados em seus pacotes.
 
 Considerando que o endereço possui 5 \textit{bytes} de tamanho, 20 \textit{bytes} do \textit{payload} são
 reservados para a transmissão da rota, restando 12 \textit{bytes} para a mensagem. Isso possibilita uma
-comunicação indireta com até 5 saltos.
+comunicação indireta com até 5 saltos, pois permite com que o nó principal envie uma mensagem com uma rota de
+até 4 endereços em seu \textit{payload}.
 
 A cada salto, 5 \textit{bytes} são retirados do \textit{payload} e utilizados como endereço do próximo salto.
 Esse processo se repete até chegar ao destino, onde a mensagem é processada. Caso ocorra alguma falha no
@@ -391,7 +392,7 @@ mostrado na Figura \ref{figura:message_emergency}.
 \end{figure}
 
 \subsection{Medição}
-É a mensagem retornada na pacote de confirmação quando a comunicação é efetuada no canal 1. Conforme mostra
+É a mensagem retornada no pacote de confirmação quando a comunicação é efetuada no canal 1. Conforme mostra
 a Figura \ref{figura:message_measurement}, para cada periférico ela possui um campo que identifica o parâmetro
 físico medido ou o tipo de atuador, a categoria da medição e o valor medido.
 
