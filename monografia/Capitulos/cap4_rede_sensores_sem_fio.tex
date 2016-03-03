@@ -69,13 +69,41 @@ instruções favoráveis à processamento de tempo-crítico e baixo consumo elé
 amplamente utilizados em diversas aplicações, como sistemas embarcados e, evidentemente, redes de sensores sem
 fio \cite{karl_willig2005}.
 
-Atualmente, existem inúmeros modelos de MCU de fabricantes diferentes no mercado, e um dos mais populares são
-os modelos \texttt{AVR} da empresa \textit{Atmel Corporation}. O principal motivo pela difusão desses modelos,
-além do baixo preço, é que eles oferecem \textit{softwares} abertos e gratuitos para realizar a implementação
-do código embarcado. Um deles é o compilador \texttt{avr-gcc}, que é uma montagem do \textit{GNU Compiler Collection}
-específica para os AVR e utiliza a biblioteca \texttt{AVR-Libc}, que fornece um subconjunto da biblioteca C
-padrão. Além disso, há também o programa \texttt{avrdude}, que é o responsável em transferir o código binário
-gerado para o microcontrolador.
+Atualmente existem inúmeros modelos de MCU de fabricantes diferentes no mercado, alguns deles são mostrados
+na Tabela \ref{quadro:microcontrollers}, sendo que o modelo \texttt{L106} é o que vem embutido nos módulos
+transceptores \texttt{ESP8266EX}.
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!} {
+		\begin{tabular}{|l|c|c|c|c|c|c|c|}
+			\hline
+			\textbf{Microcontrolador} & \textbf{Pinos} & \textbf{Flash} & \textbf{RAM} &
+			\textbf{Clock}  & \textbf{Arquitetura} & \textbf{Consumo} & \textbf{Preço} \\ \hline
+			Atmega328p       & 32    & 32 KB           & 2 KB    & 20 MHz & 8-bit RISC  &
+			\begin{tabular}[c]{@{}c@{}}Active Mode: \SI{0.2}{\milli \ampere}\\ Power-down Mode:
+				\SI{0.1}{\micro \ampere}\\ Power-save Mode: \SI{0.75}{\micro \ampere}\end{tabular} & U\$ 3.70          \\ \hline
+			PIC16F1718       & 28    & 28 KB           & 2 KB    & 32 MHz & 8-bit RISC  &
+			\begin{tabular}[c]{@{}c@{}}Operating Current: \SI{0.03}{\milli \ampere}\\ Sleep Mode:
+				\SI{0.05}{\micro \ampere}\end{tabular}                         & U\$ 1.68          \\ \hline
+			MSP430G2553IN20  & 20    & 16 KB           & 512 B   & 16 MHz & 16–bit RISC &
+			\begin{tabular}[c]{@{}c@{}}Active Mode: \SI{0.23}{\milli \ampere}\\ Off Mode:
+				\SI{0.1}{\micro \ampere}\\ Standby Mode: \SI{0.5}{\micro \ampere}\end{tabular}           & U\$ 2.66          \\ \hline
+			L106 (ESP8266EX) & 20    & 16 MB (externa) &  36 KB & 80 MHz & 32–bit RISC & Não
+			fornecido & U\$ 2.00 - U\$ 7.00 \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparação entre microcontroladores}
+	\label{quadro:microcontrollers}
+\end{table}
+
+Dentre eles, destaca-se o \texttt{Atmega328p} que pertence à família de microcontroladores \texttt{AVR} da
+empresa \textit{Atmel Corporation}. O principal motivo pela difusão desses modelos, além do baixo preço, é que
+eles oferecem \textit{softwares} abertos e gratuitos para realizar a implementação do código embarcado. Um
+deles é o compilador \texttt{avr-gcc}, que é uma montagem do \textit{GNU Compiler Collection} específica para
+os AVR e utiliza a biblioteca \texttt{AVR-Libc}, que fornece um subconjunto da biblioteca C padrão. Além
+disso, há também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado para o
+microcontrolador.
 
 Conforme mostra a figura \ref{figura:avr}, os microcontroladores AVR estão disponíveis em diversos tamanhos e
 pacotes, sendo que as funcionalidades embutidas, quantidade de memória disponível e outros atributos dependem
@@ -117,7 +145,7 @@ implementa o padrão IEEE 802.15.4. Devido ao baixo consumo elétrico e ótimo c
 
 Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic
 Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta
-diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas na tabela
+diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas na Tabela
 \ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
 implementam protocolos de comunicação mais avançados. As informações foram retiradas de seus respectivos
 \textit{datasheets} e os preços são de módulos prontos para o uso encontrados em \textit{sites} de comércio
@@ -126,23 +154,39 @@ eletrônico vareijista.
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!} {
-		\begin{tabular}{|l|c|c|c|c|c|c|}
-		\hline
-		Transceptor   & Padrão/Protocolo       & Taxa de Transmissão Máxima & Consumo RX & Consumo TX &
-		Consumo Espera & Preço     \\ \hline \hline
-		nRF24L01+     & Enhanced ShockBurst    & 2 Mbps   & \SI{13.5}{\milli \ampere} & \SI{11.3}{\milli
-		\ampere} & \SI{26}{\micro \ampere} & U\$ 1,00  \\ \hline
-		CC2500        & IEEE 802.15.4          & 500 Kbps & \SI{17}{\milli \ampere}   & \SI{21.2} {\milli
-		\ampere}  & \SI{1.5}{\milli \ampere} & U\$ 2,00  \\ \hline
-		xBee Series 1 & IEEE 802.15.4 / ZigBee & 250 Kbps & \SI{50}{\milli \ampere}   & \SI{45}{\milli
-		\ampere} & \SI{10}{\micro \ampere}  & U\$ 25,00 \\ \hline
-		ESP8266       & Wi-Fi                  & 54 Mbps  & \SI{56}{\milli \ampere}   & \SI{140}{\milli
-		\ampere} & \SI{0.9}{\milli \ampere}& U\$ 2,00  \\ \hline
+		\begin{tabular}{|l|c|c|c|c|c|}
+			\hline
+			\textbf{Transceptor} & \textbf{Padrão/Protocolo} & \textbf{Taxa de Transmissão Máxima} & \textbf{Consumo}                                                                  & \textbf{\begin{tabular}[c]{@{}c@{}}Alcance Ar Livre\\ (aprox.)\end{tabular}} & \textbf{Preço} \\ \hline
+			nRF24L01+            & Enhanced ShockBurst       & 2 Mbps                              & \begin{tabular}[c]{@{}c@{}}RX: 13.5 mA\\ TX: 11.3 mA\\ Espera: 26 μA\end{tabular} & 50 m.                                                                        & U\$ 1.00       \\ \hline
+			CC2500               & IEEE 802.15.4             & 500 Kbps                            & \begin{tabular}[c]{@{}c@{}}RX: 17 mA\\ TX: 21.2 mA\\ Espera: 1.5 mA\end{tabular}  & 50 m.                                                                        & U\$ 2.00       \\ \hline
+			xBee Series 1        & IEEE 802.15.4 / ZigBee    & 250 Kbps                            & \begin{tabular}[c]{@{}c@{}}RX: 50 mA\\ TX: 45 mA\\ Espera: 10 μA\end{tabular}     & 100 m.                                                                       & U\$ 25.00      \\ \hline
+			ESP8266-E01          & Wi-Fi                     & 54 Mbps                             & \begin{tabular}[c]{@{}c@{}}RX: 60 mA\\ TX: 145 mA\\ Espera: 0.9 mA\end{tabular}   & 300 m.                                                                       & U\$ 2.00       \\ \hline
 		\end{tabular}
 	}
 	\caption{Comparação entre módulos transceptores}
 	\label{quadro:transceivers}
 \end{table}
+
+% \begin{table}[H]
+% 	\centering
+% 	\resizebox{\textwidth}{!} {
+% 		\begin{tabular}{|l|c|c|c|c|c|c|c|}
+% 		\hline
+% 		\textbf{Transceptor}   & \textbf{Padrão/Protocolo}  & \textbf{Transmissão} & \textbf{Consumo
+% 		RX} & \textbf{Consumo TX} & \textbf{Consumo Espera} & Alcance & Preço     \\ \hline
+% 		nRF24L01+     & Enhanced ShockBurst    & 2 Mbps   & \SI{13.5}{\milli \ampere} & \SI{11.3}{\milli
+% 		\ampere} & \SI{26}{\micro \ampere} & U\$ 1,00  \\ \hline
+% 		CC2500        & IEEE 802.15.4          & 500 Kbps & \SI{17}{\milli \ampere}   & \SI{21.2} {\milli
+% 		\ampere}  & \SI{1.5}{\milli \ampere} & U\$ 2,00  \\ \hline
+% 		xBee Series 1 & IEEE 802.15.4 / ZigBee & 250 Kbps & \SI{50}{\milli \ampere}   & \SI{45}{\milli
+% 		\ampere} & \SI{10}{\micro \ampere}  & U\$ 25,00 \\ \hline
+% 		ESP8266       & Wi-Fi                  & 54 Mbps  & \SI{56}{\milli \ampere}   & \SI{140}{\milli
+% 		\ampere} & \SI{0.9}{\milli \ampere}& U\$ 2,00  \\ \hline
+% 		\end{tabular}
+% 	}
+% 	\caption{Comparação entre módulos transceptores}
+% 	\label{quadro:transceivers}
+% \end{table}
 
 O \texttt{nRF24L01+}, ilustrado na figura \ref{figura:nrf}, ainda oferece serviços como reconhecimento e
 retransmissão de pacotes automáticos, diminuindo o número de comunicação com a unidade microcontroladora tal
@@ -209,7 +253,7 @@ roteamento mais simples, pois nela existe apenas uma rota para cada nó remoto a
 assim, consome menos energia e é mais simples de implementar que uma rede malha e possui uma área de
 abrangência maior que uma rede estrela.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\caption{Rede Árvore}
 	\centering
 	\includegraphics[scale=0.25]{../images/tree.png}
