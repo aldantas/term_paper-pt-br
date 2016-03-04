@@ -271,9 +271,19 @@ reservados para a transmissão da rota, restando 12 \textit{bytes} para a mensag
 comunicação indireta com até 5 saltos, pois permite com que o nó principal envie uma mensagem com uma rota de
 até 4 endereços em seu \textit{payload}.
 
-A cada salto, 5 \textit{bytes} são retirados do \textit{payload} e utilizados como endereço do próximo salto.
-Esse processo se repete até chegar ao destino, onde a mensagem é processada. Caso ocorra alguma falha no
-caminho, é informado à estação principal transmitimdo o endereço em que ela ocorreu.
+Conforme mostra a Figura \ref{figura:route}, a cada salto são retirados 5 \textit{bytes} do \textit{payload} e
+utilizados como endereço do próximo salto.  Esse processo se repete até chegar ao destino, onde a mensagem é
+processada. Caso ocorra alguma falha no caminho, é informado à estação principal transmitimdo o endereço em
+que ela ocorreu.
+
+\begin{figure}[h!]
+	\caption{Exemplo Roteamento}
+	\centering
+	\includegraphics[scale=0.5]{../images/roteamento.png}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:route}
+\end{figure}
 
 No pior caso de uma comunicação bem-sucedida, isto é, quando a comunicação ocorre em 5 saltos com 15
 retransmissões em cada um, o tempo de máximo é de aproximadamente \SI{187.5}{\milli \second}
@@ -288,26 +298,48 @@ Ao inserir um novo nó em uma RSSF, é preciso que a estação central saiba com
 vice-versa. A maneira mais simples para fazer isso seria pré-configurar as rotas para cada estação remota.
 
 Porém, além de ser um processo trabalhoso, dessa maneira as rotas seriam estáticas e teriam que ser
-reconfiguradas manualmente toda vez que algum nó de seu percurso parasse de funcionar ou que a estação fosse movida de posição.
+reconfiguradas manualmente toda vez que algum nó de seu percurso parasse de funcionar ou que a estação fosse
+movida de posição.
 
 Portanto, foi implementado um processo de busca por \textit{broadcast} cujo objetivo é informar ao nó
 principal a existência de um novo nó e gerar a ele um endereço.
 
 Para garantir que o um nó posicionado entre o principal e um remoto já existente tenha acesso direto ao
-principal são feitas 3 tentativas de comunicação à estação central. Caso não obtenha resposta, significa que
-está fora de seu alcance, iniciando então o processo de busca de rota por \textit{broadcast}.
+principal, é inicialmente realizada uma tentativa de comunicação à estação central. Se bem sucedida, o
+endereço pai desse novo nó passa a ser o do próprio nó principal. Caso não obtenha resposta, significa que
+está fora de seu alcance, iniciando então o processo de busca de rota por \textit{broadcast}, ilustrado na
+Figura \ref{figura:broadcast}.
 
-Esse processo consiste no novo nó enviar um pacote ao endereço de \textit{broadcast} da RSSF informando seu
-endereço padrão. Como dito anteriormente, o canal do transceptor responsável pelo \textit{broadcast} envia seu
-endereço do canal 1 encapsulado no pacote ACK. Sendo assim, o primeiro pacote de confirmação que chegar ao
-novo nó contém o endereço de seu pai na arquitetura da rede, que provavelmente é o nó mais próximo a ele, e o
-armazena para futuras comunicações. Caso não receba nenhuma confirmação, porque não há algum nó em seu
-alcance, um LED é ligado para alertar o fracasso.
+\begin{figure}[h!]
+	\caption{Exemplo Broadcast}
+	\centering
+	\includegraphics[scale=0.5]{../images/broadcast.png}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:broadcast}
+\end{figure}
 
-Caso essa confirmação ocorra, o nó pai, que já está localizado na rede, anexa seu endereço no \textit{payload}
-de transmissão juntamente com a informação proveniente do novo nó e envia esse pacote ao próximo nó de sua
-rota em direção à estação principal. Esse processo se repete até que o endereço do novo nó com a rota até ele
-chegue no final ou que o número de endereços anexados seja maior do que quatro, que é o máximo permitido.
+Esse processo consiste no novo nó enviar um pacote de leitura ao endereço de \textit{broadcast} da RSSF. Como
+dito anteriormente, o canal do transceptor responsável pelo \textit{broadcast} envia o respectivo endereço do
+próprio nó encapsulado no pacote ACK. Sendo assim, o primeiro pacote de confirmação que chegar ao novo nó
+contém o endereço de seu pai na arquitetura da rede, que provavelmente é o nó mais próximo a ele, e o armazena
+para futuras comunicações. Caso não receba nenhuma confirmação, porque não há algum nó em seu alcance, um LED
+é ligado para alertar o fracasso.
+
+Caso essa confirmação ocorra, é enviado o endereço atual ao nó pai, que já está localizado na rede e que, por
+sua vez, anexa seu endereço no \textit{payload} de transmissão juntamente com a informação proveniente do novo
+nó e envia esse pacote ao próximo nó de sua rota em direção à estação principal, conforme mostra a Figura
+\ref{figura:new_route}. Esse processo se repete até que o endereço do novo nó com a rota até ele chegue no
+final ou que o número de endereços anexados seja maior do que quatro, que é o máximo permitido.
+
+\begin{figure}[h!]
+	\caption{Exemplo de recebimento de uma nova rota}
+	\centering
+	\includegraphics[scale=0.5]{../images/nova_rota.png}
+	\hspace{\linewidth}
+	Fonte: Elaborada pelo autor
+	\label{figura:new_route}
+\end{figure}
 
 A estação central repassa a rota recebida para o computador que gera um endereço válido e que será enviado ao
 novo nó para substituir o endereço padrão contido nele até então. A forma como esse endereço é gerado é
@@ -410,9 +442,9 @@ por ora são 'T' (Temperatura), 'H' (umidade), 'L' (Luz), 'G' (Gás), 'R' (Relé
 valores utilizados são 'A' (Analógico) ou 'D' (Digital) e '0' quando o campo Periférico for '0'.
 
 \subsection{Novo Nó}
-É a mensagem enviada por \textit{broadcast} para tentar encontrar uma rota até o nó central. Ilustrado na
-Figura \ref{figura:message_new_node}, também possui campos que indicam o parâmetro ou atuador, assumindo os
-mesmo valores que os campos "Periférico N`` da mensagem de medição.
+É a mensagem enviada ao endereço de nó pai recebido no processo de \textit{broadcast}. Ilustrado na Figura
+\ref{figura:message_new_node}, também possui campos que indicam o parâmetro ou atuador, assumindo os mesmo
+valores que os campos "Periférico N`` da mensagem de medição.
 
 \begin{figure}[h!]
 	\caption{Mensagem do Tipo Novo Nó}
@@ -424,8 +456,8 @@ mesmo valores que os campos "Periférico N`` da mensagem de medição.
 \end{figure}
 
 \subsection{Leitura}
-Embora qualquer transação com o canal 1 de um nó remoto acarrete em uma leitura, esta mensagem, mostrada na Figura
-\ref{figura:message_read}, existe apenas por questão de padronização.
+Embora qualquer transação com um dos dois canais de recepção de um nó remoto acarrete em uma leitura, esta
+mensagem, mostrada na Figura \ref{figura:message_read}, existe apenas por questão de padronização.
 
 \begin{figure}[h!]
 	\caption{Mensagem do Tipo Leitura}
@@ -470,7 +502,7 @@ A comunicação entre o computador e o nó central foi realizada através do pro
 \begin{figure}[h!]
 	\caption{CuteCom}
 	\centering
-	\includegraphics[scale=0.5]{../images/cutecom.png}
+	\includegraphics[scale=0.35]{../images/cutecom.png}
 	\hspace{\linewidth}
 	Fonte: Elaborada pelo autor
 	\label{figura:cutecom}
@@ -482,7 +514,7 @@ precisa ter essa funcionalidade, sendo utilizado então o ATmega328P como mostra
 \ref{figura:prot_main}. Para possibilitar a comunicação USART é utilizado um dispositivo conversor USB/Serial,
 que também atua como fonte de energia ao MCU e ao transceptor, que suporta até 3.3 V.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\caption{Protótipo Estação Principal}
 	\centering
 	\includegraphics[scale=0.1]{../images/prot_principal.jpg}
@@ -496,7 +528,7 @@ Figura \ref{figura:prot_remote} exemplifica um protótipo de nó remoto contendo
 temperatura. O LED à direita é utilizado para sinalizar que o ingresso na rede falhou e à esquerda do sensor
 há um circuito conversor de tensão usado para gerar uma tensão de 3.3 V necessária para alimentar o transceptor.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\caption{Protótipo Estação Remota}
 	\centering
 	\includegraphics[scale=0.1]{../images/prot_remoto.jpg}
@@ -514,6 +546,54 @@ estado ao outro, à necessidade de restaurar as \textit{flags} de interrupções
 Após essa fase, elaborou-se como a RSSF se comportaria, sendo definidos então a estrutura das mensagens, a
 taxa de transferência, número de retransmissões automáticas, entre outros quesitos também já mencionados
 anteriormente neste capítulo.
+
+A Tabela \ref{quadro:test_route} exibe o resultado do processo de inserção de nós na rede, onde cada módulo
+transmitiu seu endereço padrão (nnode), tal como a identificação de seu(s) transdutor(es). Os endereços foram
+gerados pelo nó principal e de forma sequencial apenas para fins de teste.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Nó}           & \textbf{Mensagem Novo Nó} & \textbf{Rota} & \textbf{Endereço Recebido} \\ \hline
+		Luz                   & NL0nnode & \text{\textbf{---}} & nrf00 \\ \hline
+		Temperatura e Umidade & NTHnnode & \text{\textbf{---}} & nrf01 \\ \hline
+		Gás                   & NG0nnode & \text{\textbf{---}} & nrf02 \\ \hline
+		Relé Eletromecânico   & NR0nnode & nrf02         & nrf03       \\ \hline
+	\end{tabular}
+	\caption{Processo de roteamento testado}
+	\label{quadro:test_route}
+\end{table}
+
+Na Tabela \ref{quadro:sample_tests} são expostos os resultados de alguns testes realizados com a solução
+desenvolvida. Os trechos fora das aspas nas mensagens recebidas correspondem aos valores obtidos pelos
+sensores já convertidos para um tipo numérico de dados. Após realizar os testes de leitura e escrita aos nós,
+foi feita uma exposição de gás butano ao sensor de gás, gerando um pacote de emergência após atingir um
+valor limiar definido como 300.
+
+Em seguida, testou-se uma comunicação de 4 saltos entre o nó principal e o nó de luz. Embora o roteamento para
+o mesmo tenha sido obtido de forma direta, isto foi possível devido à ausência de um sistema computacional que
+gerencia as rotas, feitas de forma manual durante os testes. Por fim, foi realizada uma tentativa de
+comunicação com um endereço inexistente, gerando assim um pacote que indica a ocorrência de falha.
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|c|c|c|c|}
+			\hline
+			\textbf{Descrição}                                                         & \textbf{Destinatário} & \textbf{Rota}   & \textbf{Mensagem Enviada} & \textbf{Mensagem Recebida} \\ \hline
+			Leitura Nó Luz                                                             & nrf00                 & \text{---}      & “R”                       & “MLA” 675 “00” 0           \\ \hline
+			\begin{tabular}[c]{@{}l@{}}Leitura Nó Temperatura\\ e Umidade\end{tabular} & nrf01                 & \text{---}      & “R”                       & “MTD” 25 “HD” 67           \\ \hline
+			Leitura Nó Gás                                                             & nrf02                 & \text{---}      & “R”                       & “MGA” 123 “00” 0           \\ \hline
+			Escrita Nó Relé                                                            & nrf03                 & nrf02           & “W10”                     & \text{---}                 \\ \hline
+			\begin{tabular}[c]{@{}l@{}}Emergência Nó Gás\\ (Limiar = 300)\end{tabular} & \text{---}            & \text{---}      & \text{---}                & “Enrf02” 305               \\ \hline
+			Teste Múltiplos Saltos                                                     & nrf00                 & nrf02nrf03nrf01 & “R”                       & “MLA” 678 “00” 0           \\ \hline
+			Teste Endereço Inexistente                                                 & nrf04                 & nrf00nrf01      & “R”                       & “Fnrf04”                   \\ \hline
+		\end{tabular}%
+	}
+	\caption{Exemplos de testes realizados}
+	\label{quadro:sample_tests}
+\end{table}
 
 \section{Custo e Consumo}
 Considerando uma casa de 10 cômodos, onde cada um possui um nó para temperatura e umidade, um para luz e uma
@@ -541,9 +621,11 @@ utilizada.
 	\label{quadro:compare}
 \end{table}
 
-Em relação ao consumo elétrico, o nRF24L01+ é o transceptor com maior eficiência conforme mostrado na Tabela
-\ref{quadro:transceivers} do Capítulo \ref{cap:4}. Além disso, o Arduino obrigatoriamente opera a uma
-frequência de 16 MHz, enquanto o ATtiny84, por padrão, opera a 1 MHz, consumindo assim menos energia.
+Quanto ao alcance, é possível cobrir uma área com raio de até 50 metros com obstáculos no interior. Isso
+permite instalar a RSSF em uma residência com 500 $m^2$ (50x10), por exemplo. Em relação ao consumo elétrico,
+o nRF24L01+ é o transceptor com maior eficiência conforme mostrado na Tabela \ref{quadro:transceivers} do
+Capítulo \ref{cap:4} e é o fator determinante neste quesito, já que a diferença de consumo entre os
+microcontroladores é muito pequena.
 
 \section{Considerações Finais}
 O resultado obtido nesta etapa é fruto de um estudo detalhado de várias características dos

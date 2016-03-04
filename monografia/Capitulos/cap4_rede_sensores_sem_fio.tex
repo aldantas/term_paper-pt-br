@@ -145,8 +145,8 @@ implementa o padrão IEEE 802.15.4. Devido ao baixo consumo elétrico e ótimo c
 
 Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic
 Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta
-diversas vantagens em relação aos demais módulos dessa categoria, podendo ser observadas na Tabela
-\ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
+vantagens quanto ao custo e consumo em relação aos demais módulos dessa categoria, podendo ser observadas na
+Tabela \ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
 implementam protocolos de comunicação mais avançados. As informações foram retiradas de seus respectivos
 \textit{datasheets} e os preços são de módulos prontos para o uso encontrados em \textit{sites} de comércio
 eletrônico vareijista.
@@ -157,10 +157,18 @@ eletrônico vareijista.
 		\begin{tabular}{|l|c|c|c|c|c|}
 			\hline
 			\textbf{Transceptor} & \textbf{Padrão/Protocolo} & \textbf{Taxa de Transmissão Máxima} & \textbf{Consumo}                                                                  & \textbf{\begin{tabular}[c]{@{}c@{}}Alcance Ar Livre\\ (aprox.)\end{tabular}} & \textbf{Preço} \\ \hline
-			nRF24L01+            & Enhanced ShockBurst       & 2 Mbps                              & \begin{tabular}[c]{@{}c@{}}RX: 13.5 mA\\ TX: 11.3 mA\\ Espera: 26 μA\end{tabular} & 50 m.                                                                        & U\$ 1.00       \\ \hline
-			CC2500               & IEEE 802.15.4             & 500 Kbps                            & \begin{tabular}[c]{@{}c@{}}RX: 17 mA\\ TX: 21.2 mA\\ Espera: 1.5 mA\end{tabular}  & 50 m.                                                                        & U\$ 2.00       \\ \hline
-			xBee Series 1        & IEEE 802.15.4 / ZigBee    & 250 Kbps                            & \begin{tabular}[c]{@{}c@{}}RX: 50 mA\\ TX: 45 mA\\ Espera: 10 μA\end{tabular}     & 100 m.                                                                       & U\$ 25.00      \\ \hline
-			ESP8266-E01          & Wi-Fi                     & 54 Mbps                             & \begin{tabular}[c]{@{}c@{}}RX: 60 mA\\ TX: 145 mA\\ Espera: 0.9 mA\end{tabular}   & 300 m.                                                                       & U\$ 2.00       \\ \hline
+			nRF24L01+            & Enhanced ShockBurst       & 2 Mbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{13.5}{\milli \ampere}\\ TX: \SI{11.3}{\milli
+				\ampere}\\ Espera: \SI{26}{\micro \ampere}\end{tabular} & 50 m.                                                                        & U\$ 1.00       \\ \hline
+			CC2500               & IEEE 802.15.4             & 500 Kbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{17}{\milli \ampere}\\ TX: \SI{21.2}{\milli
+				\ampere}\\ Espera: \SI{1.5}{\milli \ampere}\end{tabular}  & 50 m.                                                                        & U\$ 2.00       \\ \hline
+			xBee Series 1        & IEEE 802.15.4 / ZigBee    & 250 Kbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{50}{\milli \ampere}\\ TX: \SI{45}{\milli
+				\ampere}\\ Espera: \SI{10}{\micro \ampere}\end{tabular}     & 100 m.                                                                       & U\$ 25.00      \\ \hline
+			ESP8266-E01          & Wi-Fi                     & 54 Mbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{60}{\milli \ampere}\\ TX: \SI{145}{\milli
+				\ampere}\\ Espera: \SI{0.9}{\milli \ampere}\end{tabular}   & 300 m.                                                                       & U\$ 2.00       \\ \hline
 		\end{tabular}
 	}
 	\caption{Comparação entre módulos transceptores}
