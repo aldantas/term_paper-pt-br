@@ -1,0 +1,49 @@
+\documentclass[
+	12pt,				% tamanho da fonte
+	a4paper,			% tamanho do papel.
+	twosides,            % imprimir em um lado da folha
+	%english,
+	%french,
+	brazil,
+	oneside
+]{Geral/Configuracao/abntex2}
+
+\input{Geral/Configuracao/packages}
+\input{Geral/informacoesGerais}
+
+\makeindex
+\begin{document}
+
+    \input{Geral/capa}
+    \input{Geral/folhaRosto}
+    \input{Geral/aprovacao}
+
+    \input{Geral/dedicatoria}
+    \input{Geral/agradecimentos}
+    \input{Geral/epigrafe}
+    \input{Geral/resumo}
+
+    \input{Geral/Listas/figuras}
+    \input{Geral/Listas/tabelas}
+    \input{Geral/Listas/siglas}
+
+    \input{Geral/Listas/sumario}
+
+    \textual
+    \setcounter{page}{1}
+
+        \input{Capitulos/introducao}
+
+        \input{Capitulos/cap2_automacao_residencial}
+        \input{Capitulos/cap3_sensores_atuadores}
+        \input{Capitulos/cap4_rede_sensores_sem_fio}
+        \input{Capitulos/cap5_desenvolvimento}
+
+        \input{Capitulos/conclusoes}
+
+        %\nocite{*}
+        \bibliography{bibliografia}
+
+        % \input{Capitulos/anexos}
+
+\end{document}

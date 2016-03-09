@@ -1,0 +1,279 @@
+\chapter{Rede de Sensores Sem Fio}
+\label{cap:4}
+
+\section{Considerações Iniciais}
+A integração de sensores em estruturas, máquinas e ambientes, associada com a entrega eficiente das
+informações observadas, pode oferecer inúmeros benefícios para a sociedade, como prevenção de catástrofes,
+conservação de recursos naturais e aprimoramento de comodidade e segurança. Isso pode ser alcançado através
+da implantação de uma rede de sensores sem fio (RSSF) \cite{townsend_arms2005}.
+
+Uma RSSF pode ser definida como uma rede de dispositivos, denominados nós, que podem monitorar o ambiente e
+comunicar a informação adquirida através de ligações sem fio. Esses dados são transmitidos, diretamente ou por
+múltiplos saltos, dependendo da topologia da rede, para um dispositivo principal, que pode estar conectacdo à
+outras redes, como a \textit{Internet}, e que oferece uma interface de interação entre o usuário e a RSSF
+\cite{buratti2011}.
+
+Segundo \citeonline{hai_nayak_stojmenovic2010}, há três tipos de aplicação para RSSFs:
+\begin{itemize}
+	\item \textbf{Orientada à Eventos:} os sensores reportam a informação obtida ao controlador quando alguma
+	evento específico é detectado;
+	\item \textbf{Periódica:} os sensores adquirem informações sobre o ambiente em tempos determinados e as enviam
+	para o controlador periodicamente;
+	\item \textbf{Sob Demanda:} os usuários é quem decidem quando obter dados ao enviar uma solicitação à RSSF e
+	aguardar respectiva resposta.
+\end{itemize}
+
+Quanto à sua aplicação em um sistema de automação residencial, de acordo com os princípios mencionados no
+Capítulo \ref{cap:2}, ela torna-se parte integrante da rede de controle, pois atua apenas sobre os sensores e
+atuadores e não sobre os aparelhos de consumo e possibilita com que o residente a gerencie através de um
+dispositivo de controle remoto.
+
+Para \cite{townsend_arms2005}, a RSSF ideal deve ser escalável, consumir muito pouca energia, ter capacidade
+de rápida aquisição de dados, ser confiável e precisa a longo prazo, possuir baixo custo de desenvolvimento e
+instalação e não necessitar manutenção significativa.
+
+Em relação à sua implementação, alguns aspectos importantes devem ser definidos antes do processo de
+desenvolvimento, sendo eles a composição dos nós, a topologia da rede e os mecanismos de segurança.
+
+\section{Composição dos Nós}
+Os nós de uma RSSF são formados de cinco componentes principais, sende eles uma unidade controladora, um
+dispositivo de armazenamento de memória, sensores e atuadores, um transceptor\footnote{Transceptor refere-se a
+um dispositivo que atua como transmissor e receptor.} sem fio e uma fonte de energia. Cada um desses
+componentes deve operar seguindo um equilíbrio entre o menor consumo de energia possível e a necessidade de
+cumprir suas tarefas \cite{karl_willig2005}.
+
+Na prática, a unidade controladora e o armazenamento de memória tornam-se um só componente com o uso de
+microcontroladores, ou MCU (\textit{Microcontroller Unit}), para cumprir tais funções. Desse modo, a
+composição de um nó de uma RSSF é normalmente conforme ilustrado na figura \ref{figura:node}.
+
+\begin{figure}[h]
+	\caption{Composição de um nó em uma RSSF}
+	\centering
+	\includegraphics[scale=0.5]{../images/node.png}
+	\hspace{\linewidth}
+	Fonte: elaborada pelo autor
+	\label{figura:node}
+\end{figure}
+
+Segue uma breve descrição de cada um dos componentes, com exceção dos sensores e atuadores, já descritos no
+Capítulo \ref{cap:3}.
+
+\subsection{Microcontrolador}
+Microcontroladores são geralmente definidos como computadores completos em um único \textit{chip}, pois
+consistem de um núcleo de processamento com memórias de dados e de programa, pinos de E/S configuráveis e
+outras funcionalidades, dependendo do modelo utilizado, como temporizadores, portas de comunicação serial,
+conversor analógico-digital, etc \cite{williams2014,kuorilehto2007}.
+
+Além disso, algumas características como flexibilidade em conectar dispositivos externos, conjunto de
+instruções favoráveis à processamento de tempo-crítico e baixo consumo elétrico fazem com que os MCUs sejam
+amplamente utilizados em diversas aplicações, como sistemas embarcados e, evidentemente, redes de sensores sem
+fio \cite{karl_willig2005}.
+
+Atualmente existem inúmeros modelos de MCU de fabricantes diferentes no mercado, alguns deles são mostrados
+na Tabela \ref{quadro:microcontrollers}, sendo que o modelo \texttt{L106} é o que vem embutido nos módulos
+transceptores \texttt{ESP8266EX}.
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!} {
+		\begin{tabular}{|l|c|c|c|c|c|c|c|}
+			\hline
+			\textbf{Microcontrolador} & \textbf{Pinos} & \textbf{Flash} & \textbf{RAM} &
+			\textbf{Clock}  & \textbf{Arquitetura} & \textbf{Consumo} & \textbf{Preço} \\ \hline
+			Atmega328p       & 32    & 32 KB           & 2 KB    & 20 MHz & 8-bit RISC  &
+			\begin{tabular}[c]{@{}c@{}}Active Mode: \SI{0.2}{\milli \ampere}\\ Power-down Mode:
+				\SI{0.1}{\micro \ampere}\\ Power-save Mode: \SI{0.75}{\micro \ampere}\end{tabular} & U\$ 3.70          \\ \hline
+			PIC16F1718       & 28    & 28 KB           & 2 KB    & 32 MHz & 8-bit RISC  &
+			\begin{tabular}[c]{@{}c@{}}Operating Current: \SI{0.03}{\milli \ampere}\\ Sleep Mode:
+				\SI{0.05}{\micro \ampere}\end{tabular}                         & U\$ 1.68          \\ \hline
+			MSP430G2553IN20  & 20    & 16 KB           & 512 B   & 16 MHz & 16–bit RISC &
+			\begin{tabular}[c]{@{}c@{}}Active Mode: \SI{0.23}{\milli \ampere}\\ Off Mode:
+				\SI{0.1}{\micro \ampere}\\ Standby Mode: \SI{0.5}{\micro \ampere}\end{tabular}           & U\$ 2.66          \\ \hline
+			L106 (ESP8266EX) & 20    & 16 MB (externa) &  36 KB & 80 MHz & 32–bit RISC & Não
+			fornecido & U\$ 2.00 - U\$ 7.00 \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparação entre microcontroladores}
+	\label{quadro:microcontrollers}
+\end{table}
+
+Dentre eles, destaca-se o \texttt{Atmega328p} que pertence à família de microcontroladores \texttt{AVR} da
+empresa \textit{Atmel Corporation}. O principal motivo pela difusão desses modelos, além do baixo preço, é que
+eles oferecem \textit{softwares} abertos e gratuitos para realizar a implementação do código embarcado. Um
+deles é o compilador \texttt{avr-gcc}, que é uma montagem do \textit{GNU Compiler Collection} específica para
+os AVR e utiliza a biblioteca \texttt{AVR-Libc}, que fornece um subconjunto da biblioteca C padrão. Além
+disso, há também o programa \texttt{avrdude}, que é o responsável em transferir o código binário gerado para o
+microcontrolador.
+
+Conforme mostra a figura \ref{figura:avr}, os microcontroladores AVR estão disponíveis em diversos tamanhos e
+pacotes, sendo que as funcionalidades embutidas, quantidade de memória disponível e outros atributos dependem
+do modelo utilizado.
+
+\begin{figure}[h]
+	\caption{Microcontroladores AVR}
+	\centering
+	\includegraphics[scale=0.5]{../images/avr.jpg}
+	\hspace{\linewidth}
+	Fonte: http://home.roboticlab.eu
+	\label{figura:avr}
+\end{figure}
+
+Os modelos \texttt{AVR} são os mesmos utilizados pelo \texttt{Arduino}, que nada mais é que uma camada de
+abstração ao MCU e que oferece algumas facilidades como conectores mais convenientes, bibliotecas
+implementadas, entre outras.  Contudo, o objetivo principal do \texttt{Arduino} é permitir que novatos e
+pessoas fora da área possam realizar prototipações de computação de baixo nível. Embora seja uma ótima
+plataforma, seu custo chega a ser quatro vez mais que um \texttt{AVR} separado \cite{trevennor2012}.
+
+\subsection{Transceptor}
+O uso da comunicação por radiofrequcência (RF) tem se tornado cada vez mais abrangente, indo desde as
+aplicações tradicionais, como transmissão de sinais de rádio e televisão, para as mais diversas utilidades,
+como monitoramento de pacientes em um hospital, \textit{mouses} e teclados sem fio, identificação por
+radiofrequência (RFID) e, naturalmente, redes de sensores sem fio \cite{misra2001}.
+
+Embora transceptores baseados em ondas ópticas possuam uma eficiência energética melhor, sua necessidade por
+uma condição de linha de visão devido ao seu comportamento direcional faz com que a comunicação baseada em RF
+seja a mais relevante para a construção de uma RSSF, pois, além de ser omnidirecional, provê uma distância de
+alcance e uma taxa de tranferência de dados relativamente altas \cite{kuorilehto2007,karl_willig2005}.
+
+Conforme mencionado no Capítulo \ref{cap:1}, os módulos transceptores RF que implementam protocolos de
+comunicação avançados como o ZigBee e o Wi-Fi deixam a desejar em relação ao preço e consumo energético,
+sendo necessário optar por módulos mais simples.
+
+Uma possibilidade é utilizar o transceptor \texttt{CC2500} da empresa \textit{Texas Instruments}, que
+implementa o padrão IEEE 802.15.4. Devido ao baixo consumo elétrico e ótimo custo-benefício, esse dispositivo
+é amplamente utilizado.
+
+Outro transceptor de rádio frequência bastante difundido é o \texttt{nRF24L01+} da empresa \textit{Nordic
+Semiconductor}. Embora possui a desvantagem de não seguir o padrão aberto da IEEE, esse dispositivo apresenta
+vantagens quanto ao custo e consumo em relação aos demais módulos dessa categoria, podendo ser observadas na
+Tabela \ref{quadro:transceivers}, que exibe uma comparação entre os dois transceptores mencionados e dois que
+implementam protocolos de comunicação mais avançados. As informações foram retiradas de seus respectivos
+\textit{datasheets} e os preços são de módulos prontos para o uso encontrados em \textit{sites} de comércio
+eletrônico vareijista.
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!} {
+		\begin{tabular}{|l|c|c|c|c|c|}
+			\hline
+			\textbf{Transceptor} & \textbf{Padrão/Protocolo} & \textbf{Taxa de Transmissão Máxima} & \textbf{Consumo}                                                                  & \textbf{\begin{tabular}[c]{@{}c@{}}Alcance Ar Livre\\ (aprox.)\end{tabular}} & \textbf{Preço} \\ \hline
+			nRF24L01+            & Enhanced ShockBurst       & 2 Mbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{13.5}{\milli \ampere}\\ TX: \SI{11.3}{\milli
+				\ampere}\\ Espera: \SI{26}{\micro \ampere}\end{tabular} & 50 m.                                                                        & U\$ 1.00       \\ \hline
+			CC2500               & IEEE 802.15.4             & 500 Kbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{17}{\milli \ampere}\\ TX: \SI{21.2}{\milli
+				\ampere}\\ Espera: \SI{1.5}{\milli \ampere}\end{tabular}  & 50 m.                                                                        & U\$ 2.00       \\ \hline
+			xBee Series 1        & IEEE 802.15.4 / ZigBee    & 250 Kbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{50}{\milli \ampere}\\ TX: \SI{45}{\milli
+				\ampere}\\ Espera: \SI{10}{\micro \ampere}\end{tabular}     & 100 m.                                                                       & U\$ 25.00      \\ \hline
+			ESP8266-E01          & Wi-Fi                     & 54 Mbps
+			& \begin{tabular}[c]{@{}c@{}}RX: \SI{60}{\milli \ampere}\\ TX: \SI{145}{\milli
+				\ampere}\\ Espera: \SI{0.9}{\milli \ampere}\end{tabular}   & 300 m.                                                                       & U\$ 2.00       \\ \hline
+		\end{tabular}
+	}
+	\caption{Comparação entre módulos transceptores}
+	\label{quadro:transceivers}
+\end{table}
+
+% \begin{table}[H]
+% 	\centering
+% 	\resizebox{\textwidth}{!} {
+% 		\begin{tabular}{|l|c|c|c|c|c|c|c|}
+% 		\hline
+% 		\textbf{Transceptor}   & \textbf{Padrão/Protocolo}  & \textbf{Transmissão} & \textbf{Consumo
+% 		RX} & \textbf{Consumo TX} & \textbf{Consumo Espera} & Alcance & Preço     \\ \hline
+% 		nRF24L01+     & Enhanced ShockBurst    & 2 Mbps   & \SI{13.5}{\milli \ampere} & \SI{11.3}{\milli
+% 		\ampere} & \SI{26}{\micro \ampere} & U\$ 1,00  \\ \hline
+% 		CC2500        & IEEE 802.15.4          & 500 Kbps & \SI{17}{\milli \ampere}   & \SI{21.2} {\milli
+% 		\ampere}  & \SI{1.5}{\milli \ampere} & U\$ 2,00  \\ \hline
+% 		xBee Series 1 & IEEE 802.15.4 / ZigBee & 250 Kbps & \SI{50}{\milli \ampere}   & \SI{45}{\milli
+% 		\ampere} & \SI{10}{\micro \ampere}  & U\$ 25,00 \\ \hline
+% 		ESP8266       & Wi-Fi                  & 54 Mbps  & \SI{56}{\milli \ampere}   & \SI{140}{\milli
+% 		\ampere} & \SI{0.9}{\milli \ampere}& U\$ 2,00  \\ \hline
+% 		\end{tabular}
+% 	}
+% 	\caption{Comparação entre módulos transceptores}
+% 	\label{quadro:transceivers}
+% \end{table}
+
+O \texttt{nRF24L01+}, ilustrado na figura \ref{figura:nrf}, ainda oferece serviços como reconhecimento e
+retransmissão de pacotes automáticos, diminuindo o número de comunicação com a unidade microcontroladora tal
+como o processamento utilizado pela mesma. Dessa forma, além de reduzir ainda mais o consumo elétrico
+necessário, possibilita uma implementação eficiente utilizando microcontroladores simples e baratos.
+
+\begin{figure}[h]
+	\caption{Módulo Transceptor NRF24L01+}
+	\centering
+	\includegraphics[scale=0.25]{../images/nrf.jpg}
+	\hspace{\linewidth}
+	Fonte: http://www.techmake.com
+	\label{figura:nrf}
+\end{figure}
+
+\subsection{Fonte de Energia}
+Consiste de um mecanismo de armazenamento de energia (normalmente uma bateria não recarregável), um regulador
+de tensão e, opcionalmente, uma unidade de obtenção energética. Essa obtenção pode ser através de diversos
+fenômenos, como a luz, vibrações, variação de temperatura, variação de pressão, entre oturos
+\cite{kuorilehto2007,karl_willig2005}.
+
+A característica de energia excassa que aplicações RSSF possuem, implica em alguns requerimentos de eficiência
+energética no planejamento dos nós, ou seja, o consumo deve ser minimizado. Há algumas estratégias que podem
+ser usadas para atingir esse objetivo, como reduzir a quantidade de informações transmitidas através de
+compreensão de dados ou redução, ativar o sensor apenas quando estiver coletando dados, implementar uma
+estratégia orientada à eventos para a coleta e transmissão, etc \cite{kuorilehto2007,townsend_arms2005}.
+
+\section{Topologia da Rede}
+\subsection{Estrela}
+Em uma rede deste tipo, cada nó se comunica diretamente com a estação base (controlador). A vantagem
+desta topologia consiste na sua simplicidade e na capacidade de manter o menor consumo de energia possível,
+entretanto, o alcance fica limitado ao alcance do módulo transceptor, dificultando a escalabilidade da solução
+\cite{dargie_poellabauer2010,townsend_arms2005}.
+
+\begin{figure}[h]
+	\caption{Rede Estrela}
+	\centering
+	\includegraphics[scale=0.25]{../images/star.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:star}
+\end{figure}
+
+\subsection{Malha}
+Nessa rede, cada nó pode se comunicar diretamente com qualquer outro nó dentro de seu alcance, o que permite a
+chamada comunicação \textit{multihop}, ou seja, caso um nó queira se comunicar com outro fora de seu alcance,
+ele pode utilizar um intermediário para transmitir a mensagem adiante. Dessa forma, torna mais fácil escalar a
+aplicação e diminui a necessidade de uma estação central para certas operações. Em contrapartida, a
+complexidade aumenta pois surge a necessidade de criar mecanismos de roteamento, além de aumentar o consumo de
+energia elétrica \cite{townsend_arms2005}.
+
+\begin{figure}[h]
+	\caption{Rede Malha}
+	\centering
+	\includegraphics[scale=0.3]{../images/mesh.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:mesh}
+\end{figure}
+
+\subsection{Árvore}
+Também chamada de hierárquica, essa topologia permite uma comunicação \textit{multihop}, porém com um protocolo de
+roteamento mais simples, pois nela existe apenas uma rota para cada nó remoto a partir do controlador. Sendo
+assim, consome menos energia e é mais simples de implementar que uma rede malha e possui uma área de
+abrangência maior que uma rede estrela.
+
+\begin{figure}[H]
+	\caption{Rede Árvore}
+	\centering
+	\includegraphics[scale=0.25]{../images/tree.png}
+	\hspace{\linewidth}
+	Fonte: https://www.wikipedia.org/
+	\label{figura:tree}
+\end{figure}
+
+\section{Considerações Finais}
+Embora uma implementação de RSSF para residências e escritórios seja mais simples que uma industrial, por
+exemplo, não significa que ela não possua suas particularidades e dificuldades.
+
+Melhorar a experiência de um morador com sua residência, ou de um funcionário com seu ambiente de trabalho, e
+proporcioná-los uma melhor qualidade de vida é uma responsabilidade e satisfação que não se encontra em outros
+ambientes de aplicação.
